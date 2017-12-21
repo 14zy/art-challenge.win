@@ -1,9 +1,29 @@
 
-
+Vue.component('todo-item', {
+    props: ['todo'],
+    template: '<li>{{ todo.text }}</li>'
+});
 
 var app = new Vue({
-  el: "#app"
-})
+    el: '#app',
+    data: {
+        message: "Hello World",
+        food_items: ["hamburger", "hotdog", "fries"],
+        seen: true,
+        groceryList: [
+            { text: 'Vegetables' },
+            { text: 'Cheese' },
+            { text: 'Whatever else humans are supposed to eat' }
+        ]
+    },
+    methods: {
+        buttonClick: function() {
+            this.seen = !this.seen;
+        }
+    }
+});
+
+
 
 
 /*
@@ -59,7 +79,37 @@ var app = new Vue({
 
 
 Данные о пройденных уровнях сохраняются в localStorage
-
-
-
 */
+
+// ===EXAMPLE===
+//
+// Vue.component('button-counter', {
+//   props: ['title', 'body'],
+//   template: '<button v-on:click="incrementCounter">{{ counter }}</button>',
+//   data: function () {
+//     return {
+//       counter: 0
+//     }
+//   },
+//   methods: {
+//     incrementCounter: function () {
+//       this.counter += 1
+//       this.$emit('increment')
+//     },
+//     hideMessage() {
+//      this.isVisible = false;
+//     }
+//   }
+// })
+//
+// new Vue({
+//   el: '#counter-event-example',
+//   data: {
+//     total: 0
+//   },
+//   methods: {
+//     incrementTotal: function () {
+//       this.total += 1
+//     }
+//   }
+// })

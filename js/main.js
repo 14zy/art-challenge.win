@@ -7,7 +7,7 @@ Vue.component('quest', {
         }
       },
   template: `
-  <div class="card p-2 mb-3">
+  <div class="card p-2 mb-3" @click="window.location.href='game.html'">
     <div class="card-block">
       <div class="row">
         <div class="col-8"><h4>{{quest.title}}</h4></div>
@@ -126,7 +126,8 @@ var app = new Vue({
 Чекаем localStorage, чтобы понять какие уровни у него пройдены
 
 1) Человек выбирает уровень
-  Переходит по ссылке вида #game_id_1
+  Загружается фулл-скрин анимация
+  и переходит по ссылке вида #game_id_1
 
 2) Начинается игра в этом уровне (идет анимаця)
   В текущем уровне генерим случайного художника и его картину

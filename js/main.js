@@ -1,5 +1,6 @@
 
 
+
 Vue.component('quest', {
   props: ['quest'],
   computed: {
@@ -86,7 +87,9 @@ var app = new Vue({
 });
 
 
-
+$( document ).ready(function() {
+  $('.carousel').bcSwipe({ threshold: 50 });
+});
 
 /*
 Главный экран

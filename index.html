@@ -35,7 +35,7 @@
 
   <div id="app">
     <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut" mode="out-in">
-      <div v-show="loading" class="text-center py-5 fixed-top" style='background-color: white;'>
+      <div v-show="loading" class="text-center py-5 fixed-top" style='background-color: white; z-index:9999'>
         <img src="img/loadings/gem.gif" class="img-fluid"/>
         LOADING
         <br><br><br><br>
@@ -54,11 +54,6 @@
           <img class="d-block img-fluid" src="img/slides/slide3.jpg" alt="Third slide">
         </div>
       </div>
-      <script>
-        $( document ).ready(function() {
-          $('.carousel').bcSwipe({ threshold: 50 });
-        });
-      </script>
     </div>
 
 
@@ -83,6 +78,12 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
   <script src="js/jquery.bcSwipe.min.js"></script>
   <script src="js/main.js"></script>
+
+  <script>
+    $( document ).ready(function() {
+      $('.carousel').bcSwipe({ threshold: 50 });
+    });
+  </script>
 </body>
 
 </html>

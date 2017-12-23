@@ -1,4 +1,5 @@
 
+
 Vue.component('quest', {
   props: ['quest'],
   computed: {
@@ -7,7 +8,7 @@ Vue.component('quest', {
         }
       },
   template: `
-  <div class="card p-2 mb-3" @click="window.location.href='game.html'">
+  <div class="card p-2 mb-3" @click="app.loading = true; setTimeout(function(){window.location.href='game.html'},500);">
     <div class="card-block">
       <div class="row">
         <div class="col-8"><h4>{{quest.title}}</h4></div>
@@ -66,21 +67,22 @@ Vue.component('quests-list', {
 
 var app = new Vue({
     el: '#app',
-    // data: {
-    //     message: "Hello World",
-    //     food_items: ["hamburger", "hotdog", "fries"],
-    //     seen: true,
-    //     groceryList: [
-    //         { text: 'Vegetables' },
-    //         { text: 'Cheese' },
-    //         { text: 'Whatever else humans are supposed to eat' }
-    //     ]
-    // },
-    // methods: {
-    //     buttonClick: function() {
-    //         this.seen = !this.seen;
-    //     }
-    // }
+    data: {
+        message: "Hello World",
+        loading: false,
+        food_items: ["hamburger", "hotdog", "fries"],
+        seen: true,
+        groceryList: [
+            { text: 'Vegetables' },
+            { text: 'Cheese' },
+            { text: 'Whatever else humans are supposed to eat' }
+        ]
+    },
+    methods: {
+        buttonClick: function() {
+            this.seen = !this.seen;
+        }
+    }
 });
 
 

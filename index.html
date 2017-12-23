@@ -34,6 +34,13 @@
 <body>
 
   <div id="app">
+    <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut" mode="out-in">
+      <div v-show="loading" class="text-center py-5 fixed-top" style='background-color: white;'>
+        <img src="img/loadings/gem.gif" class="img-fluid"/>
+        
+        <br><br><br><br>
+      </div>
+    </transition>
 
     <div id="onBoardngCards" class="carousel slide px-3 pt-3" data-ride="carousel">
       <div class="carousel-inner" role="listbox">
@@ -57,6 +64,7 @@
       </a>
     </div>
 
+
     <div id="questsList" class="p-3 mb-5">
       <div class="text-center text-muted small">
         <p> ––– SELECT A GAME ––– </p>
@@ -64,6 +72,7 @@
       <quests-list></quests-list>
       <br><br>
     </div>
+
 
     <div class="footer fixed-bottom text-left" style="background-color: white; border-style: dotted; border-width: 1px;">
       <!-- ArtChallenge.ru_responsive -->

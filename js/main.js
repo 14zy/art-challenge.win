@@ -66,7 +66,7 @@ Vue.component('painter', {
           <h4>{{ answer.name.split(" ").pop() }}</h4>
         </div>
         <div class="col-4 text-right text-nowrap pr-0">
-          <img width="20" class='mb-1' :src="'img/flags/' + answer.nationality[0].slice(0,2) + '.png'" />
+          <img width="20" class='mb-1' :src="'img/nationality/' + answer.nationality[0] + '.png'" />
           <br>
           <span class="small pr-1">{{ answer.years }}</span>
         </div>
@@ -113,25 +113,25 @@ var app = new Vue({
           {  "id": 1,
              "name": "Amedeo Modigliani",
              "years": "1884 - 1920",
-             "nationality": ["Italian"],
+             "nationality": ["Italy"],
              "paintings": 193
           },
           {  "id": 2,
              "name": "Henri Lebasque",
              "years": "1865 - 1937",
-             "nationality": ["French"],
+             "nationality": ["France"],
              "paintings": 119
           },
           {  "id": 3,
              "name": "Arkhip Kuinji",
              "years": "1842 - 1910",
-             "nationality": ["Russian"],
+             "nationality": ["Russia"],
              "paintings": 179
           },
           {  "id": 4,
              "name": "Vasiliy Kandinskiy",
              "years": "1866 - 1944",
-             "nationality": ["Russian"],
+             "nationality": ["Russia"],
              "paintings": "88"
           }
         ]

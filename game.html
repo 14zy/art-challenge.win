@@ -22,72 +22,30 @@
 
   <!-- <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i|Montserrat:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"> -->
 
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <script>
-    // (adsbygoogle = window.adsbygoogle || []).push({
-    //   google_ad_client: "ca-pub-2407992058828148",
-    //   enable_page_level_ads: true
-    // });
-    //
-    // (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-2407992058828148",
+    enable_page_level_ads: true
+  });
+
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script> -->
 </head>
 
 <body>
 
   <div id="app">
-
-
-<div class="container-fluid">
-
-    <div class="row">
-      <div class="col-2 text-left">
-        <p @click="window.history.back();" class="pl-1 pt-3">🔙</p>
-      </div>
-
-      <div class="col-8 text-center">
-        <div class="pt-3">
-          <span id="score1">.</span>
-          <span id="score2">.</span>
-          <span id="score3">.</span>
-          <span id="score4">.</span>
-          <span id="score5">.</span>
-          <span id="score6">.</span>
-          <span id="score7">.</span>
-          <span id="score8">.</span>
-          <span id="score9">.</span>
-          <span id="score10">🎁</span>
-        </div>
-      </div>
-
-      <div class="col-2 text-right">
-        <p @click="alert('Settings will be there')" class="pt-3 pr-1">⚙️</p>
-      </div>
-    </div>
-  </div>
-
-
-    <div class="px-3">
-      <img id="picture" style="width: 100%; height: auto;
-      box-shadow: 0 3px 2px #777;"
-      src="http://artchallenge.me/painters/36/184.jpg"/>
-    </div>
-
-    <div class="pt-4">
-
-      <answers></answers>
-
-
-
-    </div>
-
-
+    <game></game>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-  <script src="js/main.js"></script>
+  <script defer src="https://unpkg.com/sweetalert2@7.2.0/dist/sweetalert2.all.js"  crossorigin="anonymous"></script>
+  <script src="js/game.js"></script>
+  <script src="js/app.js"></script>
+
 </body>
 
 </html>

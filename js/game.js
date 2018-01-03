@@ -8,7 +8,7 @@ Vue.component('game-screen', {
         </div>
         <div class="col-8 text-center">
           <div class="pt-3">
-            <span v-for="questionMark in this.$root.questions">{{questionMark}}</span>
+            <i class="text-success" v-for="correct in this.$root.correctAnswers">X</i><i v-for="questionMark in (this.$root.questions-this.$root.correctAnswers)">X</i><i>P</i>
           </div>
         </div>
         <div class="col-2 text-right">
@@ -75,15 +75,18 @@ Vue.component('painterBtn', {
   methods: {
    answer: function (painter) {
      if (painter.id == this.$root.currentPainter.id) {
-       if (9 == 10) {
-         swal("STAR",'You are winner!', 'success')
+       if (app.correctAnswers == 9) {
+         swal("STAR",'You are winner!', 'success');
+         app.correctAnswers += 1;
          app.winner();
        } else {
-         swal(this.painter.name,'You are awesome!', 'success')
+         swal(this.painter.name,'You are awesome!', 'success');
+         app.correctAnswers += 1;
          app.nextQuestion();
        }
      } else {
        swal('Oops!','It was ' + this.$root.currentPainter.name, 'error')
+       app.correctAnswers = 0;
        app.endGame();
      }
    }
@@ -112,7 +115,10 @@ var app = new Vue({
           app.nextQuestion();
         },
         winner: function() {
-
+          console.log("winner is here");
+        },
+        randomPainter: function() {
+          return this.questionsDB[Math.floor(Math.random() * this.questionsDB.length)]
         },
         nextQuestion: function() {
           this.currentPicture = "";
@@ -140,9 +146,6 @@ var app = new Vue({
         },
         newRound: function() {
           this.nextQuestion();
-        },
-        randomPainter: function() {
-          return this.questionsDB[Math.floor(Math.random() * this.questionsDB.length)]
         }
     },
     mounted: function() {
@@ -163,17 +166,35 @@ var app = new Vue({
               "nationality": ["France"],
               "paintings": 119
            },
-           {  "id": 3,
-              "name": "Arkhip Kuinji",
-              "years": "1842 - 1910",
-              "nationality": ["Russia"],
-              "paintings": 179
+           {  "id": 9,
+              "name": "Claude Monet",
+              "years": "1840 - 1926",
+              "nationality": ["France"],
+              "paintings": 73
+           },
+           {  "id": 14,
+              "name": "Rene Magritte",
+              "years": "1898 - 1967",
+              "nationality": ["Belgium"],
+              "paintings": 194
+           },
+           {  "id": 15,
+              "name": "Salvador Dali",
+              "years": "1904 - 1989",
+              "nationality": ["Spain"],
+              "paintings": 139
+           },
+           {  "id": 17,
+              "name": "Eduard Manet",
+              "years": "1832 - 1883",
+              "nationality": ["France"],
+              "paintings": 90
            },
            {  "id": 4,
               "name": "Vasiliy Kandinskiy",
               "years": "1866 - 1944",
               "nationality": ["Russia"],
-              "paintings": "88"
+              "paintings": 88
            }];
 
            this.newRound();

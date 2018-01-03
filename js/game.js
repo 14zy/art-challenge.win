@@ -8,7 +8,9 @@ Vue.component('game-screen', {
         </div>
         <div class="col-8 text-center">
           <div class="pt-3">
-            <i class="text-success" v-for="correct in this.$root.correctAnswers">X</i><i v-for="questionMark in (this.$root.questions-this.$root.correctAnswers)">X</i><i>P</i>
+            <i class="fa fa-check text-success" v-for="correct in this.$root.correctAnswers"></i>
+            <i class="fa fa-asterisk" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i>
+            <i class="fa fa-gift"></i>
           </div>
         </div>
         <div class="col-2 text-right">
@@ -34,7 +36,7 @@ Vue.component('question', {
 
 Vue.component('questionPicture', {
   template: `
-  <div>
+  <div style='max-height: 300px; overflow: scroll'>
     <img class="painting" :src="pictureURL()"/>
   </div>`,
   methods: {
@@ -46,29 +48,34 @@ Vue.component('questionPicture', {
 
 Vue.component('answers', {
   template: `
-  <div class='mb-4'>
-    <painterBtn v-for="painter in this.$root.currentAnswers" :painter="painter"></painterBtn>
+  <div class='mb-4 row'>
+    <painterBtn class="col-6 pl-4 pr-4" v-for="painter in this.$root.currentAnswers" :painter="painter"></painterBtn>
   </div>`
 });
 
 Vue.component('painterBtn', {
   props: ["painter"],
   template: `
-  <div class="card p-2" style="border-radius: 0" @click="answer(painter);">
+  <div class="card py-2" style="border-radius: 0; " @click="answer(painter);">
     <div class="card-block">
       <div class="row mr-0">
-        <div class="col-2 text-right">
-          <img width="60" :src="'img/painters/' + painter.id + '.png'" />
+      <span class="text-right" style=' right:20px;  position: absolute'>
+        <img width="20" class='' :src="'img/nationality/' + painter.nationality[0] + '.png'" />
+        <br>
+        <span class="small" style='font-size: 12px'>{{ painter.years }}</span>
+      </span>
+      <div class="col-5 text-right">
+        <img width="60" :src="'img/painters/' + painter.id + '.png'" />
+      </div>
+      <div class="col-7 ">
+
+      </div>
+
+        <div class="col-12 text-nowrap">
+        {{ painter.name }}
         </div>
-        <div class="col-6">
-          <span class="small">{{ painter.name.split(" ")[0] }}</span>
-          <h4>{{ painter.name.split(" ").pop() }}</h4>
-        </div>
-        <div class="col-4 text-right text-nowrap pr-0">
-          <img width="20" class='mb-1' :src="'img/nationality/' + painter.nationality[0] + '.png'" />
-          <br>
-          <span class="small pr-1">{{ painter.years }}</span>
-        </div>
+
+
       </div>
     </div>
   </div>`,
@@ -80,14 +87,24 @@ Vue.component('painterBtn', {
          app.correctAnswers += 1;
          app.winner();
        } else {
-         swal(this.painter.name,'You are awesome!', 'success');
+         //swal(this.painter.name,'You are awesome!', 'success');
+         app.loading = true;
+         setTimeout(function () {
+           app.loading = false;
+         }, 1000);
+
          app.correctAnswers += 1;
+
          app.nextQuestion();
        }
      } else {
-       swal('Oops!','It was ' + this.$root.currentPainter.name, 'error')
-       app.correctAnswers = 0;
-       app.endGame();
+       swal('Oops!','It was ' + this.$root.currentPainter.name, 'warning')
+       app.correctAnswers = app.correctAnswers - 1 ;
+       if (app.correctAnswers < 0) {
+         app.correctAnswers = 0;
+       }
+       app.nextQuestion();
+       //app.endGame();
      }
    }
  },
@@ -102,6 +119,7 @@ var app = new Vue({
     router,
     el: '#app',
     data: {
+        loading: false,
         currentQuest: "",
         questions: 10,
         correctAnswers: 0,

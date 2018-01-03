@@ -15,6 +15,7 @@
   <meta property="og:title" content="Art Challenge Title" />
   <meta property="og:description" content="Art Challenge description" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css ">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css" integrity="sha256-00w68NO3TLuHjKRHJmjrrgJBDtG/6OhbJEu1gtHcsuo=" crossorigin="anonymous" />
   <link rel="stylesheet" href="css/style.css">
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.2/vue.min.js"></script>
@@ -22,7 +23,7 @@
 
   <!-- <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i|Montserrat:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"> -->
 
-  <!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <script>
   (adsbygoogle = window.adsbygoogle || []).push({
     google_ad_client: "ca-pub-2407992058828148",
@@ -30,13 +31,25 @@
   });
 
   (adsbygoogle = window.adsbygoogle || []).push({});
-  </script> -->
+  </script>
 </head>
 
 <body>
 
   <div id="app">
+    <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut" mode="out-in">
+      <div v-show="loading" class="text-center fixed-top" style='; z-index:9999'>
+        <img src="img/animations/1.gif" class="img-fluid"/>
+      </div>
+    </transition>
+
     <game-screen></game-screen>
+
+
+    <div class="footer text-left" style="background-color: white; border-style: dotted; border-width: 1px;">
+      <!-- ArtChallenge.ru_responsive -->
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2407992058828148" data-ad-slot="3910414450" data-ad-format="horizontal"></ins>
+    </div>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>

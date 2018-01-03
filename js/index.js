@@ -1,10 +1,5 @@
 Vue.component('quest', {
   props: ['quest'],
-  // computed: {
-  //       countPainters() {
-  //         return this.quest.painters.length
-  //       }
-  //     },
   template: `
   <div class="card p-2 mb-3" @click="app.loading = true; setTimeout(function(){window.location.href='game.html?quest='+quest.id},500);">
     <div class="card-block">
@@ -33,25 +28,14 @@ Vue.component('quest', {
         </div>
       </div>
     </div>
-  </div>
-  `,
-  // filters: {
-  //   capitalize: function (value) {
-  //     if (!value) return ''
-  //     value = value.toString()
-  //     return value.charAt(0).toUpperCase() + value.slice(1)
-  //   }
-  // }
+  </div>`
 });
-
-
 
 Vue.component('quests-list', {
   template: `
   <div>
     <quest v-for="quest in this.$root.quests" :quest="quest"></quest>
-  </div>
-  `
+  </div>`
 });
 
 var router = new VueRouter({
@@ -71,51 +55,6 @@ var app = new Vue({
           {id: "french", difficult: "basic", title: "French painters", description: "Know the difference in 2 minutes", painters: 45, completed: false, hidden: false},
           {id: "russian", difficult: "basic", title: "Russian painters", description: "Know the difference in 2 minutes", painters: 46, completed: false, hidden: false},
           {id: "all", difficult: "hard", title: "All painters", description: "Know the difference in 2 minutes", painters: 47, completed: false, hidden: false},
-        ],
-        paintersSet: [
-          {  "id": 1,
-             "name": "Amedeo Modigliani",
-             "years": "1884 - 1920",
-             "nationality": ["Italy"],
-             "paintings": 193
-          },
-          {  "id": 2,
-             "name": "Henri Lebasque",
-             "years": "1865 - 1937",
-             "nationality": ["France"],
-             "paintings": 119
-          },
-          {  "id": 3,
-             "name": "Arkhip Kuinji",
-             "years": "1842 - 1910",
-             "nationality": ["Russia"],
-             "paintings": 179
-          },
-          {  "id": 4,
-             "name": "Vasiliy Kandinskiy",
-             "years": "1866 - 1944",
-             "nationality": ["Russia"],
-             "paintings": "88"
-          }
         ]
-    },
-    mounted: function() {
-
-       if (this.$route.path == "/game.html") {
-         if (this.$route.query.quest) {
-           console.log(this.$route.query.quest);
-
-           // Загружаем художников из текущего режима в PaintersSet
-           // Генерим случайного на начало раунда
-           // Генерим ответы
-           //
-         }
-       }
-
-     },
-    methods: {
-        // buttonClick: function() {
-        //     this.seen = !this.seen;
-        // }
     }
 });

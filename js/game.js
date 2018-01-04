@@ -1,18 +1,18 @@
 Vue.component('game-screen', {
   template: `
   <div>
-      <div v-show="!this.$root.zoomed" class="container-fluid fixed-top" style="background-color: rgba(255,255,255,0.0);">
+      <div v-show="!this.$root.zoomed" class="container-fluid fixed-top" style="font-size:18px; background-color: rgba(255,255,255,0.0);">
         <div class="row">
-          <div class="col-2 text-left">
-            <p @click="window.history.back();" class="pl-1 pt-3" style='color: white;'><i class="fa fa-chevron-left"></i></p>
+          <div class="col-2 text-left pt-2">
+            <span @click="window.history.back();" class="pl-1 pt-3" style='color: white;'><i class="fa fa-chevron-left"></i></span>
           </div>
-          <div class="col-8 text-center" style='color: #333;'>
-            <div class="pt-3">
+          <div class="col-8 text-center" style='font-size:18px'>
+            <div class="pt-2">
               <i class="fa fa-star text-warning" v-for="correct in this.$root.correctAnswers"></i><i style="color: white" class="fa fa-star" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i><i style="color: white" class="fa fa-gift"></i>
             </div>
           </div>
-          <div class="col-2 text-right">
-            <p @click="swal('Settings will be here')" class="pt-3 pr-1" style='color: white;'><i class="fa fa-gear"></i></p>
+          <div class="col-2 text-right pt-2" style='font-size:20px'>
+            <span @click="swal('Settings will be here')" class="pt-3 pr-1" style='color: white;'><i class="fa fa-gear"></i></span>
           </div>
         </div>
       </div>

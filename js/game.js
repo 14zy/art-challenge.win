@@ -1,7 +1,7 @@
 Vue.component('game-screen', {
   template: `
   <div>
-      <div v-show="!this.$root.zoomed" class="container-fluid">
+      <div v-show="!this.$root.zoomed" class="container-fluid fixed-top" style="background-color: rgba(255,255,255,0.9);">
         <div class="row">
           <div class="col-2 text-left">
             <p @click="window.history.back();" class="pl-1 pt-3" style='color: #333;'><i class="fa fa-chevron-left"></i></p>
@@ -69,8 +69,8 @@ Vue.component('answers', {
 Vue.component('painterBtn', {
   props: ["painter"],
   template: `
-  <div class="card py-2" style="border-radius: 0; " @click="answer(painter);">
-    <div class="card-block">
+  <div class="card" style="border-radius: 0; " @click="answer(painter);">
+    <div>
       <div class="row mr-0">
       <span class="text-right" style=' right:20px;  position: absolute'>
         <img width="20" class='' :src="'img/nationality/' + painter.nationality[0] + '.png'" />

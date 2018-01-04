@@ -60,7 +60,7 @@ Vue.component('answers', {
   <div class="pt-2">
     <div class="container">
       <div class='row'>
-        <painterBtn class="col-6 p-1" style='paddig: 0' v-for="painter in this.$root.currentAnswers" :painter="painter"></painterBtn>
+        <painterBtn class="col-6 p-1" style='paddig: 0' v-for="painter in this.$root.currentAnswers" :key="painter.id" :painter="painter"></painterBtn>
       </div>
     </div>
   </div>`

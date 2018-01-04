@@ -34,7 +34,7 @@ Vue.component('quest', {
 Vue.component('quests-list', {
   template: `
   <div>
-    <quest v-for="quest in this.$root.quests" :quest="quest"></quest>
+    <quest v-for="quest in this.$root.quests" :key="quest.id" :quest="quest"></quest>
   </div>`
 });
 

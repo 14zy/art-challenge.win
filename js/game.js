@@ -1,18 +1,18 @@
 Vue.component('game-screen', {
   template: `
   <div>
-      <div v-show="!this.$root.zoomed" class="container-fluid fixed-top" style="background-color: rgba(255,255,255,0.9);">
+      <div v-show="!this.$root.zoomed" class="container-fluid fixed-top" style="background-color: rgba(255,255,255,0.0);">
         <div class="row">
           <div class="col-2 text-left">
-            <p @click="window.history.back();" class="pl-1 pt-3" style='color: #333;'><i class="fa fa-chevron-left"></i></p>
+            <p @click="window.history.back();" class="pl-1 pt-3" style='color: white;'><i class="fa fa-chevron-left"></i></p>
           </div>
           <div class="col-8 text-center" style='color: #333;'>
             <div class="pt-3">
-              <i class="fa fa-star text-warning" v-for="correct in this.$root.correctAnswers"></i><i class="fa fa-star" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i><i class="fa fa-gift"></i>
+              <i class="fa fa-star text-warning" v-for="correct in this.$root.correctAnswers"></i><i style="color: white" class="fa fa-star" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i><i style="color: white" class="fa fa-gift"></i>
             </div>
           </div>
           <div class="col-2 text-right">
-            <p @click="swal('Settings will be here')" class="pt-3 pr-1" style='color: #333;'><i class="fa fa-gear"></i></p>
+            <p @click="swal('Settings will be here')" class="pt-3 pr-1" style='color: white;'><i class="fa fa-gear"></i></p>
           </div>
         </div>
       </div>
@@ -113,7 +113,7 @@ Vue.component('painterBtn', {
             imageWidth: 260,
             timer: 1800,
             showConfirmButton: false,
-            showCloseButton: true,
+            // showCloseButton: true,
             onOpen: () => {
               //swal.showLoading()
             }
@@ -145,7 +145,7 @@ Vue.component('painterBtn', {
           imageWidth: 260,
           timer: 2600,
           showConfirmButton: false,
-          showCloseButton: true,
+          // showCloseButton: true,
           onOpen: () => {
             // swal.showLoading()
           }

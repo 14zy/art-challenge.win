@@ -71,16 +71,13 @@ Vue.component('painterBtn', {
   template: `
   <div class="pb-2" style="" @click="answer(painter);">
     <div>
-      <img width="90" :src="'img/painters/' + painter.id + '.png'" />
+      <img width="92" style="margin: -8px 0 0 -12px" :src="'img/painters/' + painter.id + '.png'" />
       <span class="text-right" style='right:20px;  position: absolute;'>
-
         <div style='line-height: 1.1; width: 80px' >{{ painter.name }}</div>
         <img width="24" class='pt-2' :src="'img/nationality/' + painter.nationality[0] + '.png'" />
         <br>
-
         <span class="small" style='font-size: 12px'>{{ painter.years }}</span>
         <br>
-
         <br>
         <br>
       </span>

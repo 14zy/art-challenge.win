@@ -36,7 +36,7 @@ Vue.component('question', {
 
 Vue.component('questionPicture', {
   template: `
-  <div style='max-height: 300px; overflow: scroll'>
+  <div style='max-height: 360px; overflow: scroll'>
     <img class="painting" :src="pictureURL()"/>
   </div>`,
   methods: {
@@ -48,8 +48,10 @@ Vue.component('questionPicture', {
 
 Vue.component('answers', {
   template: `
-  <div class='mb-4 row'>
-    <painterBtn class="col-6 pl-4 pr-4" v-for="painter in this.$root.currentAnswers" :painter="painter"></painterBtn>
+  <div class="container">
+    <div class='row'>
+      <painterBtn class="col-6 pl-3" v-for="painter in this.$root.currentAnswers" :painter="painter"></painterBtn>
+    </div>
   </div>`
 });
 
@@ -92,13 +94,28 @@ Vue.component('painterBtn', {
          setTimeout(function () {
            app.loading = false;
          }, 1000);
-
          app.correctAnswers += 1;
-
          app.nextQuestion();
        }
      } else {
-       swal('Oops!','It was ' + this.$root.currentPainter.name, 'warning')
+       // swal('Oops!','It was ' + this.$root.currentPainter.name, 'warning')
+
+       swal({
+         title: 'Wrong',
+          text: 'It was me, ' + this.$root.currentPainter.name + "!",
+          imageUrl: 'img/painters/' + this.$root.currentPainter.id + '.png',
+          imageWidth: 200,
+          timer: 2000,
+          onOpen: () => {
+            swal.showLoading()
+          }
+        }).then((result) => {
+          if (result.dismiss === 'timer') {
+            console.log('I was closed by the timer')
+          }
+        });
+
+
        app.correctAnswers = app.correctAnswers - 1 ;
        if (app.correctAnswers < 0) {
          app.correctAnswers = 0;

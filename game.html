@@ -38,15 +38,23 @@
 
   <div id="app">
     <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut" mode="out-in">
-      <div v-show="loading" class="text-center fixed-top" style='; z-index:9999'>
+      <div v-show="celebrating" class="text-center fixed-top" style='; z-index:9999'>
         <img src="img/animations/1.gif" class="img-fluid"/>
+      </div>
+    </transition>
+
+    <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut" mode="out-in">
+      <div v-show="sadNews" class="text-center fixed-top" style='; z-index:9999'>
+        <img src="img/animations/4.gif" class="img-fluid"/>
       </div>
     </transition>
 
     <game-screen></game-screen>
 
 
-    <div class="footer text-left" style="background-color: white; border-style: dotted; border-width: 1px;">
+
+
+    <div class="footer  text-left" style="background-color: white; border-style: dotted; border-width: 1px;">
       <!-- ArtChallenge.ru_responsive -->
       <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2407992058828148" data-ad-slot="3910414450" data-ad-format="horizontal"></ins>
     </div>

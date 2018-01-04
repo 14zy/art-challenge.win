@@ -8,9 +8,7 @@ Vue.component('game-screen', {
         </div>
         <div class="col-8 text-center">
           <div class="pt-3">
-            <i class="fa fa-check text-success" v-for="correct in this.$root.correctAnswers"></i>
-            <i class="fa fa-asterisk" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i>
-            <i class="fa fa-gift"></i>
+            <i class="fa fa-star text-warning" v-for="correct in this.$root.correctAnswers"></i><i class="fa fa-star" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i><i class="fa fa-gift"></i>
           </div>
         </div>
         <div class="col-2 text-right">
@@ -36,7 +34,7 @@ Vue.component('question', {
 
 Vue.component('questionPicture', {
   template: `
-  <div style='max-height: 360px; overflow: scroll'>
+  <div style='max-height: 380px; overflow: scroll'>
     <img class="painting" :src="pictureURL()"/>
   </div>`,
   methods: {
@@ -84,18 +82,23 @@ Vue.component('painterBtn', {
   methods: {
    answer: function (painter) {
      if (painter.id == this.$root.currentPainter.id) {
+       app.correctAnswers += 1;
+
+       app.celebrating = true;
+       setTimeout(function () {
+         app.celebrating = false;
+       }, 1200);
+
        if (app.correctAnswers == 9) {
-         swal("STAR",'You are winner!', 'success');
-         app.correctAnswers += 1;
          app.winner();
        } else {
-         //swal(this.painter.name,'You are awesome!', 'success');
          swal({
-           title: 'You are awesome!',
+           position: "center",
+           title: this.$root.goodPhrase(),
             text: this.painter.name,
             imageUrl: 'img/painters/' + this.$root.currentPainter.id + '.png',
-            imageWidth: 200,
-            timer: 2000,
+            imageWidth: 260,
+            timer: 1800,
             showConfirmButton: false,
             onOpen: () => {
               //swal.showLoading()
@@ -105,24 +108,31 @@ Vue.component('painterBtn', {
               //console.log('I was closed by the timer')
             }
           });
-         app.loading = true;
-         setTimeout(function () {
-           app.loading = false;
-         }, 1000);
-         app.correctAnswers += 1;
-         app.nextQuestion();
        }
-     } else {
-       // swal('Oops!','It was ' + this.$root.currentPainter.name, 'warning')
 
+       app.nextQuestion();
+     } else {
+
+       // app.sadNews = true;
+       // setTimeout(function () {
+       //   app.sadNews = false;
+       // }, 2000);
+
+       app.correctAnswers = app.correctAnswers - 1;
+
+       if (app.correctAnswers < 0) {
+         app.correctAnswers = 0;
+       }
        swal({
-         title: 'Wrong',
-          text: 'It was ' + this.$root.currentPainter.name,
+         title: 'Oops!',
+          position: 'center',
+          text: "It was " + this.$root.currentPainter.name + ", " + this.$root.currentPainter.nationality+".",
           imageUrl: 'img/painters/' + this.$root.currentPainter.id + '.png',
-          imageWidth: 200,
-          timer: 2000,
+          imageWidth: 260,
+          timer: 2600,
+          // showConfirmButton: false,
           onOpen: () => {
-            //swal.showLoading()
+            swal.showLoading()
           }
         }).then((result) => {
           if (result.dismiss === 'timer') {
@@ -130,13 +140,7 @@ Vue.component('painterBtn', {
           }
         });
 
-
-       app.correctAnswers = app.correctAnswers - 1 ;
-       if (app.correctAnswers < 0) {
-         app.correctAnswers = 0;
-       }
        app.nextQuestion();
-       //app.endGame();
      }
    }
  },
@@ -151,21 +155,40 @@ var app = new Vue({
     router,
     el: '#app',
     data: {
-        loading: false,
+        celebrating: false,
+        sadNews: false,
         currentQuest: "",
         questions: 10,
         correctAnswers: 0,
         questionsDB: [],
         currentPainter: "",
         currentPicture: "",
-        currentAnswers: []
+        currentAnswers: [],
+        goodPhrases: [
+          "You got it right!",
+          "Bravo!",
+          "Excellent!",
+          "Great!",
+          "Wonderful!",
+          "Quite right!",
+          "Absolutely!",
+          "Exactly!",
+          "That's right!",
+          "Indeed so!",
+          "Wonderful!",
+          "Brilliant!",
+          "Amazing!",
+        ]
     },
     methods: {
         endGame: function() {
-          app.nextQuestion();
+          //not using anymore?
+        },
+        goodPhrase: function() {
+          return this.goodPhrases[Math.floor(Math.random() * this.goodPhrases.length)];
         },
         winner: function() {
-          console.log("winner is here");
+          swal("STAR",'You are winner!', 'success');
         },
         randomPainter: function() {
           return this.questionsDB[Math.floor(Math.random() * this.questionsDB.length)]

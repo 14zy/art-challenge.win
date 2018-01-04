@@ -46,7 +46,7 @@ Vue.component('questionPicture', {
     zoom() {
       this.$root.zoomed = !this.$root.zoomed;
       if (this.$root.zoomed) {
-        this.style="min-width: 100%; height: 100$; width: auto;";
+        this.style="width: 100%; height: auto;";
       } else {
         this.style="";
       }
@@ -113,6 +113,7 @@ Vue.component('painterBtn', {
             imageWidth: 260,
             timer: 1800,
             showConfirmButton: false,
+            showCloseButton: true,
             onOpen: () => {
               //swal.showLoading()
             }
@@ -143,9 +144,10 @@ Vue.component('painterBtn', {
           imageUrl: 'img/painters/' + this.$root.currentPainter.id + '.png',
           imageWidth: 260,
           timer: 2600,
-          // showConfirmButton: false,
+          showConfirmButton: false,
+          showCloseButton: true,
           onOpen: () => {
-            swal.showLoading()
+            // swal.showLoading()
           }
         }).then((result) => {
           if (result.dismiss === 'timer') {

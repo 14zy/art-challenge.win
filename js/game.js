@@ -57,10 +57,10 @@ Vue.component('questionPicture', {
 
 Vue.component('answers', {
   template: `
-  <div class="">
+  <div class="pt-2">
     <div class="container">
       <div class='row'>
-        <painterBtn class="col-6 pl-3" v-for="painter in this.$root.currentAnswers" :painter="painter"></painterBtn>
+        <painterBtn class="col-6 p-1" style='paddig: 0' v-for="painter in this.$root.currentAnswers" :painter="painter"></painterBtn>
       </div>
     </div>
   </div>`
@@ -69,27 +69,21 @@ Vue.component('answers', {
 Vue.component('painterBtn', {
   props: ["painter"],
   template: `
-  <div class="card" style="border-radius: 0; " @click="answer(painter);">
+  <div class="pb-2" style="" @click="answer(painter);">
     <div>
-      <div class="row mr-0">
-      <span class="text-right" style=' right:20px;  position: absolute'>
-        <img width="20" class='' :src="'img/nationality/' + painter.nationality[0] + '.png'" />
+      <img width="90" :src="'img/painters/' + painter.id + '.png'" />
+      <span class="text-right" style='right:20px;  position: absolute;'>
+
+        <div style='line-height: 1.1; width: 80px' >{{ painter.name }}</div>
+        <img width="24" class='pt-2' :src="'img/nationality/' + painter.nationality[0] + '.png'" />
         <br>
+
         <span class="small" style='font-size: 12px'>{{ painter.years }}</span>
+        <br>
+
+        <br>
+        <br>
       </span>
-      <div class="col-5 text-right">
-        <img width="60" :src="'img/painters/' + painter.id + '.png'" />
-      </div>
-      <div class="col-7 ">
-
-      </div>
-
-        <div class="col-12 text-nowrap">
-        {{ painter.name }}
-        </div>
-
-
-      </div>
     </div>
   </div>`,
   methods: {

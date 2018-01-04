@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <title>🖌 Art Challenge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
-  <link rel="shortcut icon" href="favicon.ico">
+
   <meta name="description" content="Art Challenge description">
   <link rel="image_src" href="http://artchallenge.win/share.jpg">
 
@@ -25,23 +25,30 @@
   <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
   <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+  <link rel="apple-touch-icon" sizes="256x256" href="/apple-icon-256x256.png">
+  <link rel="apple-touch-icon" sizes="384x384" href="/apple-icon-384x384.png">
+  <link rel="apple-touch-icon" sizes="512x512" href="/apple-icon-512x512.png">
+
   <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 
   <link rel="manifest" href="/manifest.json">
 
-  <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#333">
 
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="application-name" content="Art Challenge">
-  <meta name="apple-mobile-web-app-title" content="Art Challenge">
-  <meta name="msapplication-starturl" content="/index.html">
 
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Art Challenge">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <meta name="msapplication-TileColor" content="#333">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="msapplication-navbutton-color" content="#333">
+  <meta name="msapplication-starturl" content="/index.html">
 
   <link rel="stylesheet" href="dist/bootstrap.min.css">
   <link rel="stylesheet" href="dist/font-awesome.min.css">
@@ -66,40 +73,29 @@
       console.log('[PWA Builder] active service worker found, no need to register')
     } else {
       //Register the ServiceWorker
-      navigator.serviceWorker.register('/js/sw.js', {
-        scope: './index.html'
+      navigator.serviceWorker.register('sw.js', {
+        scope: './'
       }).then(function(reg) {
         console.log('Service worker has been registered for scope:'+ reg.scope);
       });
     }
   </script>
+  <noscript>Your browser does not support JavaScript!</noscript>
 </head>
 
 <body>
 
   <div id="app">
 
-    OFFLINE 
+    NO CONNECTION...
 
-    <div class="footer fixed-bottom text-left" style="background-color: white; border-style: dotted; border-width: 1px;">
-      <!-- ArtChallenge.ru_responsive-->
-      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2407992058828148" data-ad-slot="3910414450" data-ad-format="horizontal"></ins>
-    </div>
   </div>
 
   <script src="dist/jquery-3.2.1.min.js"></script>
   <script src="dist/popper.min.js"></script>
   <script src="dist/bootstrap.min.js"></script>
   <script defer src="dist/sweetalert2.all.js"></script>
-  <script src="dist/jquery.bcSwipe.min.js"></script>
 
-  <script src="js/index.js"></script>
-
-  <script>
-    $( document ).ready(function() {
-      $('.carousel').bcSwipe({ threshold: 50 });
-    });
-  </script>
 </body>
 
 </html>

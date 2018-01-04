@@ -27,16 +27,16 @@
   <script>
   (adsbygoogle = window.adsbygoogle || []).push({
     google_ad_client: "ca-pub-2407992058828148",
-    enable_page_level_ads: true
+    enable_page_level_ads: false
   });
 
   (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
 </head>
 
-<body>
+<body class="background">
 
-  <div id="app">
+  <div id="app" >
     <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut" mode="out-in">
       <div v-show="celebrating" class="text-center fixed-top" style='; z-index:9999'>
         <img src="img/animations/1.gif" class="img-fluid"/>
@@ -51,13 +51,15 @@
 
     <game-screen></game-screen>
 
-
-
-
-    <div class="footer  text-left" style="background-color: white; border-style: dotted; border-width: 1px;">
-      <!-- ArtChallenge.ru_responsive -->
-      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2407992058828148" data-ad-slot="3910414450" data-ad-format="horizontal"></ins>
-    </div>
+    <transition enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown" mode="out-in">
+      <div v-show="!zoomed" class="footer fixed-bottom text-left" style="background-color: white; box-shadow: 0 3px 2px #777;">
+        <answers></answers>
+        <!-- ArtChallenge.ru_responsive -->
+        <div style="border-style: dotted; border-width: 1px;">
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2407992058828148" data-ad-slot="3910414450" data-ad-format="horizontal"></ins>
+        </div>
+      </div>
+    </transition>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>

@@ -1,21 +1,21 @@
 Vue.component('game-screen', {
   template: `
   <div>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-2 text-left">
-          <p @click="window.history.back();" class="pl-1 pt-3">🔙</p>
-        </div>
-        <div class="col-8 text-center">
-          <div class="pt-3">
-            <i class="fa fa-star text-warning" v-for="correct in this.$root.correctAnswers"></i><i class="fa fa-star" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i><i class="fa fa-gift"></i>
+      <div v-show="!this.$root.zoomed" class="container-fluid">
+        <div class="row">
+          <div class="col-2 text-left">
+            <p @click="window.history.back();" class="pl-1 pt-3" style='color: #333;'><i class="fa fa-chevron-left"></i></p>
+          </div>
+          <div class="col-8 text-center" style='color: #333;'>
+            <div class="pt-3">
+              <i class="fa fa-star text-warning" v-for="correct in this.$root.correctAnswers"></i><i class="fa fa-star" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i><i class="fa fa-gift"></i>
+            </div>
+          </div>
+          <div class="col-2 text-right">
+            <p @click="swal('Settings will be here')" class="pt-3 pr-1" style='color: #333;'><i class="fa fa-gear"></i></p>
           </div>
         </div>
-        <div class="col-2 text-right">
-          <p @click="swal('Settings will be here')" class="pt-3 pr-1">⚙️</p>
-        </div>
       </div>
-    </div>
     <question></question>
   </div>`
 })
@@ -23,32 +23,45 @@ Vue.component('game-screen', {
 Vue.component('question', {
   template: `
   <div>
-    <div class="px-3">
-      <questionPicture></questionPicture>
-    </div>
-    <div class="py-4">
-      <answers></answers>
-    </div>
+    <questionPicture></questionPicture>
   </div>`
 });
 
 Vue.component('questionPicture', {
   template: `
-  <div style='max-height: 380px; overflow: scroll'>
-    <img class="painting" :src="pictureURL()"/>
+  <div class="">
+    <div style='overflow: scroll'>
+      <img @click="zoom()" :style="this.style" class="painting" :src="pictureURL()"/>
+    </div>
   </div>`,
+  data: function () {
+    return {
+      style: ""
+    }
+  },
   methods: {
     pictureURL() {
       return "http://artchallenge.me/painters/"+this.$root.currentPainter.id+"/" + this.$root.currentPicture + ".jpg";
+    },
+    zoom() {
+      this.$root.zoomed = !this.$root.zoomed;
+      if (this.$root.zoomed) {
+        this.style="min-width: 100%; height: 100$; width: auto;";
+      } else {
+        this.style="";
+      }
+
     }
   }
 });
 
 Vue.component('answers', {
   template: `
-  <div class="container">
-    <div class='row'>
-      <painterBtn class="col-6 pl-3" v-for="painter in this.$root.currentAnswers" :painter="painter"></painterBtn>
+  <div class="">
+    <div class="container">
+      <div class='row'>
+        <painterBtn class="col-6 pl-3" v-for="painter in this.$root.currentAnswers" :painter="painter"></painterBtn>
+      </div>
     </div>
   </div>`
 });
@@ -155,6 +168,7 @@ var app = new Vue({
     router,
     el: '#app',
     data: {
+        zoomed: false,
         celebrating: false,
         sadNews: false,
         currentQuest: "",

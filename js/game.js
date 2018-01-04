@@ -118,11 +118,6 @@ Vue.component('painterBtn', {
        app.nextQuestion();
      } else {
 
-       // app.sadNews = true;
-       // setTimeout(function () {
-       //   app.sadNews = false;
-       // }, 2000);
-
        app.correctAnswers = app.correctAnswers - 1;
 
        if (app.correctAnswers < 0) {
@@ -134,7 +129,7 @@ Vue.component('painterBtn', {
           text: "It was " + this.$root.currentPainter.name + ", " + this.$root.currentPainter.nationality+".",
           imageUrl: 'img/painters/' + this.$root.currentPainter.id + '.png',
           imageWidth: 260,
-          timer: 2600,
+          timer: 2200,
           showConfirmButton: false,
           // showCloseButton: true,
           onOpen: () => {
@@ -163,7 +158,6 @@ var app = new Vue({
     data: {
         zoomed: false,
         celebrating: false,
-        sadNews: false,
         currentQuest: "",
         questions: 10,
         correctAnswers: 0,

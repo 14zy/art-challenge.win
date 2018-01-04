@@ -90,6 +90,21 @@ Vue.component('painterBtn', {
          app.winner();
        } else {
          //swal(this.painter.name,'You are awesome!', 'success');
+         swal({
+           title: 'You are awesome!',
+            text: this.painter.name,
+            imageUrl: 'img/painters/' + this.$root.currentPainter.id + '.png',
+            imageWidth: 200,
+            timer: 2000,
+            showConfirmButton: false,
+            onOpen: () => {
+              //swal.showLoading()
+            }
+          }).then((result) => {
+            if (result.dismiss === 'timer') {
+              //console.log('I was closed by the timer')
+            }
+          });
          app.loading = true;
          setTimeout(function () {
            app.loading = false;
@@ -102,16 +117,16 @@ Vue.component('painterBtn', {
 
        swal({
          title: 'Wrong',
-          text: 'It was me, ' + this.$root.currentPainter.name + "!",
+          text: 'It was ' + this.$root.currentPainter.name,
           imageUrl: 'img/painters/' + this.$root.currentPainter.id + '.png',
           imageWidth: 200,
           timer: 2000,
           onOpen: () => {
-            swal.showLoading()
+            //swal.showLoading()
           }
         }).then((result) => {
           if (result.dismiss === 'timer') {
-            console.log('I was closed by the timer')
+            //console.log('I was closed by the timer')
           }
         });
 
@@ -160,7 +175,7 @@ var app = new Vue({
           //generate new question
           this.currentPainter = this.randomPainter();
           //generate new picture
-          this.currentPicture = Math.floor(Math.random() * this.currentPainter.paintings);
+          this.currentPicture = Math.floor(Math.random() * this.currentPainter.paintings) + 1;
           //generate new answers //need generate more answers (2/16)
           this.currentAnswers = [];
           this.currentAnswers.push(this.currentPainter);

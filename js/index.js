@@ -1,7 +1,7 @@
 Vue.component('quest', {
   props: ['quest'],
   template: `
-  <div v-if="!quest.hidden" class="card p-2 mb-3" @click="window.app.loading = true; setTimeout(function(){window.location.href='game.html?quest='+quest.id+'&mode='+quest.difficult},500);">
+  <div v-if="!quest.hidden" class="quest card p-2 mb-3" @click="window.app.loading = true; setTimeout(function(){window.location.href='game.html?quest='+quest.id+'&mode='+quest.difficult},500);">
     <div class="card-block">
       <div class="row">
         <div class="col-8"><h4>{{quest.title}}</h4></div>
@@ -10,7 +10,7 @@ Vue.component('quest', {
             <img class="img-fluid" width="20" src="img/awards/2.png">
           </span>
           <span v-else>
-            <img class="img-fluid" width="20" src="img/ui/play-icon.png">
+            Play <img class="img-fluid" width="20" src="img/ui/play-icon.png">
           </span>
         </div>
       </div>
@@ -50,8 +50,14 @@ $.getScript( "data/quests.json.js", function( data, textStatus, jqxhr ) {
       el: '#app',
       data: {
           loading: false,
-          quests: quests
-      }
+          quests: quests,
+          completedQuests: []
+      },
+      mounted: function() {
+         //Смотрим локалсторадж
+         this.completedQuests = localStorage.getItem("completed").split(",");
+         console.log(this.completedQuests);
+       }
   });
 
 });

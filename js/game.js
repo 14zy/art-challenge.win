@@ -180,6 +180,7 @@ $.getScript( "data/language.en.json.js" ).done(function() {});
           currentPainter: "",
           currentPicture: "",
           currentAnswers: [],
+          completedQuests: [],
           goodPhrases: window.goodPhrases
       },
       methods: {
@@ -191,6 +192,23 @@ $.getScript( "data/language.en.json.js" ).done(function() {});
           },
           winner: function() {
             swal("STAR",'You are winner!', 'success');
+            if (this.completedQuests) {
+              var newQuestWinning = true;
+              for (var i = 0; i < this.completedQuests.length; i++) {
+                if (this.completedQuests[i] == this.currentQuest) {
+                  console.log("winnig this quest not first time");
+                  newQuestWinning = false;
+                }
+              }
+              if (newQuestWinning) {
+                this.completedQuests.push(this.currentQuest);
+                console.log("winnig this quest in first time!");
+              }
+            } else {
+              this.completedQuests = [];
+              this.completedQuests.push(this.currentQuest);
+            }
+            localStorage.setItem("completed", this.completedQuests);
           },
           randomPainter: function() {
             return this.questionsDB[Math.floor(Math.random() * this.questionsDB.length)]
@@ -250,6 +268,10 @@ $.getScript( "data/language.en.json.js" ).done(function() {});
                window.app.questionsDB = paintersDB;
                window.app.newRound();
              })
+
+             //Смотрим локалсторадж
+             this.completedQuests = localStorage.getItem("completed").split(",");
+             console.log(this.completedQuests);
            }
          }
        }
@@ -267,3 +289,5 @@ function shuffle(a) {
         a[j] = x;
     }
 }
+
+document.addEventListener('contextmenu', event => event.preventDefault());

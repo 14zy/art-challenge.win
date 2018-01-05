@@ -33,3 +33,7 @@
   border-width: 1px;
   border-color: lightgray;
 }
+
+.quest {
+  box-shadow: 0 1px 1px #777;
+}

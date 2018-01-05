@@ -2,15 +2,13 @@
   /*padding:5px;
   background:#f2f2f2;*/
   max-width: 100%;
-
   height: auto;
   box-shadow: 0 3px 2px #777;
 }
 
-
-/*.background {
-  background-color: rgb(212,212,212);
-}*/
+.background {
+  /*background-color: #333;*/
+}
 
 .img-scroll {
   overflow: auto;

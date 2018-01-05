@@ -1,0 +1,75 @@
+{
+  "paintersDB": [{
+    "id": 5,
+    "name": "Vasily Surikov",
+    "years": "1848 - 1916",
+    "nationality": ["Russia"],
+    "paintings": 165
+  }, {
+    "id": 8,
+    "name": "Ivan Shishkin",
+    "years": "1832 - 1898",
+    "nationality": ["Russia"],
+    "paintings": 409
+  }, {
+    "id": 18,
+    "name": "Andrew Wyeth",
+    "years": "1917 - 2009",
+    "nationality": ["USA"],
+    "paintings": 260
+  }, {
+    "id": 25,
+    "name": "Ilya Repin",
+    "years": "1844 - 1930",
+    "nationality": ["Russia"],
+    "paintings": 91
+  }, {
+    "id": 37,
+    "name": "Boris Kustodiev",
+    "years": "1878 - 1927",
+    "nationality": ["Russia"],
+    "paintings": 160
+  }, {
+    "id": 47,
+    "name": "Vasily Vereshchagin",
+    "years": "1842 - 1904",
+    "nationality": ["Russia"],
+    "paintings": 181
+  }, {
+    "id": 48,
+    "name": "Isaac Levitan",
+    "years": "1860 - 1900",
+    "nationality": ["Russia", "Israel"],
+    "paintings": 86
+  }, {
+    "id": 58,
+    "name": "Gustave Courbet",
+    "years": "1819 - 1877",
+    "nationality": ["France"],
+    "paintings": 59
+  }, {
+    "id": 85,
+    "name": "Alexei Harlamov",
+    "years": "1840 – 1925",
+    "nationality": ["Russia"],
+    "paintings": 133
+  }, {
+    "id": 113,
+    "name": "Nikolai Ge",
+    "years": "1831 – 1894",
+    "nationality": ["Russia"],
+    "paintings": 43
+  }, {
+    "id": 116,
+    "name": "Rockwell Kent",
+    "years": "1882 – 1971",
+    "nationality": ["USA"],
+    "paintings": 51
+  }, {
+    "id": 117,
+    "name": "Martiros Saryan",
+    "years": "1880 – 1972",
+    "nationality": ["Armenia"],
+    "paintings": 444
+  } ]
+}

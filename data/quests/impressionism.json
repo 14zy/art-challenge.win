@@ -1,0 +1,111 @@
+{
+  "paintersDB": [{
+    "id": 2,
+    "name": "Henri Lebasque",
+    "years": "1865 - 1937",
+    "nationality": ["France"],
+    "paintings": 119
+  }, {
+    "id": 3,
+    "name": "Arkhip Kuinji",
+    "years": "1842 - 1910",
+    "nationality": ["Russia"],
+    "paintings": 179
+  }, {
+    "id": 9,
+    "name": "Claude Monet",
+    "years": "1840 - 1926",
+    "nationality": ["France"],
+    "paintings": 73
+  }, {
+    "id": 16,
+    "name": "Sergei Vinogradov",
+    "years": "1869 – 1963",
+    "nationality": ["Russia"],
+    "paintings": 102
+  }, {
+    "id": 17,
+    "name": "Edouard Manet",
+    "years": "1832 - 1883",
+    "nationality": ["France"],
+    "paintings": 90
+  }, {
+    "id": 21,
+    "name": "Vincent van Gogh",
+    "years": "1853 – 1890",
+    "nationality": ["Netherlands"],
+    "paintings": 877
+  }, {
+    "id": 30,
+    "name": "Pierre-Auguste Renoir",
+    "years": "1841 - 1919",
+    "nationality": ["France"],
+    "paintings": 336
+  }, {
+    "id": 36,
+    "name": "Alfred Sisley",
+    "years": "1839 - 1899",
+    "nationality": ["France", "United-Kingdom"],
+    "paintings": 259
+  }, {
+    "id": 49,
+    "name": "Henri Matisse",
+    "years": "1869 - 1954",
+    "nationality": ["France"],
+    "paintings": 186
+  }, {
+    "id": 53,
+    "name": "Edgar Degas",
+    "years": "1834 - 1917",
+    "nationality": ["France"],
+    "paintings": 702
+  }, {
+    "id": 57,
+    "name": "Henri de Toulouse-Lautrec",
+    "years": "1864 – 1901",
+    "nationality": ["France"],
+    "paintings": 81
+  }, {
+    "id": 60,
+    "name": "John Singer Sargent",
+    "years": "1856 - 1925",
+    "nationality": ["USA"],
+    "paintings": 59
+  }, {
+    "id": 61,
+    "name": "Camille Pissarro",
+    "years": "1830 - 1903",
+    "nationality": ["France"],
+    "paintings": 91
+  }, {
+    "id": 69,
+    "name": "Paul Cezanne",
+    "years": "1839 – 1906",
+    "nationality": ["France"],
+    "paintings": 47
+  }, {
+    "id": 77,
+    "name": "Georges Seurat",
+    "years": "1859 – 1891",
+    "nationality": ["France"],
+    "paintings": 43
+  }, {
+    "id": 84,
+    "name": "Valentin Serov",
+    "years": "1865 – 1911",
+    "nationality": ["Russia"],
+    "paintings": 149
+  }, {
+    "id": 94,
+    "name": "Paul Gauguin",
+    "years": "1848 – 1903",
+    "nationality": ["France"],
+    "paintings": 311
+  }, {
+    "id": 96,
+    "name": "Paul Signac",
+    "years": "1863 – 1935",
+    "nationality": ["France"],
+    "paintings": 522
+  } ]
+}

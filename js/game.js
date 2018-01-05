@@ -1,7 +1,6 @@
 Vue.component('game-screen', {
   template: `
   <div>
-
       <div v-show="!this.$root.zoomed" class="container-fluid fixed-top" style="font-size:18px; background-color: rgba(255,255,255,0.0);">
         <div class="row">
           <div class="col-2 text-left pt-2">
@@ -27,7 +26,6 @@ Vue.component('game-screen', {
           </div>
         </div>
       </div>
-
     <question></question>
   </div>`
 })
@@ -58,11 +56,10 @@ Vue.component('questionPicture', {
     zoom() {
       this.$root.zoomed = !this.$root.zoomed;
       if (this.$root.zoomed) {
-        this.style="max-width: none;";
+        this.style="max-width: 200%; ";
       } else {
         this.style="";
       }
-
     }
   }
 });
@@ -83,38 +80,34 @@ Vue.component('painterBtn', {
   template: `
   <div class="pb-2" style="" @click="answer(painter);">
     <div>
-      <img width="92" style="margin: -8px 0 0 -12px" :src="'img/painters/' + painter.id + '.png'" />
+      <img onerror="this.src='/img/ui/person.png';" width="80" height="80" style="margin: -8px 0 0 -12px" :src="'img/painters/' + painter.id + '.png'" />
       <span class="text-right" style='right:20px;  position: absolute;'>
-        <div style='line-height: 1.1; width: 80px' >{{ painter.name }}</div>
+        <div style='line-height: 1.1; width: 136px; height: 30px' >{{ painter.name }}</div>
         <img width="24" class='pt-2' :src="'img/nationality/' + painter.nationality[0] + '.png'" />
         <br>
         <span class="small" style='font-size: 12px'>{{ painter.years }}</span>
-        <br>
-        <br>
-        <br>
+        <br><br><br>
       </span>
     </div>
   </div>`,
   methods: {
    answer: function (painter) {
      if (painter.id == this.$root.currentPainter.id) {
-       app.correctAnswers += 1;
-
-       app.celebrating = true;
+       window.app.correctAnswers += 1;
+       window.app.celebrating = true;
        setTimeout(function () {
-         app.celebrating = false;
+         window.app.celebrating = false;
        }, 1200);
-
-       if (app.correctAnswers == 9) {
-         app.winner();
+       if (window.app.correctAnswers == 10) {
+         window.app.winner();
        } else {
          swal({
            position: "center",
-           title: this.$root.goodPhrase(),
-            text: this.painter.name,
+           title: this.painter.name,
+            text: this.$root.goodPhrase(),
             imageUrl: 'img/painters/' + this.$root.currentPainter.id + '.png',
             imageWidth: 260,
-            timer: 1800,
+            timer: 1600,
             showConfirmButton: false,
             // showCloseButton: true,
             onOpen: () => {
@@ -126,22 +119,19 @@ Vue.component('painterBtn', {
             }
           });
        }
-
-       app.nextQuestion();
+       window.app.nextQuestion();
      } else {
-
-       app.correctAnswers = app.correctAnswers - 1;
-
-       if (app.correctAnswers < 0) {
-         app.correctAnswers = 0;
+       window.app.correctAnswers = window.app.correctAnswers - 1;
+       if (window.app.correctAnswers < 0) {
+         window.app.correctAnswers = 0;
        }
        swal({
-         title: 'Oops!',
+         title: 'No!',
           position: 'center',
-          text: "It was " + this.$root.currentPainter.name + ", " + this.$root.currentPainter.nationality+".",
+          text: "It was " + this.$root.currentPainter.name,
           imageUrl: 'img/painters/' + this.$root.currentPainter.id + '.png',
           imageWidth: 260,
-          timer: 2200,
+          timer: 1800,
           showConfirmButton: false,
           // showCloseButton: true,
           onOpen: () => {
@@ -152,8 +142,7 @@ Vue.component('painterBtn', {
             //console.log('I was closed by the timer')
           }
         });
-
-       app.nextQuestion();
+       window.app.nextQuestion();
      }
    }
  },
@@ -164,130 +153,108 @@ var router = new VueRouter({
     routes: []
 });
 
-var app = new Vue({
-    router,
-    el: '#app',
-    data: {
-        zoomed: false,
-        celebrating: false,
-        currentQuest: "",
-        questions: 10,
-        correctAnswers: 0,
-        questionsDB: [],
-        currentPainter: "",
-        currentPicture: "",
-        currentAnswers: [],
-        goodPhrases: [
-          "You got it right!",
-          "Bravo!",
-          "Excellent!",
-          "Great!",
-          "Wonderful!",
-          "Quite right!",
-          "Absolutely!",
-          "Exactly!",
-          "That's right!",
-          "Indeed so!",
-          "Wonderful!",
-          "Brilliant!",
-          "Amazing!",
-        ]
-    },
-    methods: {
-        endGame: function() {
-          //not using anymore?
-        },
-        goodPhrase: function() {
-          return this.goodPhrases[Math.floor(Math.random() * this.goodPhrases.length)];
-        },
-        winner: function() {
-          swal("STAR",'You are winner!', 'success');
-        },
-        randomPainter: function() {
-          return this.questionsDB[Math.floor(Math.random() * this.questionsDB.length)]
-        },
-        nextQuestion: function() {
-          this.currentPicture = "";
-          //generate new question
-          this.currentPainter = this.randomPainter();
-          //generate new picture
-          this.currentPicture = Math.floor(Math.random() * this.currentPainter.paintings) + 1;
-          //generate new answers //need generate more answers (2/16)
-          this.currentAnswers = [];
-          this.currentAnswers.push(this.currentPainter);
-          while (this.currentAnswers.length < 4) {
-            if (this.currentAnswers.length == 1) {
-              random = this.randomPainter();
-              if (random.id != this.currentAnswers[0].id) {this.currentAnswers.push(random);}
-            } else {
-              random = this.randomPainter();
-              var duplicate = false;
-              for (var i = 0; i < this.currentAnswers.length; i++) {
-                if (this.currentAnswers[i].id == random.id) {duplicate = true}
-              };
-              if (!duplicate) {this.currentAnswers.push(random);}
-            }
-          }
-          shuffle(this.currentAnswers);
-        },
-        newRound: function() {
-          this.nextQuestion();
-        }
-    },
-    mounted: function() {
-       if (this.$route.path == "/game.html") {
-         if (this.$route.query.quest) {
-           this.currentQuest = this.$route.query.quest;
-           // TODO Загружаем художников из текущего режима в questionsDB
-           this.questionsDB = [
-             {  "id": 1,
-              "name": "Amedeo Modigliani",
-              "years": "1884 - 1920",
-              "nationality": ["Italy"],
-              "paintings": 193
-           },
-           {  "id": 2,
-              "name": "Henri Lebasque",
-              "years": "1865 - 1937",
-              "nationality": ["France"],
-              "paintings": 119
-           },
-           {  "id": 9,
-              "name": "Claude Monet",
-              "years": "1840 - 1926",
-              "nationality": ["France"],
-              "paintings": 73
-           },
-           {  "id": 14,
-              "name": "Rene Magritte",
-              "years": "1898 - 1967",
-              "nationality": ["Belgium"],
-              "paintings": 194
-           },
-           {  "id": 15,
-              "name": "Salvador Dali",
-              "years": "1904 - 1989",
-              "nationality": ["Spain"],
-              "paintings": 139
-           },
-           {  "id": 17,
-              "name": "Eduard Manet",
-              "years": "1832 - 1883",
-              "nationality": ["France"],
-              "paintings": 90
-           },
-           {  "id": 4,
-              "name": "Vasiliy Kandinskiy",
-              "years": "1866 - 1944",
-              "nationality": ["Russia"],
-              "paintings": 88
-           }];
+$.getScript( "data/language.en.json.js" ).done(function() {});
 
-           this.newRound();
+  window.app = new Vue({
+      router,
+      el: '#app',
+      data: {
+          zoomed: false,
+          celebrating: false,
+          currentQuest: "",
+          questions: 10,
+          correctAnswers: 0,
+          questionsDB: [],
+          currentPainter: "",
+          currentPicture: "",
+          currentAnswers: [],
+          goodPhrases: window.goodPhrases
+      },
+      methods: {
+          endGame: function() {
+            //not using anymore?
+          },
+          goodPhrase: function() {
+            return window.goodPhrases[Math.floor(Math.random() * window.goodPhrases.length)];
+          },
+          winner: function() {
+            swal("STAR",'You are winner!', 'success');
+          },
+          randomPainter: function() {
+            return this.questionsDB[Math.floor(Math.random() * this.questionsDB.length)]
+          },
+          nextQuestion: function() {
+            this.currentPicture = "";
+            //generate new question
+            this.currentPainter = this.randomPainter();
+
+            //generate new picture
+            this.currentPicture = Math.floor(Math.random() * this.currentPainter.paintings) + 1;
+            //generate new answers //need generate more answers (2/16)
+            this.currentAnswers = [];
+            this.currentAnswers.push(this.currentPainter);
+
+            if (this.currentQuestMode == "basic") {
+              while (this.currentAnswers.length < 4) {
+                if (this.currentAnswers.length == 1) {
+                  random = this.randomPainter();
+                  if (random.id != this.currentAnswers[0].id) {this.currentAnswers.push(random);}
+                } else {
+                  random = this.randomPainter();
+                  var duplicate = false;
+                  for (var i = 0; i < this.currentAnswers.length; i++) {
+                    if (this.currentAnswers[i].id == random.id) {duplicate = true}
+                  };
+                  if (!duplicate) {this.currentAnswers.push(random);}
+                }
+              }
+              shuffle(this.currentAnswers);
+            }
+
+            if (this.currentQuestMode == "easy") {
+              while (this.currentAnswers.length < 2) {
+                if (this.currentAnswers.length == 1) {
+                  random = this.randomPainter();
+                  if (random.id != this.currentAnswers[0].id) {this.currentAnswers.push(random);}
+                }
+              }
+              shuffle(this.currentAnswers);
+            }
+
+          },
+          newRound: function() {
+            this.nextQuestion();
+          }
+      },
+      mounted: function() {
+         if (this.$route.path == "/game.html") {
+           if (this.$route.query.quest) {
+             this.currentQuest = this.$route.query.quest;
+             this.currentQuestMode = this.$route.query.mode;
+
+             // Загружаем художников из текущего режима в questionsDB
+             $.getJSON( "../data/quests/"+this.currentQuest+".json", function(data) {
+               console.log( "success" );
+               paintersDB = data.paintersDB;
+               window.app.questionsDB = paintersDB;
+               window.app.newRound();
+             })
+             .done(function() {
+               console.log( "second success" );
+             })
+             .fail(function() {
+               console.log( "error" );
+             })
+             .always(function() {
+               console.log( "always" );
+             });
+           }
          }
        }
-     }
-});
+  });
+
+
+
 
 function shuffle(a) {
     var j, x, i;

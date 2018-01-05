@@ -1,7 +1,7 @@
 Vue.component('quest', {
   props: ['quest'],
   template: `
-  <div class="card p-2 mb-3" @click="app.loading = true; setTimeout(function(){window.location.href='game.html?quest='+quest.id},500);">
+  <div v-if="!quest.hidden" class="card p-2 mb-3" @click="window.app.loading = true; setTimeout(function(){window.location.href='game.html?quest='+quest.id+'&mode='+quest.difficult},500);">
     <div class="card-block">
       <div class="row">
         <div class="col-8"><h4>{{quest.title}}</h4></div>
@@ -43,18 +43,15 @@ var router = new VueRouter({
     routes: []
 });
 
-var app = new Vue({
-    router,
-    el: '#app',
-    data: {
-        loading: false,
-        quests: [
-          {id: "monet", difficult: "easy", title: "Monet or Manet?", description: "Know the difference in 2 minutes", painters: 2, completed: true, hidden: false},
-          {id: "picasso", difficult: "easy", title: "Picasso or Dali?", description: "Know the difference in 2 minutes", painters: 2, completed: false, hidden: false},
-          {id: "popular", difficult: "basic", title: "Popular painters", description: "Know the difference in 2 minutes", painters: 44, completed: false, hidden: false},
-          {id: "french", difficult: "basic", title: "French painters", description: "Know the difference in 2 minutes", painters: 45, completed: false, hidden: false},
-          {id: "russian", difficult: "basic", title: "Russian painters", description: "Know the difference in 2 minutes", painters: 46, completed: false, hidden: false},
-          {id: "all", difficult: "hard", title: "All painters", description: "Know the difference in 2 minutes", painters: 47, completed: false, hidden: false},
-        ]
-    }
+$.getScript( "data/quests.json.js", function( data, textStatus, jqxhr ) {
+
+  window.app = new Vue({
+      router,
+      el: '#app',
+      data: {
+          loading: false,
+          quests: quests
+      }
+  });
+
 });

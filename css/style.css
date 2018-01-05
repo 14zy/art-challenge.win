@@ -1,7 +1,7 @@
 .painting {
   /*padding:5px;
   background: gray;*/
-  max-width: 100%;
+  width: 100%;
   height: auto;
   box-shadow: 0 3px 2px #777;
 }
@@ -14,4 +14,8 @@
 .img-scroll {
   overflow: auto;
   -webkit-overflow-scrolling:touch;
+}
+
+.painter-name {
+  line-height: 1.1; width: 136px; height: 28px
 }

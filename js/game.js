@@ -56,7 +56,7 @@ Vue.component('questionPicture', {
     zoom() {
       this.$root.zoomed = !this.$root.zoomed;
       if (this.$root.zoomed) {
-        this.style="max-width: 200%; ";
+        this.style="max-width: 200%;";
       } else {
         this.style="";
       }
@@ -82,7 +82,7 @@ Vue.component('painterBtn', {
     <div>
       <img onerror="this.src='/img/ui/person.png';" width="80" height="80" style="margin: -8px 0 0 -10px" :src="'img/painters/' + painter.id + '.png'" />
       <span class="text-right" style='right:15px;  position: absolute;'>
-        <div style='line-height: 1.1; width: 114px; height: 28px' >{{ painter.name }}</div>
+        <div style='line-height: 1.1; width: 116px; height: 28px' >{{ painter.name }}</div>
         <img width="24" class='pt-2' :src="'img/nationality/' + painter.nationality[0] + '.png'" />
         <br>
         <span class="small" style='font-size: 12px'>{{ painter.years }}</span>

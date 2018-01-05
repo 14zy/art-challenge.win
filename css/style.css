@@ -1,6 +1,6 @@
 .painting {
   /*padding:5px;
-  background:#f2f2f2;*/
+  background: gray;*/
   max-width: 100%;
   height: auto;
   box-shadow: 0 3px 2px #777;
@@ -8,7 +8,7 @@
 
 .background {
   /*background-color: #333;*/
-  background-image: url(../img/ui/bg.jpg);
+  /*background-image: url(../img/ui/bg.jpg);*/
 }
 
 .img-scroll {

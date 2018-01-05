@@ -78,11 +78,11 @@ Vue.component('answers', {
 Vue.component('painterBtn', {
   props: ["painter"],
   template: `
-  <div class="pb-2" style="" @click="answer(painter);">
+  <div class="pb-3" style="" @click="answer(painter);">
     <div>
-      <img onerror="this.src='/img/ui/person.png';" width="80" height="80" style="margin: -8px 0 0 -12px" :src="'img/painters/' + painter.id + '.png'" />
-      <span class="text-right" style='right:20px;  position: absolute;'>
-        <div style='line-height: 1.1; width: 136px; height: 30px' >{{ painter.name }}</div>
+      <img onerror="this.src='/img/ui/person.png';" width="80" height="80" style="margin: -8px 0 0 -10px" :src="'img/painters/' + painter.id + '.png'" />
+      <span class="text-right" style='right:15px;  position: absolute;'>
+        <div style='line-height: 1.1; width: 114px; height: 28px' >{{ painter.name }}</div>
         <img width="24" class='pt-2' :src="'img/nationality/' + painter.nationality[0] + '.png'" />
         <br>
         <span class="small" style='font-size: 12px'>{{ painter.years }}</span>

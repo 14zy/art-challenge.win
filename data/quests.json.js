@@ -17,6 +17,15 @@ var quests = [{
     hidden: false
   },
   {
+    id: "popular",
+    difficult: "basic",
+    title: "Popular Painters",
+    description: "Popular painters of the world",
+    painters: 44,
+    completed: false,
+    hidden: false
+  },
+  {
     id: "renaissance",
     difficult: "basic",
     title: "Renaissance Era",
@@ -26,11 +35,11 @@ var quests = [{
     hidden: false
   },
   {
-    id: "popular",
+    id: "impressionism",
     difficult: "basic",
-    title: "Most Popular Painters",
-    description: "Most Popular painters of the world",
-    painters: 44,
+    title: "Impressionism",
+    description: "Know the difference in 2 minutes",
+    painters: 46,
     completed: false,
     hidden: false
   },
@@ -55,21 +64,13 @@ var quests = [{
   {
     id: "realism",
     difficult: "basic",
-    title: "Realism Art",
+    title: "Realism Painters",
     description: "For peaople who understand art",
     painters: 46,
     completed: false,
     hidden: false
   },
-  {
-    id: "impressionism",
-    difficult: "basic",
-    title: "Impressionism",
-    description: "Know the difference in 2 minutes",
-    painters: 46,
-    completed: false,
-    hidden: false
-  },
+
 
   // {
   //   id: "all",

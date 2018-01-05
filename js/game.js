@@ -58,7 +58,7 @@ Vue.component('questionPicture', {
     zoom() {
       this.$root.zoomed = !this.$root.zoomed;
       if (this.$root.zoomed) {
-        this.style="width: auto; height: auto;";
+        this.style="width: auto";
       } else {
         this.style="";
       }

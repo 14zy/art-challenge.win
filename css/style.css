@@ -17,5 +17,19 @@
 }
 
 .painter-name {
-  line-height: 1.1; width: 136px; height: 28px
+  line-height: 1.1;
+  width: 136px;
+  height: 28px;
+  font-weight: 100;
+}
+
+.painter-years  {
+  font-size: 12px
+  font-weight: 100;
+}
+
+.painter-button  {
+  border-style: solid;
+  border-width: 1px;
+  border-color: lightgray;
 }

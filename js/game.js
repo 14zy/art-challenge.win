@@ -66,7 +66,7 @@ Vue.component('questionPicture', {
 
 Vue.component('answers', {
   template: `
-  <div class="pt-2">
+  <div class="">
     <div class="container">
       <div class='row'>
         <painterBtn class="col-6 p-1" style='paddig: 0' v-for="painter in this.$root.currentAnswers" :key="painter.id" :painter="painter"></painterBtn>
@@ -78,20 +78,24 @@ Vue.component('answers', {
 Vue.component('painterBtn', {
   props: ["painter"],
   template: `
-  <div class="pb-3" style="" @click="answer(painter);">
-    <div>
-      <img onerror="this.src='/img/ui/person.png';" width="80" height="80" style="margin: -8px 0 0 -10px" :src="'img/painters/' + painter.id + '.png'" />
-      <span class="text-right" style='right:15px; position: absolute;'>
-        <div class='painter-name' >{{ painter.name }}</div>
-        <img width="24" class='pt-2' :src="'img/nationality/' + painter.nationality[0] + '.png'" />
-        <br>
-        <span class="small" style='font-size: 12px'>{{ painter.years }}</span>
-        <br><br><br>
+  <div class="py-2 painter-button" @click="answer(painter);">
+      <img onerror="this.src='/img/ui/person.png';" width="92" height="92" style="margin: 0 0 -2% -4%" :src="'img/painters/' + painter.id + '.png'" />
+      <span class="text-right" style='right: 4%; top:8%; position: absolute;'>
+        <div class='painter-name'>{{ painter.name }}</div>
       </span>
-    </div>
+      <span class="text-right" style='right: 4%; bottom:8%; position: absolute;'>
+        <img width="18" :src="'img/nationality/' + painter.nationality[0] + '.png'" />
+        <div class="painter-years small">{{ painter.years }}</div>
+      </span>
   </div>`,
+  data: function () {
+    return {
+      style: ""
+    }
+  },
   methods: {
    answer: function (painter) {
+
      if (painter.id == this.$root.currentPainter.id) {
        window.app.correctAnswers += 1;
        window.app.celebrating = true;
@@ -102,7 +106,7 @@ Vue.component('painterBtn', {
          window.app.winner();
        } else {
          swal({
-           position: "center",
+           position: "top",
            title: this.painter.name,
             text: this.$root.goodPhrase(),
             imageUrl: 'img/painters/' + this.$root.currentPainter.id + '.png',
@@ -119,15 +123,20 @@ Vue.component('painterBtn', {
             }
           });
        }
-       window.app.nextQuestion();
+
+       setTimeout(function () {
+         window.app.nextQuestion();
+       }, 1000);
+
      } else {
+
        window.app.correctAnswers = window.app.correctAnswers - 1;
        if (window.app.correctAnswers < 0) {
          window.app.correctAnswers = 0;
        }
        swal({
          title: 'No!',
-          position: 'center',
+          position: 'bottom',
           text: "It was " + this.$root.currentPainter.name,
           imageUrl: 'img/painters/' + this.$root.currentPainter.id + '.png',
           imageWidth: 260,
@@ -142,7 +151,10 @@ Vue.component('painterBtn', {
             //console.log('I was closed by the timer')
           }
         });
-       window.app.nextQuestion();
+
+        setTimeout(function () {
+          window.app.nextQuestion();
+        }, 600);
      }
    }
  },

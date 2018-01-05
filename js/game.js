@@ -1,6 +1,7 @@
 Vue.component('game-screen', {
   template: `
   <div>
+
       <div v-show="!this.$root.zoomed" class="container-fluid fixed-top" style="font-size:18px; background-color: rgba(255,255,255,0.0);">
         <div class="row">
           <div class="col-2 text-left pt-2">
@@ -16,6 +17,17 @@ Vue.component('game-screen', {
           </div>
         </div>
       </div>
+
+      <div v-show="this.$root.zoomed" class="container-fluid fixed-top" style="pointer-events: none; font-size:18px; background-color: rgba(255,255,255,0.0);">
+        <div class="row">
+          <div class="col-2"></div>
+          <div class="col-8"></div>
+          <div class="col-2 text-right pt-2" style='font-size:22px'>
+            <span class="pt-3 pr-1" style='color: white;'><i class="fa fa-close"></i></span>
+          </div>
+        </div>
+      </div>
+
     <question></question>
   </div>`
 })
@@ -46,7 +58,7 @@ Vue.component('questionPicture', {
     zoom() {
       this.$root.zoomed = !this.$root.zoomed;
       if (this.$root.zoomed) {
-        this.style="width: 100%; height: auto;";
+        this.style="width: auto; height: auto;";
       } else {
         this.style="";
       }

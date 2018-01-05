@@ -1,12 +1,12 @@
 {
  "name": "Art Challenge",
- "short_name": "Art Challenge",
+ "short_name": "ArtChallenge",
  "lang": "en-US",
  "start_url": "/?utm_source=web_app_manifest",
  "display": "standalone",
  "orientation": "portrait",
- "background_color": "rgb(212,212,212)",
- "theme_color": "rgb(212,212,212)",
+ "background_color": "#333",
+ "theme_color": "#333",
  "icons": [
   {
    "src": "\/android-icon-36x36.png",

@@ -41,8 +41,8 @@ Vue.component('question', {
 
 Vue.component('questionPicture', {
   template: `
-  <div class="">
-    <div style='overflow: scroll'>
+  <div class="text-center">
+    <div class="img-scroll">
       <img @click="zoom()" :style="this.style" class="painting" :src="pictureURL()"/>
     </div>
   </div>`,
@@ -58,7 +58,7 @@ Vue.component('questionPicture', {
     zoom() {
       this.$root.zoomed = !this.$root.zoomed;
       if (this.$root.zoomed) {
-        this.style="width: auto";
+        this.style="max-width: none;";
       } else {
         this.style="";
       }

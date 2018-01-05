@@ -1,7 +1,8 @@
 .painting {
   /*padding:5px;
   background:#f2f2f2;*/
-  width: 100%;
+  max-width: 100%;
+
   height: auto;
   box-shadow: 0 3px 2px #777;
 }
@@ -10,3 +11,8 @@
 /*.background {
   background-color: rgb(212,212,212);
 }*/
+
+.img-scroll {
+  overflow: auto;
+  -webkit-overflow-scrolling:touch;
+}

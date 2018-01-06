@@ -51,6 +51,8 @@ Vue.component('questionPicture', {
   },
   methods: {
     pictureURL() {
+      // localhost:4444
+      // artchallenge.me
       return "http://artchallenge.me/painters/"+this.$root.currentPainter.id+"/" + this.$root.currentPicture + ".jpg";
     },
     zoom() {
@@ -181,6 +183,7 @@ $.getScript( "data/language.en.json.js" ).done(function() {});
           currentPicture: "",
           currentAnswers: [],
           completedQuests: [],
+          currentQuestDifficult: "",
           goodPhrases: window.goodPhrases
       },
       methods: {
@@ -224,7 +227,7 @@ $.getScript( "data/language.en.json.js" ).done(function() {});
             this.currentAnswers = [];
             this.currentAnswers.push(this.currentPainter);
 
-            if (this.currentQuestMode == "basic") {
+            if (this.currentQuestDifficult == "basic") {
               while (this.currentAnswers.length < 4) {
                 if (this.currentAnswers.length == 1) {
                   random = this.randomPainter();
@@ -241,7 +244,7 @@ $.getScript( "data/language.en.json.js" ).done(function() {});
               shuffle(this.currentAnswers);
             }
 
-            if (this.currentQuestMode == "easy") {
+            if (this.currentQuestDifficult == "easy") {
               while (this.currentAnswers.length < 2) {
                 if (this.currentAnswers.length == 1) {
                   random = this.randomPainter();
@@ -260,7 +263,7 @@ $.getScript( "data/language.en.json.js" ).done(function() {});
          if (this.$route.path == "/game.html") {
            if (this.$route.query.quest) {
              this.currentQuest = this.$route.query.quest;
-             this.currentQuestMode = this.$route.query.mode;
+             this.currentQuestDifficult = this.$route.query.difficult;
 
              // Загружаем художников из текущего режима в questionsDB
              $.getJSON( "../data/quests/"+this.currentQuest+".json", function(data) {
@@ -289,7 +292,7 @@ $.getScript( "data/language.en.json.js" ).done(function() {});
                };
              }
              //Смотрим локалсторадж
-             
+
            }
          }
        }

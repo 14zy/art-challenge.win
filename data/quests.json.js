@@ -1,12 +1,4 @@
-var quests = [{
-    id: "monet",
-    difficult: "easy",
-    title: "Monet or Manet",
-    description: "Know the difference in 3 minutes",
-    painters: 2,
-    completed: true,
-    hidden: false
-  },
+var quests = [
   {
     id: "picasso",
     difficult: "easy",
@@ -14,6 +6,16 @@ var quests = [{
     description: "Great painters of the world",
     painters: 2,
     completed: false,
+    available: true,
+    hidden: false
+  },{
+    id: "monet",
+    difficult: "easy",
+    title: "Monet or Manet",
+    description: "Know the difference in 3 minutes",
+    painters: 2,
+    completed: false,
+    available: false,
     hidden: false
   },
   {
@@ -23,6 +25,7 @@ var quests = [{
     description: "Popular painters of the world",
     painters: 44,
     completed: false,
+    available: false,
     hidden: false
   },
   {
@@ -32,6 +35,7 @@ var quests = [{
     description: "Renaissance Era painters",
     painters: 46,
     completed: false,
+    available: false,
     hidden: false
   },
   {
@@ -41,6 +45,7 @@ var quests = [{
     description: "Know the difference in 2 minutes",
     painters: 46,
     completed: false,
+    available: false,
     hidden: false
   },
   {
@@ -50,6 +55,7 @@ var quests = [{
     description: "Get know them",
     painters: 45,
     completed: false,
+    available: false,
     hidden: false
   },
   {
@@ -59,6 +65,7 @@ var quests = [{
     description: "Let see the treasures",
     painters: 46,
     completed: false,
+    available: false,
     hidden: false
   },
   {
@@ -68,6 +75,7 @@ var quests = [{
     description: "For peaople who understand art",
     painters: 46,
     completed: false,
+    available: false,
     hidden: false
   },
 

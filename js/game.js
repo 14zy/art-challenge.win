@@ -277,19 +277,21 @@ $.getScript( "data/language.en.json.js" ).done(function() {});
              if (this.completedQuests) {
                this.completedQuests = this.completedQuests.split(",");
                console.log(this.completedQuests);
-               for (var i = 0; i < this.quests.length; i++) {
-                 if (this.completedQuests.slice(-1)[0] == this.quests[i].id) {
-                   for (var z = 0; z < i; z++) {
-                     this.quests[z].completed = true;
-                   }
-                   this.quests[i].completed = true;
-                   this.quests[i+1].available = true;
-                   if (this.quests[i].available) {
-                     this.quests[i].available = false;
-                   }
-                   console.log(this.quests[i+1]);
-                 }
-               };
+               // for (var i = 0; i < this.quests.length; i++) {
+               //   if (this.completedQuests.slice(-1)[0] == this.quests[i].id) {
+               //     for (var z = 0; z < i; z++) {
+               //       this.quests[z].completed = true;
+               //     }
+               //     this.quests[i].completed = true;
+               //     this.quests[i+1].available = true;
+               //     if (this.quests[i].available) {
+               //       this.quests[i].available = false;
+               //     }
+               //     console.log(this.quests[i+1]);
+               //   }
+               // };
+             } else {
+               // this.quests[0].available = true;
              }
              //Смотрим локалсторадж
 

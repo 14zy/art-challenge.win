@@ -72,6 +72,8 @@ $.getScript( "data/quests.json.js", function( data, textStatus, jqxhr ) {
                console.log(this.quests[i+1]);
              }
            };
+         } else {
+           this.quests[0].available = true;
          }
          //Смотрим локалсторадж
 

@@ -6,7 +6,7 @@ var quests = [
     description: "Great painters of the world",
     painters: 2,
     completed: false,
-    available: true,
+    available: false,
     hidden: false
   },{
     id: "monet",

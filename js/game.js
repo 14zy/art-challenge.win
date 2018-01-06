@@ -39,10 +39,8 @@ Vue.component('question', {
 
 Vue.component('questionPicture', {
   template: `
-  <div class="text-center">
-    <div class="img-scroll">
-      <img @click="zoom()" :style="this.style" class="painting" :src="pictureURL()"/>
-    </div>
+  <div class="text-center img-scroll">
+    <img @click="zoom()" :style="this.style" class="painting" :src="pictureURL()"/>
   </div>`,
   data: function () {
     return {
@@ -58,7 +56,7 @@ Vue.component('questionPicture', {
     zoom() {
       this.$root.zoomed = !this.$root.zoomed;
       if (this.$root.zoomed) {
-        this.style="max-width: 200%; width: auto;";
+        this.style="max-width: 180%; width: 180%;";
       } else {
         this.style="";
       }

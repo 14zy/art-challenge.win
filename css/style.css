@@ -1,8 +1,14 @@
 .painting {
   /*padding:5px;
   background: gray;*/
-  width: 100%;
-  height: auto;
+  min-height: 70%;
+  max-height: 90%;
+
+  min-width: 100%;
+  max-width: 140%;
+
+  /*width: 100%;*/
+  /*height: auto;*/
   box-shadow: 0 3px 2px #777;
 }
 

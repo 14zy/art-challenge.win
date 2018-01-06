@@ -192,7 +192,30 @@ $.getScript( "data/language.en.json.js" ).done(function() {});
             return window.goodPhrases[Math.floor(Math.random() * window.goodPhrases.length)];
           },
           winner: function() {
-            swal("STAR",'You are winner!', 'success');
+            window.app.celebrating = true;
+            swal({
+              title: 'You are a winner!',
+               position: 'center',
+               text: "Congratulations. Only 14% of people can complete this quest",
+               imageUrl: 'img/animations/correct-animated-gif-13.gif',
+               showCloseButton: true,
+               showCancelButton: true,
+               confirmButtonText: "Share it",
+               imageWidth: 220,
+               cancelButtonText: "Go next",
+               cancelButtonColor: 'green'
+             }).then((result) => {
+                  if (result.value) {
+                    swal(
+                      'ok!',
+                      'Share function will be there',
+                      'info'
+                    )
+                  } else if (result.dismiss === 'cancel') {
+                    window.history.back();
+                  }
+                });
+
             if (this.completedQuests) {
               var newQuestWinning = true;
               for (var i = 0; i < this.completedQuests.length; i++) {
@@ -274,7 +297,7 @@ $.getScript( "data/language.en.json.js" ).done(function() {});
              this.completedQuests = localStorage.getItem("completed");
              if (this.completedQuests) {
                this.completedQuests = this.completedQuests.split(",");
-               console.log(this.completedQuests);
+               // console.log(this.completedQuests);
                // for (var i = 0; i < this.quests.length; i++) {
                //   if (this.completedQuests.slice(-1)[0] == this.quests[i].id) {
                //     for (var z = 0; z < i; z++) {

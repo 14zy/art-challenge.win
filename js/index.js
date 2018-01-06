@@ -58,7 +58,7 @@ $.getScript( "data/quests.json.js", function( data, textStatus, jqxhr ) {
          this.completedQuests = localStorage.getItem("completed");
          if (this.completedQuests) {
            this.completedQuests = this.completedQuests.split(",");
-           console.log(this.completedQuests);
+           // console.log(this.completedQuests);
            for (var i = 0; i < this.quests.length; i++) {
              if (this.completedQuests.slice(-1)[0] == this.quests[i].id) {
                for (var z = 0; z < i; z++) {
@@ -69,7 +69,7 @@ $.getScript( "data/quests.json.js", function( data, textStatus, jqxhr ) {
                if (this.quests[i].available) {
                  this.quests[i].available = false;
                }
-               console.log(this.quests[i+1]);
+               // console.log(this.quests[i+1]);
              }
            };
          } else {

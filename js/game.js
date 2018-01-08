@@ -1,28 +1,26 @@
 Vue.component('game-screen', {
   template: `
   <div>
-      <div v-show="!this.$root.zoomed" class="container-fluid fixed-top" style="font-size:18px; background-color: rgba(255,255,255,0.0);">
+      <div v-show="!this.$root.zoomed" class="container-fluid fixed-top pt-3" style="color: white; font-size:18px;">
         <div class="row">
-          <div class="col-2 text-left pt-2">
-            <span @click="window.history.back();" class="pl-1 pt-3" style='color: white;'><i class="fa fa-chevron-left"></i></span>
+          <div class="col-2 text-left">
+            <span @click="window.history.back();" class="p-1 px-2" style='background-color: rgba(0,0,0,0.1); border-radius: 50px'><i class="fa fa-arrow-left"></i></span>
           </div>
-          <div class="col-8 text-center" style='font-size:18px'>
-            <div class="pt-2">
-              <i class="fa fa-star text-warning" v-for="correct in this.$root.correctAnswers"></i><i style="color: white" class="fa fa-star" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i><i style="color: white" class="fa fa-gift"></i>
-            </div>
+          <div class="col-8 text-center">
+            <i class="fa fa-star text-warning" v-for="correct in this.$root.correctAnswers"></i><i class="fa fa-star" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i><i style="color: white" class="fa fa-gift"></i>
           </div>
-          <div class="col-2 text-right pt-2" style='font-size:20px'>
-            <span @click="swal('Settings will be here')" class="pt-3 pr-1" style='color: white;'><i class="fa fa-gear"></i></span>
+          <div class="col-2 text-right" style='font-size:20px'>
+            <span @click="swal('Settings will be here')" class="p-1 px-2" style='background-color: rgba(0,0,0,0.1); border-radius: 50px'><i class="fa fa-gear"></i></span>
           </div>
         </div>
       </div>
 
-      <div v-show="this.$root.zoomed" class="container-fluid fixed-top" style="pointer-events: none; font-size:18px; background-color: rgba(255,255,255,0.0);">
+      <div v-show="this.$root.zoomed" class="container-fluid fixed-top pt-3" style="pointer-events: none; font-size:22px; color: white;">
         <div class="row">
           <div class="col-2"></div>
           <div class="col-8"></div>
-          <div class="col-2 text-right pt-2" style='font-size:22px'>
-            <span class="pt-3 pr-1" style='color: white;'><i class="fa fa-close"></i></span>
+          <div class="col-2 text-right">
+            <span class="p-1 px-2" style='background-color: rgba(0,0,0,0.1); border-radius: 50px'><i class="fa fa-close"></i></span>
           </div>
         </div>
       </div>
@@ -51,7 +49,14 @@ Vue.component('questionPicture', {
     pictureURL() {
       // localhost:4444
       // artchallenge.me
-      return "http://artchallenge.me/painters/"+this.$root.currentPainter.id+"/" + this.$root.currentPicture + ".jpg";
+      var imgSrc = "";
+      if (this.$root.currentPainter) {
+        imgSrc = "http://artchallenge.me/painters/"+this.$root.currentPainter.id+"/" + this.$root.currentPicture + ".jpg";
+      } else {
+        imgSrc = "img/ui/white.jpg";
+      }
+      return imgSrc;
+
     },
     zoom() {
       this.$root.zoomed = !this.$root.zoomed;

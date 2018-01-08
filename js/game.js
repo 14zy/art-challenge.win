@@ -127,11 +127,13 @@ Vue.component('painterBtn', {
               //console.log('I was closed by the timer')
             }
           });
+
+        setTimeout(function () {
+          window.app.nextQuestion();
+        }, 1000);
        }
 
-       setTimeout(function () {
-         window.app.nextQuestion();
-       }, 1000);
+
 
      } else {
 
@@ -211,11 +213,9 @@ $.getScript( "data/language.en.json.js" ).done(function() {});
                cancelButtonColor: 'green'
              }).then((result) => {
                   if (result.value) {
-                    swal(
-                      'ok!',
-                      'Share function will be there',
-                      'info'
-                    )
+                    swal('ok!','Share function will be there','info');
+                    window.app.celebrating = false;
+                    //this.newRound();
                   } else if (result.dismiss === 'cancel') {
                     window.history.back();
                   }
@@ -282,6 +282,7 @@ $.getScript( "data/language.en.json.js" ).done(function() {});
 
           },
           newRound: function() {
+            this.correctAnswers = 0;
             this.nextQuestion();
           }
       },

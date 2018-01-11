@@ -1,0 +1,75 @@
+{
+  "paintersDB": [{
+    "id": 5,
+    "name": "Василий Суриков",
+    "years": "1848 - 1916",
+    "nationality": ["Russia"],
+    "paintings": 165
+  }, {
+    "id": 8,
+    "name": "Иван Шишкин",
+    "years": "1832 - 1898",
+    "nationality": ["Russia"],
+    "paintings": 409
+  }, {
+    "id": 18,
+    "name": "Эндрю Уайет",
+    "years": "1917 - 2009",
+    "nationality": ["USA"],
+    "paintings": 260
+  }, {
+    "id": 25,
+    "name": "Илья Репин",
+    "years": "1844 - 1930",
+    "nationality": ["Russia"],
+    "paintings": 91
+  }, {
+    "id": 37,
+    "name": "Борис Кустодиев",
+    "years": "1878 - 1927",
+    "nationality": ["Russia"],
+    "paintings": 160
+  }, {
+    "id": 47,
+    "name": "Василий Верещагин",
+    "years": "1842 - 1904",
+    "nationality": ["Russia"],
+    "paintings": 181
+  }, {
+    "id": 48,
+    "name": "Исаак Левитан",
+    "years": "1860 - 1900",
+    "nationality": ["Russia", "Israel"],
+    "paintings": 86
+  }, {
+    "id": 58,
+    "name": "Гюстав Курбе",
+    "years": "1819 - 1877",
+    "nationality": ["France"],
+    "paintings": 59
+  }, {
+    "id": 85,
+    "name": "Алексей Харламов",
+    "years": "1840 – 1925",
+    "nationality": ["Russia"],
+    "paintings": 133
+  }, {
+    "id": 113,
+    "name": "Николай Ге",
+    "years": "1831 – 1894",
+    "nationality": ["Russia"],
+    "paintings": 43
+  }, {
+    "id": 116,
+    "name": "Рокуэлл Кент",
+    "years": "1882 – 1971",
+    "nationality": ["USA"],
+    "paintings": 51
+  }, {
+    "id": 117,
+    "name": "Мартирос Сарьян",
+    "years": "1880 – 1972",
+    "nationality": ["Armenia"],
+    "paintings": 444
+  } ]
+}

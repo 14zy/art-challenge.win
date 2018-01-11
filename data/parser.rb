@@ -8,29 +8,36 @@ french = [2, 9, 17, 30, 36, 40, 49, 53, 57, 58, 61, 64, 65, 69, 70, 73, 75, 77, 
 #armenian = [117, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133 ,134, 135];
 popular = [1, 4, 7, 9, 14, 15, 17, 19, 21, 22, 24, 26, 27, 28, 29, 30, 32, 33, 34, 35, 36, 39, 40, 41, 42, 43, 45, 46, 49, 50, 53, 54, 55, 57, 58, 61, 62, 63, 69, 73, 75, 77, 79, 80, 82, 83, 94, 95, 112, 118];
 
+quest = french
+mylang = "ru"
+questFile = "quests/#{mylang}/french.json";
+
+
 ## Берем всю инфу по текущему языку из CouchDB
 lang = "en";
 langDB = JSON.parse `curl -X GET http://178.62.133.139:5994/lang/#{lang}`
+
+langDBMY = JSON.parse `curl -X GET http://178.62.133.139:5994/lang/#{mylang}`
 
 
 startText = "{\"paintersDB\": ["
 endText = "]}"
 
 
-File.open("quests/french.json", 'a+') do |file|
+File.open("#{questFile}", 'a+') do |file|
     file.write startText
 end
 
 ##Проходимся по всем художникам
-french.each do |n|
+quest.each do |n|
 
   ## Берем инфу по художнику из CouchDB
   painter = JSON.parse `curl -X GET http://178.62.133.139:5994/painters/#{n}`
 
   ## Обрабатываем немного
-  description =  painter["bio"][lang].sub("<p>","")[0..150].gsub(/\s\w+\s*$/, '...')
+  #description =  painter["bio"][lang].sub("<p>","")[0..150].gsub(/\s\w+\s*$/, '...')
 
-  painterName = langDB['painters'][painter['_id']]
+  painterName = langDBMY['painters'][painter['_id']]
 
   painterNations = []
   painter["nationality"].each do |nationality|
@@ -111,14 +118,14 @@ french.each do |n|
   # print painter["paintings"].count
 
 
-  data = %{ {"id": #{painter["id"]},"name": "#{painter["name"]}", "years": "#{painter["years"]}","nationality": #{painterNations},"paintings": #{painter["paintings"].count}}, }
+  data = %{{"id": #{painter["id"]},"name": "#{painterName}", "years": "#{painter["years"]}","nationality": #{painterNations},"paintings": #{painter["paintings"].count}},}
 
-  File.open("quests/french.json", 'a+') do |file|
+  File.open("#{questFile}", 'a+') do |file|
       file.write data
   end
 
 end
 
-File.open("quests/french.json", 'a+') do |file|
+File.open("#{questFile}", 'a+') do |file|
     file.write endText
 end

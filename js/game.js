@@ -40,7 +40,7 @@ Vue.component('questionPicture', {
   <div class="text-center img-scroll">
     <img @click="zoom()" :style="this.style" class="painting" :src="pictureURL()"/>
   </div>`,
-  data: function () {
+  data: function() {
     return {
       style: ""
     }
@@ -51,7 +51,7 @@ Vue.component('questionPicture', {
       // artchallenge.me
       var imgSrc = "";
       if (this.$root.currentPainter) {
-        imgSrc = "http://artchallenge.me/painters/"+this.$root.currentPainter.id+"/" + this.$root.currentPicture + ".jpg";
+        imgSrc = "http://artchallenge.me/painters/" + this.$root.currentPainter.id + "/" + this.$root.currentPicture + ".jpg";
       } else {
         imgSrc = "img/ui/white.jpg";
       }
@@ -61,9 +61,9 @@ Vue.component('questionPicture', {
     zoom() {
       this.$root.zoomed = !this.$root.zoomed;
       if (this.$root.zoomed) {
-        this.style="max-width: 180%; width: 180%;";
+        this.style = "max-width: 180%; width: 180%;";
       } else {
-        this.style="";
+        this.style = "";
       }
     }
   }
@@ -93,26 +93,26 @@ Vue.component('painterBtn', {
         <div class="painter-years small">{{ painter.years }}</div>
       </span>
   </div>`,
-  data: function () {
+  data: function() {
     return {
       style: ""
     }
   },
   methods: {
-   answer: function (painter) {
+    answer: function(painter) {
 
-     if (painter.id == this.$root.currentPainter.id) {
-       window.app.correctAnswers += 1;
-       window.app.celebrating = true;
-       setTimeout(function () {
-         window.app.celebrating = false;
-       }, 1200);
-       if (window.app.correctAnswers == 10) {
-         window.app.winner();
-       } else {
-         swal({
-           position: "center",
-           title: this.painter.name,
+      if (painter.id == this.$root.currentPainter.id) {
+        window.app.correctAnswers += 1;
+        window.app.celebrating = true;
+        setTimeout(function() {
+          window.app.celebrating = false;
+        }, 1200);
+        if (window.app.correctAnswers == 10) {
+          window.app.winner();
+        } else {
+          swal({
+            position: "center",
+            title: this.painter.name,
             text: this.$root.goodPhrase(),
             imageUrl: 'img/painters/' + this.$root.currentPainter.id + '.png',
             imageWidth: 260,
@@ -128,21 +128,21 @@ Vue.component('painterBtn', {
             }
           });
 
-        setTimeout(function () {
-          window.app.nextQuestion();
-        }, 1000);
-       }
+          setTimeout(function() {
+            window.app.nextQuestion();
+          }, 1000);
+        }
 
 
 
-     } else {
+      } else {
 
-       window.app.correctAnswers = window.app.correctAnswers - 1;
-       if (window.app.correctAnswers < 0) {
-         window.app.correctAnswers = 0;
-       }
-       swal({
-         title: 'No!',
+        window.app.correctAnswers = window.app.correctAnswers - 1;
+        if (window.app.correctAnswers < 0) {
+          window.app.correctAnswers = 0;
+        }
+        swal({
+          title: 'No!',
           position: 'bottom',
           text: "It was " + this.$root.currentPainter.name,
           imageUrl: 'img/painters/' + this.$root.currentPainter.id + '.png',
@@ -159,185 +159,201 @@ Vue.component('painterBtn', {
           }
         });
 
-        setTimeout(function () {
+        setTimeout(function() {
           window.app.nextQuestion();
         }, 600);
-     }
-   }
- },
+      }
+    }
+  },
 });
 
 var router = new VueRouter({
-    mode: 'history',
-    routes: []
+  mode: 'history',
+  routes: []
 });
 
-$.getScript( "data/language.en.json.js" ).done(function() {});
+window.app = new Vue({
+  router,
+  el: '#app',
+  data: {
+    zoomed: false,
+    celebrating: false,
+    currentQuest: "",
+    questions: 10,
+    correctAnswers: 0,
+    questionsDB: [],
+    currentPainter: "",
+    currentPicture: "",
+    currentAnswers: [],
+    completedQuests: [],
+    currentQuestDifficult: "",
+    goodPhrases: window.goodPhrases
+  },
+  created: function() {
+    var lang = window.navigator.userLanguage || window.navigator.language;
+    lang = lang.substring(0, 2).toLowerCase();
+    if (this.$route.query.lang) {
+     lang = this.$route.query.lang
+    }
+    if (lang == "ru" || lang == "en") {
+        window.lang = lang;
+    } else {
+        window.lang = "en";
+    }
+    $.getScript("data/lang/"+window.lang+"/phrases.js").done(function() {});
+  },
+  methods: {
+    endGame: function() {
+      //not using anymore?
+    },
+    goodPhrase: function() {
+      return window.goodPhrases[Math.floor(Math.random() * window.goodPhrases.length)];
+    },
+    winner: function() {
+      window.app.celebrating = true;
+      swal({
+        title: 'You are a winner!',
+        position: 'center',
+        text: "Congratulations. Only 14% of people can complete this quest",
+        imageUrl: 'img/animations/correct-animated-gif-13.gif',
+        showCloseButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Share it",
+        imageWidth: 220,
+        cancelButtonText: "Go next",
+        cancelButtonColor: 'green'
+      }).then((result) => {
+        if (result.value) {
+          swal('ok!', 'Share function will be there', 'info');
+          window.app.celebrating = false;
+          //this.newRound();
+        } else if (result.dismiss === 'cancel') {
+          window.history.back();
+        }
+      });
 
-  window.app = new Vue({
-      router,
-      el: '#app',
-      data: {
-          zoomed: false,
-          celebrating: false,
-          currentQuest: "",
-          questions: 10,
-          correctAnswers: 0,
-          questionsDB: [],
-          currentPainter: "",
-          currentPicture: "",
-          currentAnswers: [],
-          completedQuests: [],
-          currentQuestDifficult: "",
-          goodPhrases: window.goodPhrases
-      },
-      methods: {
-          endGame: function() {
-            //not using anymore?
-          },
-          goodPhrase: function() {
-            return window.goodPhrases[Math.floor(Math.random() * window.goodPhrases.length)];
-          },
-          winner: function() {
-            window.app.celebrating = true;
-            swal({
-              title: 'You are a winner!',
-               position: 'center',
-               text: "Congratulations. Only 14% of people can complete this quest",
-               imageUrl: 'img/animations/correct-animated-gif-13.gif',
-               showCloseButton: true,
-               showCancelButton: true,
-               confirmButtonText: "Share it",
-               imageWidth: 220,
-               cancelButtonText: "Go next",
-               cancelButtonColor: 'green'
-             }).then((result) => {
-                  if (result.value) {
-                    swal('ok!','Share function will be there','info');
-                    window.app.celebrating = false;
-                    //this.newRound();
-                  } else if (result.dismiss === 'cancel') {
-                    window.history.back();
-                  }
-                });
-
-            if (this.completedQuests) {
-              var newQuestWinning = true;
-              for (var i = 0; i < this.completedQuests.length; i++) {
-                if (this.completedQuests[i] == this.currentQuest) {
-                  console.log("winnig this quest not first time");
-                  newQuestWinning = false;
-                }
-              }
-              if (newQuestWinning) {
-                this.completedQuests.push(this.currentQuest);
-                console.log("winnig this quest in first time!");
-              }
-            } else {
-              this.completedQuests = [];
-              this.completedQuests.push(this.currentQuest);
-            }
-            localStorage.setItem("completed", this.completedQuests);
-          },
-          randomPainter: function() {
-            return this.questionsDB[Math.floor(Math.random() * this.questionsDB.length)]
-          },
-          nextQuestion: function() {
-            this.currentPicture = "";
-            //generate new question
-            this.currentPainter = this.randomPainter();
-
-            //generate new picture
-            this.currentPicture = Math.floor(Math.random() * this.currentPainter.paintings) + 1;
-            //generate new answers //need generate more answers (2/16)
-            this.currentAnswers = [];
-            this.currentAnswers.push(this.currentPainter);
-
-            if (this.currentQuestDifficult == "basic") {
-              while (this.currentAnswers.length < 4) {
-                if (this.currentAnswers.length == 1) {
-                  random = this.randomPainter();
-                  if (random.id != this.currentAnswers[0].id) {this.currentAnswers.push(random);}
-                } else {
-                  random = this.randomPainter();
-                  var duplicate = false;
-                  for (var i = 0; i < this.currentAnswers.length; i++) {
-                    if (this.currentAnswers[i].id == random.id) {duplicate = true}
-                  };
-                  if (!duplicate) {this.currentAnswers.push(random);}
-                }
-              }
-              shuffle(this.currentAnswers);
-            }
-
-            if (this.currentQuestDifficult == "easy") {
-              while (this.currentAnswers.length < 2) {
-                if (this.currentAnswers.length == 1) {
-                  random = this.randomPainter();
-                  if (random.id != this.currentAnswers[0].id) {this.currentAnswers.push(random);}
-                }
-              }
-              shuffle(this.currentAnswers);
-            }
-
-          },
-          newRound: function() {
-            this.correctAnswers = 0;
-            this.nextQuestion();
+      if (this.completedQuests) {
+        var newQuestWinning = true;
+        for (var i = 0; i < this.completedQuests.length; i++) {
+          if (this.completedQuests[i] == this.currentQuest) {
+            console.log("winnig this quest not first time");
+            newQuestWinning = false;
           }
-      },
-      mounted: function() {
-         if (this.$route.path == "/game.html") {
-           if (this.$route.query.quest) {
-             this.currentQuest = this.$route.query.quest;
-             this.currentQuestDifficult = this.$route.query.difficult;
+        }
+        if (newQuestWinning) {
+          this.completedQuests.push(this.currentQuest);
+          console.log("winnig this quest in first time!");
+        }
+      } else {
+        this.completedQuests = [];
+        this.completedQuests.push(this.currentQuest);
+      }
+      localStorage.setItem("completed", this.completedQuests);
+    },
+    randomPainter: function() {
+      return this.questionsDB[Math.floor(Math.random() * this.questionsDB.length)]
+    },
+    nextQuestion: function() {
+      this.currentPicture = "";
+      //generate new question
+      this.currentPainter = this.randomPainter();
 
-             // Загружаем художников из текущего режима в questionsDB
-             $.getJSON( "../data/quests/"+this.currentQuest+".json", function(data) {
-               paintersDB = data.paintersDB;
-               window.app.questionsDB = paintersDB;
-               window.app.newRound();
-             })
+      //generate new picture
+      this.currentPicture = Math.floor(Math.random() * this.currentPainter.paintings) + 1;
+      //generate new answers //need generate more answers (2/16)
+      this.currentAnswers = [];
+      this.currentAnswers.push(this.currentPainter);
 
-             //Смотрим локалсторадж
-             this.completedQuests = localStorage.getItem("completed");
-             if (this.completedQuests) {
-               this.completedQuests = this.completedQuests.split(",");
-               // console.log(this.completedQuests);
-               // for (var i = 0; i < this.quests.length; i++) {
-               //   if (this.completedQuests.slice(-1)[0] == this.quests[i].id) {
-               //     for (var z = 0; z < i; z++) {
-               //       this.quests[z].completed = true;
-               //     }
-               //     this.quests[i].completed = true;
-               //     this.quests[i+1].available = true;
-               //     if (this.quests[i].available) {
-               //       this.quests[i].available = false;
-               //     }
-               //     console.log(this.quests[i+1]);
-               //   }
-               // };
-             } else {
-               // this.quests[0].available = true;
-             }
-             //Смотрим локалсторадж
+      if (this.currentQuestDifficult == "basic") {
+        while (this.currentAnswers.length < 4) {
+          if (this.currentAnswers.length == 1) {
+            random = this.randomPainter();
+            if (random.id != this.currentAnswers[0].id) {
+              this.currentAnswers.push(random);
+            }
+          } else {
+            random = this.randomPainter();
+            var duplicate = false;
+            for (var i = 0; i < this.currentAnswers.length; i++) {
+              if (this.currentAnswers[i].id == random.id) {
+                duplicate = true
+              }
+            };
+            if (!duplicate) {
+              this.currentAnswers.push(random);
+            }
+          }
+        }
+        shuffle(this.currentAnswers);
+      }
 
-           }
-         }
-       }
-  });
+      if (this.currentQuestDifficult == "easy") {
+        while (this.currentAnswers.length < 2) {
+          if (this.currentAnswers.length == 1) {
+            random = this.randomPainter();
+            if (random.id != this.currentAnswers[0].id) {
+              this.currentAnswers.push(random);
+            }
+          }
+        }
+        shuffle(this.currentAnswers);
+      }
 
+    },
+    newRound: function() {
+      this.correctAnswers = 0;
+      this.nextQuestion();
+    }
+  },
+  mounted: function() {
+      if (this.$route.query.quest) {
+        this.currentQuest = this.$route.query.quest;
+        this.currentQuestDifficult = this.$route.query.difficult;
 
+        // Загружаем художников из текущего режима в questionsDB
+        $.getJSON("../data/quests/" + window.lang + "/" + this.currentQuest + ".json", function(data) {
+          paintersDB = data.paintersDB;
+          window.app.questionsDB = paintersDB;
+          window.app.newRound();
+        })
+
+        //Смотрим локалсторадж
+        this.completedQuests = localStorage.getItem("completed");
+        if (this.completedQuests) {
+          this.completedQuests = this.completedQuests.split(",");
+          // console.log(this.completedQuests);
+          // for (var i = 0; i < this.quests.length; i++) {
+          //   if (this.completedQuests.slice(-1)[0] == this.quests[i].id) {
+          //     for (var z = 0; z < i; z++) {
+          //       this.quests[z].completed = true;
+          //     }
+          //     this.quests[i].completed = true;
+          //     this.quests[i+1].available = true;
+          //     if (this.quests[i].available) {
+          //       this.quests[i].available = false;
+          //     }
+          //     console.log(this.quests[i+1]);
+          //   }
+          // };
+        } else {
+          // this.quests[0].available = true;
+        }
+        //Смотрим локалсторадж
+
+      }
+
+  }
+});
 
 
 function shuffle(a) {
-    var j, x, i;
-    for (i = a.length - 1; i > 0; i--) {
-        j = Math.floor(Math.random() * (i + 1));
-        x = a[i];
-        a[i] = a[j];
-        a[j] = x;
-    }
+  var j, x, i;
+  for (i = a.length - 1; i > 0; i--) {
+    j = Math.floor(Math.random() * (i + 1));
+    x = a[i];
+    a[i] = a[j];
+    a[j] = x;
+  }
 }
 
 document.addEventListener('contextmenu', event => event.preventDefault());

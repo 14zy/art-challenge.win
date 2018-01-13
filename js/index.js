@@ -1,12 +1,16 @@
 Vue.component('quest', {
   props: ['quest'],
   template: `
-  <div v-if="!quest.hidden" :style="style" class="text-muted quest p-2 mb-3" @click="window.app.loading = true; setTimeout(function(){window.location.href='game.html?quest='+quest.id+'&difficult='+quest.difficult},500);">
-
-        <div :class="{ 'text-success': quest.completed, 'text-primary': quest.available}">
+    <div :id="quest.id" :class="{'animated rollOut': selected}" @click="selectQuest()">
+      <div class="text-muted quest p-2 mb-3">
+        <div :class="{'text-success': quest.completed, 'text-primary': quest.available}">
           <span class="text-right pr-1 float-right" style="font-size: 20px; ">
-            <i v-if="quest.available" class="fa fa-play-circle"></i>
-            <i v-if="quest.completed" class="fa fa-certificate text-success"></i>
+
+            <template v-if="quest.available">
+              <i class="fa fa-play-circle"></i>
+            </template>
+
+            <i v-if="quest.completed" class="fa fa-check text-success"></i>
             <i v-if="!quest.completed && !quest.available" class="fa fa-lock"></i>
           </span>
           <h4>{{quest.title}} </h4>
@@ -17,15 +21,23 @@ Vue.component('quest', {
             {{quest.painters}} Painters
           </span>
         </div>
-  </div>`,
-  data: function () {
+      </div>
+    </div>`,
+  data: function() {
     return {
-      style: ""
+      selected: false
+    }
+  },
+  updated: function() {
+    if (this.quest.available && this.quest.id != "picasso") {
+      $('html, body').animate({scrollTop: $("#"+this.quest.id).offset().top-120}, 1000);
     }
   },
   methods: {
-    disable() {
-
+    selectQuest() {
+      this.selected = true;
+      // window.app.loading = true;
+      window.location.href = 'game.html?quest=' + this.quest.id + '&difficult=' + this.quest.difficult;
     }
   }
 });

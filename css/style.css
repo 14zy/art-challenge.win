@@ -13,8 +13,8 @@
 }
 
 .background {
-  /*background-color: #333;*/
-  /*background-image: url(../img/ui/bg.jpg);*/
+  background-image: url(../img/backgrounds/tumblr_me1kxywkHH1rzwyyso1_500.png);
+  background-size: cover;
 }
 
 .img-scroll {
@@ -42,4 +42,5 @@
 
 .quest {
   box-shadow: 0 1px 1px #777;
+  background: white;
 }

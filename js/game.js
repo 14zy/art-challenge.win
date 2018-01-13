@@ -4,13 +4,13 @@ Vue.component('game-screen', {
       <div v-show="!this.$root.zoomed" class="container-fluid fixed-top pt-3" style="color: white; font-size:18px;">
         <div class="row">
           <div class="col-2 text-left">
-            <span @click="window.history.back();" class="p-1 px-2" style='background-color: rgba(0,0,0,0.1); border-radius: 50px'><i class="fa fa-arrow-left"></i></span>
+            <span @click="window.history.back();" class="p-1 px-2" style='notbackground-color: rgba(0,0,0,0.1); border-radius: 50px'><i class="fa fa-arrow-left"></i></span>
           </div>
           <div class="col-8 text-center">
             <i class="fa fa-star text-warning" v-for="correct in this.$root.correctAnswers"></i><i class="fa fa-star" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i><i style="color: white" class="fa fa-gift"></i>
           </div>
           <div class="col-2 text-right" style='font-size:20px'>
-            <span @click="swal('Settings will be here')" class="p-1 px-2" style='background-color: rgba(0,0,0,0.1); border-radius: 50px'><i class="fa fa-gear"></i></span>
+            <span @click="swal('Settings will be here')" class="p-1 px-2" style='notbackground-color: rgba(0,0,0,0.1); border-radius: 50px'><i class="fa fa-circle"></i></span>
           </div>
         </div>
       </div>

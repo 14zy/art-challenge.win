@@ -44,3 +44,8 @@
   box-shadow: 0 1px 1px #777;
   background: white;
 }
+
+.new-quest {
+  background-image: url(../img/animations/2.gif);
+  background-size: cover;
+}

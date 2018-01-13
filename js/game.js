@@ -218,10 +218,13 @@ window.app = new Vue({
         imageUrl: 'img/animations/correct-animated-gif-13.gif',
         showCloseButton: true,
         showCancelButton: true,
-        confirmButtonText: "Share it",
+        confirmButtonText: "Share",
         imageWidth: 220,
-        cancelButtonText: "Go next",
-        cancelButtonColor: 'green'
+        cancelButtonText: "Go Next",
+        confirmButtonClass: "text-primary",
+        cancelButtonClass: "text-primary",
+        cancelButtonColor: 'white',
+        confirmButtonColor: 'white'
       }).then((result) => {
         if (result.value) {
           swal('ok!', 'Share function will be there', 'info');

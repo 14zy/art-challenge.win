@@ -1,15 +1,13 @@
 Vue.component('quest', {
   props: ['quest'],
   template: `
-    <div :id="quest.id" :class="{'animated rollOut': selected}" @click="selectQuest()">
+    <div :id="quest.id" :class="{'animated rollOut': selected, 'animated flip': completedAnimation}" @click="selectQuest()">
       <div class="text-muted quest p-2 mb-3">
         <div :class="{'text-success': quest.completed, 'text-primary': quest.available}">
           <span class="text-right pr-1 float-right" style="font-size: 20px; ">
-
             <template v-if="quest.available">
               <i class="fa fa-play-circle"></i>
             </template>
-
             <i v-if="quest.completed" class="fa fa-check text-success"></i>
             <i v-if="!quest.completed && !quest.available" class="fa fa-lock"></i>
           </span>
@@ -25,12 +23,14 @@ Vue.component('quest', {
     </div>`,
   data: function() {
     return {
-      selected: false
+      selected: false,
+      completedAnimation: false
     }
   },
   updated: function() {
-    if (this.quest.available && this.quest.id != "picasso") {
-      $('html, body').animate({scrollTop: $("#"+this.quest.id).offset().top-120}, 1000);
+    if (this.quest.available && this.quest.id != "picasso" && this.$route.query.completed) {
+      $('html, body').animate({scrollTop: $("#"+this.quest.id).offset().top-120}, 600);
+      this.completedAnimation = true;
     }
   },
   methods: {

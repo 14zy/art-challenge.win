@@ -4,7 +4,7 @@ Vue.component('game-screen', {
       <div v-show="!this.$root.zoomed" class="container-fluid fixed-top pt-3" style="color: white; font-size:18px;">
         <div class="row">
           <div class="col-2 text-left">
-            <span @click="window.history.back();" class="p-1 px-2" style='notbackground-color: rgba(0,0,0,0.1); border-radius: 50px'><i class="fa fa-arrow-left"></i></span>
+            <span @click="window.location.href='/';" class="p-1 px-2" style='notbackground-color: rgba(0,0,0,0.1); border-radius: 50px'><i class="fa fa-arrow-left"></i></span>
           </div>
           <div class="col-8 text-center">
             <i class="fa fa-star text-warning" v-for="correct in this.$root.correctAnswers"></i><i class="fa fa-star" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i><i style="color: white" class="fa fa-gift"></i>
@@ -228,7 +228,8 @@ window.app = new Vue({
           window.app.celebrating = false;
           //this.newRound();
         } else if (result.dismiss === 'cancel') {
-          window.history.back();
+          window.location.href='/?completed=true';
+          // window.history.back();
         }
       });
 

@@ -27,7 +27,7 @@ var quests = [
   },
   {
     id: "renaissance",
-    difficult: "hard",
+    difficult: "basic",
     title: "Renaissance Era",
     description: "Renaissance Era painters",
     completed: false,
@@ -54,7 +54,7 @@ var quests = [
   },
   {
     id: "russian",
-    difficult: "hard",
+    difficult: "basic",
     title: "Russian Art",
     description: "Let see the treasures",
     completed: false,

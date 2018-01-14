@@ -1,7 +1,7 @@
 Vue.component('quest', {
   props: ['quest'],
   template: `
-    <div :id="quest.id" :class="{'animated rollOut': selected, 'animated flip': completedAnimation}" @click="selectQuest()">
+    <div :id="quest.id" :class="{'animated  slideOutRight': selected, 'animated flip': completedAnimation}" @click="selectQuest()">
       <div class="quest" :class="{'new-quest': completedAnimation}">
         <div class=" p-2 mb-3" :class="{'text-muted': !quest.available&&!quest.completed, 'text-success': quest.completed, 'text-primary': quest.available}">
           <span class="text-right pr-1 float-right" style="font-size: 20px; ">

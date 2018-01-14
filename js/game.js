@@ -6,11 +6,13 @@ Vue.component('game-screen', {
           <div class="col-2 text-left">
             <span @click="window.location.href='/';" class="p-1 px-2" style='notbackground-color: rgba(0,0,0,0.1); border-radius: 50px'><i class="fa fa-arrow-left"></i></span>
           </div>
+
           <div class="col-8 text-center">
-            <i class="fa fa-star text-warning" v-for="correct in this.$root.correctAnswers"></i><i class="fa fa-star" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i><i style="color: white" class="fa fa-gift"></i>
+            <i class="fa fa-star text-warning" v-for="correct in this.$root.correctAnswers"></i><i class="fa fa-star" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i><i style="color: white" class="fa fa-star"></i>
           </div>
+
           <div class="col-2 text-right" style='font-size:20px'>
-            <span @click="swal('Settings will be here')" class="p-1 px-2" style='notbackground-color: rgba(0,0,0,0.1); border-radius: 50px'><i class="fa fa-circle"></i></span>
+            <span @click="swal('I will be here')" class="p-1 px-2" style='notbackground-color: rgba(0,0,0,0.1); border-radius: 50px'><i class="fa fa-info"></i></span>
           </div>
         </div>
       </div>
@@ -27,6 +29,12 @@ Vue.component('game-screen', {
     <question></question>
   </div>`
 })
+
+// <div class="col-8 text-center" style="display: inline">
+//   <transition-group name="list">
+//     <i class="fa fa-star text-warning" v-for="correct in this.$root.correctAnswers" v-bind:key="correct"></i>
+//   </transition-group><i class="fa fa-star" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i><i class="fa fa-gift"></i>
+// </div>
 
 Vue.component('question', {
   template: `
@@ -214,7 +222,7 @@ window.app = new Vue({
       swal({
         title: 'You are a winner!',
         position: 'center',
-        text: "Congratulations. Only 14% of people can complete this quest",
+        text: "Congratulations, you have successfully completed this challenge!",
         imageUrl: 'img/animations/correct-animated-gif-13.gif',
         showCloseButton: true,
         showCancelButton: true,

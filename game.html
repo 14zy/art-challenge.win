@@ -87,8 +87,8 @@
 
   <div id="app" >
     <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut" mode="out-in">
-      <div v-show="celebrating" class="text-center fixed-top" style='pointer-events: none;z-index:9999'>
-        <img src="img/animations/1.gif" class="" style='height: 100%'/>
+      <div v-if="celebrating" class="text-center fixed-top" style='pointer-events: none;z-index:9999'>
+        <img :src="'img/animations/1.gif'" class="" style='height: 100%'/>
       </div>
     </transition>
 
@@ -98,7 +98,7 @@
       <div v-show="!zoomed" class="footer fixed-bottom text-left" style="background-color: rgba(255,255,255,1); box-shadow: 0 3px 2px #777;">
         <answers></answers>
         <!-- ArtChallenge.ru_responsive -->
-        <div style="border-style: solid; border-width: 1px; border-color: lightgray; min-height: 100px">
+        <div style="border-style: dotted; border-width: 1px; border-color: lightgray; min-height: 100px">
           <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2407992058828148" data-ad-slot="3910414450" data-ad-format="horizontal"></ins>
         </div>
       </div>

@@ -64,7 +64,6 @@ Vue.component('questionPicture', {
         imgSrc = "img/ui/white.jpg";
       }
       return imgSrc;
-
     },
     zoom() {
       this.$root.zoomed = !this.$root.zoomed;
@@ -79,13 +78,11 @@ Vue.component('questionPicture', {
 
 Vue.component('answers', {
   template: `
-  <div class="">
     <div class="container">
       <div class='row'>
         <painterBtn class="col-6 p-1" style='paddig: 0' v-for="painter in this.$root.currentAnswers" :key="painter.id" :painter="painter"></painterBtn>
       </div>
-    </div>
-  </div>`
+    </div>`
 });
 
 Vue.component('painterBtn', {
@@ -141,8 +138,6 @@ Vue.component('painterBtn', {
           }, 1000);
         }
 
-
-
       } else {
 
         window.app.correctAnswers = window.app.correctAnswers - 1;
@@ -152,7 +147,7 @@ Vue.component('painterBtn', {
         swal({
           title: 'No!',
           position: 'bottom',
-          text: "It was " + this.$root.currentPainter.name,
+          text: this.$root.currentPainter.name,
           imageUrl: 'img/painters/' + this.$root.currentPainter.id + '.png',
           imageWidth: 260,
           timer: 1800,
@@ -266,7 +261,7 @@ window.app = new Vue({
       return this.questionsDB[Math.floor(Math.random() * this.questionsDB.length)]
     },
     nextQuestion: function() {
-      this.currentPicture = "";
+
       //generate new question
       this.currentPainter = this.randomPainter();
 
@@ -276,7 +271,7 @@ window.app = new Vue({
       this.currentAnswers = [];
       this.currentAnswers.push(this.currentPainter);
 
-      if (this.currentQuestDifficult == "basic") {
+      if (this.currentQuestDifficult != "easy") {
         while (this.currentAnswers.length < 4) {
           if (this.currentAnswers.length == 1) {
             random = this.randomPainter();

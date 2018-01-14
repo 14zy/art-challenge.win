@@ -3,20 +3,19 @@ Vue.component('quest', {
   template: `
     <div :id="quest.id" :class="{'animated  slideOutRight': selected, 'animated flip': completedAnimation}" @click="selectQuest()">
       <div class="quest" :class="{'new-quest': completedAnimation}">
-        <div class=" p-2 mb-3" :class="{'text-muted': !quest.available&&!quest.completed, 'text-success': quest.completed, 'text-primary': quest.available}">
-          <span class="text-right pr-1 float-right" style="font-size: 20px; ">
+        <div class="p-2 mb-3" :class="{'text-muted': !quest.available&&!quest.completed, 'text-success': quest.completed, 'text-primary': quest.available}">
+          <span class="text-right pr-1 float-right" style="font-size: 18px; ">
             <i v-if="quest.available" class="fa fa-play-circle"></i>
             <i v-if="quest.completed" class="fa fa-check text-success"></i>
             <i v-if="!quest.completed && !quest.available" class="fa fa-lock"></i>
           </span>
-          <h4>{{quest.title}} </h4>
+          <h5>{{quest.title}}</h5>
           <img onerror="this.src='/img/ui/person.png';" v-for="i in quest.painters" :src="'img/painters/'+i+'.png'" width="14%">
           <br>
           <span class="text-capitalize small text-muted">
             {{quest.painters.length}} Painters, {{quest.difficult}}
           </span>
-          <div v-show="quest.available || quest.completed" class="pr-1  text-right small float-right" style="font-size: 22px">
-          </div>
+          <div v-show="quest.available || quest.completed" class="pr-1 text-right small float-right" style="font-size: 22px"></div>
         </div>
       </div>
     </div>`,

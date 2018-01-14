@@ -168,22 +168,10 @@
     "nationality": ["Russia"],
     "paintings": 440
   }, {
-    "id": 107,
-    "name": "Alexander Ivanov",
-    "years": "1806 – 1858",
-    "nationality": ["Russia"],
-    "paintings": 132
-  }, {
     "id": 113,
     "name": "Nikolai Ge",
     "years": "1831 – 1894",
     "nationality": ["Russia"],
     "paintings": 43
-  }, {
-    "id": 115,
-    "name": "Fyodor Rokotov",
-    "years": "1736 – 1808",
-    "nationality": ["Russia"],
-    "paintings": 32
   } ]
 }

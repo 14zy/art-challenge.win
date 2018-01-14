@@ -2,7 +2,7 @@ var quests = [
   {
     id: "picasso",
     difficult: "easy",
-    title: "Picasso or Dali",
+    title: "Picasso or Dali?",
     description: "Great painters of the world",
     completed: false,
     available: false,
@@ -10,7 +10,7 @@ var quests = [
   },{
     id: "monet",
     difficult: "easy",
-    title: "Monet or Manet",
+    title: "Monet or Manet?",
     description: "Know the difference in 3 minutes",
     completed: false,
     available: false,
@@ -28,7 +28,7 @@ var quests = [
   {
     id: "renaissance",
     difficult: "basic",
-    title: "Renaissance Era",
+    title: "Renaissance",
     description: "Renaissance Era painters",
     completed: false,
     available: false,
@@ -53,21 +53,21 @@ var quests = [
     painters: [2, 9, 17, 30, 36, 40, 49, 53, 57, 58, 61, 64, 65, 69, 70, 73, 75, 77, 93, 94, 96, 97]
   },
   {
-    id: "russian",
-    difficult: "basic",
-    title: "Russian Art",
-    description: "Let see the treasures",
-    completed: false,
-    available: false,
-    painters: [3, 4, 5, 6, 8, 10, 11, 12, 13, 16, 19, 20, 23, 25, 26, 27, 37, 38, 44, 47, 48, 76, 81, 84, 85, 86, 103, 105, 107, 113, 115]
-  },
-  {
     id: "realism",
     difficult: "basic",
-    title: "Realism Painters",
+    title: "Realism",
     description: "For peaople who understand art",
     completed: false,
     available: false,
     painters: [5, 8, 18, 25, 37, 47, 48, 58, 85, 113, 116, 117]
+  },
+  {
+    id: "russian",
+    difficult: "hard",
+    title: "Russian Painters",
+    description: "Let see the treasures",
+    completed: false,
+    available: false,
+    painters: [3, 4, 5, 6, 8, 10, 11, 12, 13, 16, 19, 20, 23, 25, 26, 27, 37, 38, 44, 47, 48, 76, 81, 84, 85, 86, 103, 105, 113]
   }
 ]

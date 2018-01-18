@@ -1,34 +1,56 @@
 Vue.component('quest', {
   props: ['quest'],
   template: `
-    <div :id="quest.id" :class="{'animated  slideOutRight': selected, 'animated flip': completedAnimation}" @click="selectQuest()">
-      <div class="quest" :class="{'new-quest': completedAnimation}">
-        <div class="p-2 mb-3" :class="{'text-muted': !quest.available&&!quest.completed, 'text-success': quest.completed, 'text-primary': quest.available}">
-          <span class="text-right pr-1 float-right" style="font-size: 18px; ">
-            <i v-if="quest.available" class="fa fa-play-circle"></i>
-            <i v-if="quest.completed" class="fa fa-check text-success"></i>
+    <div :id="quest.id" :class="{'animated  slideOutRight': selected, 'animated flip': newQuestAnimation}" @click="selectQuest()">
+      <div class="quest" :class="{'new-quest': newQuestAnimation}">
+        <div class="py-4 px-4" :class="{'text-muted': !quest.available&&!quest.completed, 'text-dark': quest.completed || quest.available}">
+
+          <div v-show="quest.completed" class="pt-1 small float-right" style="font-size: 22px">
+            <img class="" src="/img/ui/play.png" width="32px">
+          </div>
+
+          <div v-show="quest.available" class="pt-1 small float-right" style="font-size: 22px">
+            <img class="" src="/img/ui/play.png" width="32px">
+          </div>
+
+          <span class="text-right pr-1 pt-1 float-right" style="font-size: 32px; ">
             <i v-if="!quest.completed && !quest.available" class="fa fa-lock"></i>
           </span>
-          <h5>{{quest.title}}</h5>
-          <img onerror="this.src='/img/ui/person.png';" v-for="i in quest.painters" :src="'img/painters/'+i+'.png'" width="14%">
+
+          <div style="font-size: 28px">
+            {{quest.title}}
+          </div>
+
+          <div v-show="quest.completed" class='text-success'>
+            Completed
+          </div>
+          <div v-show="quest.available" class='text-primary'>
+            Available
+          </div>
+          <div v-show="!quest.completed && !quest.available">
+            Forbidden
+          </div>
+
+
+          <br>
+          <img style='margin-left: -5px;' onerror="this.src='/img/ui/person.png';" v-for="i in quest.painters" :src="'img/painters/'+i+'.png'" width="21%">
           <br>
           <span class="text-capitalize small text-muted">
             {{quest.painters.length}} Painters, {{quest.difficult}}
           </span>
-          <div v-show="quest.available || quest.completed" class="pr-1 text-right small float-right" style="font-size: 22px"></div>
         </div>
       </div>
     </div>`,
   data: function() {
     return {
       selected: false,
-      completedAnimation: false
+      newQuestAnimation: false
     }
   },
   updated: function() {
     if (this.quest.available && this.quest.id != "picasso" && this.$route.query.completed) {
-      $('html, body').animate({scrollTop: $("#"+this.quest.id).offset().top-120}, 600);
-      this.completedAnimation = true;
+      $('html, body').animate({scrollTop: $("#"+this.quest.id).offset().top-80}, 600);
+      this.newQuestAnimation = true;
     }
   },
   methods: {

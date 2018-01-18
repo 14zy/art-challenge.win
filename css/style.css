@@ -58,3 +58,7 @@
   opacity: 0;
   transform: translateY(-30px);
 }
+
+.text-dark {
+  color: #333;
+}

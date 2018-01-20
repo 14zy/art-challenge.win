@@ -12,7 +12,7 @@ Vue.component('game-screen', {
           </div>
 
           <div class="col-2 text-right" style='font-size:20px'>
-            <span @click="swal('I will be here')" class="p-1 px-2" style='notbackground-color: rgba(0,0,0,0.1); border-radius: 50px'><i class="fa fa-info"></i></span>
+            <span @click="swal('Painting name', 'Girl with oranges')" class="p-1 px-2" style='notbackground-color: rgba(0,0,0,0.1); border-radius: 50px'><i class="fa fa-info"></i></span>
           </div>
         </div>
       </div>
@@ -88,15 +88,17 @@ Vue.component('answers', {
 Vue.component('painterBtn', {
   props: ["painter"],
   template: `
-  <div class="py-2 painter-button" @click="answer(painter);">
+  <div class="py-2 painter-button" style='' @click="answer(painter);">
+
       <img onerror="this.src='/img/ui/person.png';" width="92" height="92" style="margin: 0 0 -2% -4%" :src="'img/painters/' + painter.id + '.png'" />
       <span class="text-right" style='right: 5%; top:10%; position: absolute;'>
         <div class='painter-name'>{{ painter.name }}</div>
       </span>
       <span class="text-right" style='right: 5%; bottom:10%; position: absolute;'>
-        <img width="18" :src="'img/nationality/' + painter.nationality[0] + '.png'" />
-        <div class="painter-years small">{{ painter.years }}</div>
+        <img width="18" :src="'img/nationality/' + painter.nationality[0] + '.png'"/>
+        <div style='line-height: 1.2;' class="painter-years small">{{ painter.years }}</div>
       </span>
+
   </div>`,
   data: function() {
     return {

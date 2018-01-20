@@ -1,0 +1,33 @@
+{
+  "paintersDB": [{
+    "id": 83,
+    "name": "Andy Warhol",
+    "years": "1928 – 1987",
+    "nationality": ["USA"],
+    "paintings": 181
+  }, {
+    "id": 116,
+    "name": "Rockwell Kent",
+    "years": "1882 – 1971",
+    "nationality": ["USA"],
+    "paintings": 51
+  }, {
+    "id": 118,
+    "name": "Jackson Pollock",
+    "years": "1912 – 1956",
+    "nationality": ["USA"],
+    "paintings": 24
+  }, {
+    "id": 18,
+    "name": "Andrew Wyeth",
+    "years": "1917 - 2009",
+    "nationality": ["USA"],
+    "paintings": 260
+  }, {
+    "id": 60,
+    "name": "John Singer Sargent",
+    "years": "1856 - 1925",
+    "nationality": ["USA"],
+    "paintings": 59
+  } ]
+}

@@ -1,19 +1,20 @@
 Vue.component('quest', {
   props: ['quest'],
   template: `
-    <div :id="quest.id" :class="{'animated  slideOutRight': selected, 'animated flip': newQuestAnimation}" @click="selectQuest()">
+    <div :id="quest.id" :class="{'animated  fadeOutRight': selected, 'animated flip': newQuestAnimation}" @click="selectQuest()">
+    <img :src="'img/collections/'+quest.id+'.jpg'" class="" style="width: 100%">
       <div class="quest" :class="{'new-quest': newQuestAnimation}">
         <div class="py-4 px-4" :class="{'text-muted': !quest.available&&!quest.completed, 'text-dark': quest.completed || quest.available}">
 
-          <div v-show="quest.completed" class="pt-1 small float-right" style="font-size: 22px">
-            <img class="" src="/img/ui/play.png" width="32px">
+          <div v-show="quest.completed" class="pt-3 small float-right" style="font-size: 22px">
+            <img class="" src="/img/ui/replay.png" width="52px">
           </div>
 
-          <div v-show="quest.available" class="pt-1 small float-right" style="font-size: 22px">
-            <img class="" src="/img/ui/play.png" width="32px">
+          <div v-show="quest.available" class="pt-3 small float-right" style="font-size: 22px">
+            <img class="" src="/img/ui/play.png" width="52px">
           </div>
 
-          <span class="text-right pr-1 pt-1 float-right" style="font-size: 32px; ">
+          <span class="text-right pr-1 pt-1 float-right" style="font-size: 52px; ">
             <i v-if="!quest.completed && !quest.available" class="fa fa-lock"></i>
           </span>
 
@@ -25,21 +26,23 @@ Vue.component('quest', {
             Completed
           </div>
           <div v-show="quest.available" class='text-primary'>
-            Available
+            Play Now
           </div>
           <div v-show="!quest.completed && !quest.available">
-            Forbidden
+            Closed
           </div>
 
+          <!-- <img style='margin-left: -5px;' onerror="this.src='/img/ui/person.png';" v-for="i in quest.painters" :src="'img/painters/'+i+'.png'" width="21%"> -->
 
-          <br>
-          <img style='margin-left: -5px;' onerror="this.src='/img/ui/person.png';" v-for="i in quest.painters" :src="'img/painters/'+i+'.png'" width="21%">
-          <br>
           <span class="text-capitalize small text-muted">
             {{quest.painters.length}} Painters, {{quest.difficult}}
           </span>
+
+
         </div>
+
       </div>
+
     </div>`,
   data: function() {
     return {

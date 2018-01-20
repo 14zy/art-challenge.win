@@ -1,0 +1,33 @@
+{
+  "paintersDB": [{
+    "id": 83,
+    "name": "Энди Уорхол",
+    "years": "1928 – 1987",
+    "nationality": ["USA"],
+    "paintings": 181
+  }, {
+    "id": 116,
+    "name": "Рокуэлл Кент",
+    "years": "1882 – 1971",
+    "nationality": ["USA"],
+    "paintings": 51
+  }, {
+    "id": 118,
+    "name": "Джексон Поллок",
+    "years": "1912 – 1956",
+    "nationality": ["USA"],
+    "paintings": 24
+  }, {
+    "id": 18,
+    "name": "Эндрю Уайет",
+    "years": "1917 - 2009",
+    "nationality": ["USA"],
+    "paintings": 260
+  }, {
+    "id": 60,
+    "name": "Джон Сингер Сарджент",
+    "years": "1856 - 1925",
+    "nationality": ["USA"],
+    "paintings": 59
+  } ]
+}

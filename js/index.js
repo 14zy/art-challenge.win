@@ -4,7 +4,7 @@ Vue.component('quest', {
     <div :id="quest.id" :class="{'animated  fadeOutRight': selected, 'animated flip': newQuestAnimation}" @click="selectQuest()">
     <img :src="'img/collections/'+quest.id+'.jpg'" class="" style="width: 100%">
       <div class="quest" :class="{'new-quest': newQuestAnimation}">
-        <div class="py-4 px-4" :class="{'text-muted': !quest.available&&!quest.completed, 'text-dark': quest.completed || quest.available}">
+        <div class="py-2 px-4" :class="{'text-muted': !quest.available&&!quest.completed, 'text-dark': quest.completed || quest.available}">
 
           <div v-show="quest.completed" class="pt-3 small float-right" style="font-size: 22px">
             <img class="" src="/img/ui/replay.png" width="52px">

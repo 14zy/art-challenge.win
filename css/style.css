@@ -24,9 +24,10 @@
 
 .painter-name {
   line-height: 1.1;
-  width: 96px;
-  height: 28px;
+  width: 104px;
+  /*height: 28px;*/
   font-weight: normal;
+  overflow-x: hidden;
 }
 
 .painter-years  {

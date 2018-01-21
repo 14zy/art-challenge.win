@@ -12,7 +12,7 @@ Vue.component('game-screen', {
           </div>
 
           <div class="col-2 text-right" style='font-size:20px'>
-            <span @click="swal('Painting name', 'Girl with oranges')" class="p-1 px-2" style='notbackground-color: rgba(0,0,0,0.1); border-radius: 50px'><i class="fa fa-info"></i></span>
+            <span @click="swal('Painting name', window.app.currentPictureName)" class="p-1 px-2" style='notbackground-color: rgba(0,0,0,0.1); border-radius: 50px'><i class="fa fa-info"></i></span>
           </div>
         </div>
       </div>
@@ -27,14 +27,9 @@ Vue.component('game-screen', {
         </div>
       </div>
     <question></question>
+    <div class="text-capitalize text-muted text-center p-1 pb-2">{{this.$root.currentPictureName}}</div>
   </div>`
-})
-
-// <div class="col-8 text-center" style="display: inline">
-//   <transition-group name="list">
-//     <i class="fa fa-star text-warning" v-for="correct in this.$root.correctAnswers" v-bind:key="correct"></i>
-//   </transition-group><i class="fa fa-star" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i><i class="fa fa-gift"></i>
-// </div>
+});
 
 Vue.component('question', {
   template: `
@@ -107,7 +102,6 @@ Vue.component('painterBtn', {
   },
   methods: {
     answer: function(painter) {
-
       if (painter.id == this.$root.currentPainter.id) {
         window.app.correctAnswers += 1;
         window.app.celebrating = true;
@@ -117,6 +111,11 @@ Vue.component('painterBtn', {
         if (window.app.correctAnswers == 10) {
           window.app.winner();
         } else {
+
+          setTimeout(function() {
+            window.app.nextQuestion();
+          }, 100);
+
           swal({
             position: "center",
             title: this.painter.name,
@@ -135,21 +134,20 @@ Vue.component('painterBtn', {
             }
           });
 
-          setTimeout(function() {
-            window.app.nextQuestion();
-          }, 1000);
         }
-
       } else {
-
         window.app.correctAnswers = window.app.correctAnswers - 1;
         if (window.app.correctAnswers < 0) {
           window.app.correctAnswers = 0;
         }
+
+        setTimeout(function() {
+          window.app.nextQuestion();
+        }, 100);
+
         swal({
-          title: 'No!',
+          title: this.$root.currentPainter.name,
           position: 'bottom',
-          text: this.$root.currentPainter.name,
           imageUrl: 'img/painters/' + this.$root.currentPainter.id + '.png',
           imageWidth: 260,
           timer: 1800,
@@ -163,10 +161,10 @@ Vue.component('painterBtn', {
             //console.log('I was closed by the timer')
           }
         });
-
         setTimeout(function() {
-          window.app.nextQuestion();
-        }, 600);
+          $('.swal2-image').addClass('animated flash');
+        }, 100);
+
       }
     }
   },
@@ -189,6 +187,7 @@ window.app = new Vue({
     questionsDB: [],
     currentPainter: "",
     currentPicture: "",
+    currentPictureName: "",
     currentAnswers: [],
     completedQuests: [],
     currentQuestDifficult: "",
@@ -205,6 +204,7 @@ window.app = new Vue({
     } else {
         window.lang = "en";
     }
+    window.lang = "ru"; //////
     $.getScript("data/lang/"+window.lang+"/phrases.js").done(function() {});
   },
   methods: {
@@ -269,6 +269,18 @@ window.app = new Vue({
 
       //generate new picture
       this.currentPicture = Math.floor(Math.random() * this.currentPainter.paintings) + 1;
+
+      //picture name
+      $.ajax({
+         url: 'http://178.62.133.139:5994/painters/'+this.currentPainter.id,
+         type: 'get',
+         dataType: 'jsonp',
+         success: function(data) {
+           image = data.paintings[window.app.currentPicture-1];
+           window.app.currentPictureName = image.name[window.lang];
+         }
+      });
+
       //generate new answers //need generate more answers (2/16)
       this.currentAnswers = [];
       this.currentAnswers.push(this.currentPainter);

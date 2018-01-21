@@ -5,23 +5,15 @@ Vue.component('quest', {
     <img :src="'img/collections/'+quest.id+'.jpg'" class="" style="width: 100%">
       <div class="quest" :class="{'new-quest': newQuestAnimation}">
         <div class="py-2 px-4" :class="{'text-muted': !quest.available&&!quest.completed, 'text-dark': quest.completed || quest.available}">
-
           <div v-show="quest.completed" class="pt-3 small float-right" style="font-size: 22px">
             <img class="" src="/img/ui/replay.png" width="52px">
           </div>
-
           <div v-show="quest.available" class="pt-3 small float-right" style="font-size: 22px">
             <img class="" src="/img/ui/play.png" width="52px">
           </div>
-
-          <span class="text-right pr-1 pt-1 float-right" style="font-size: 52px; ">
-            <i v-if="!quest.completed && !quest.available" class="fa fa-lock"></i>
-          </span>
-
           <div style="font-size: 28px">
             {{quest.title}}
           </div>
-
           <div v-show="quest.completed" class='text-success'>
             Completed
           </div>
@@ -29,20 +21,13 @@ Vue.component('quest', {
             Play Now
           </div>
           <div v-show="!quest.completed && !quest.available">
-            Closed
+            <i v-if="!quest.completed && !quest.available" class="fa fa-lock"></i> Closed
           </div>
-
-          <!-- <img style='margin-left: -5px;' onerror="this.src='/img/ui/person.png';" v-for="i in quest.painters" :src="'img/painters/'+i+'.png'" width="21%"> -->
-
           <span class="text-capitalize small text-muted">
             {{quest.painters.length}} Painters, {{quest.difficult}}
           </span>
-
-
         </div>
-
       </div>
-
     </div>`,
   data: function() {
     return {

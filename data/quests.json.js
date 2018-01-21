@@ -52,17 +52,6 @@ var quests = [
     available: false,
     painters: [2, 3, 9, 16, 17, 21, 30, 36, 49, 53, 57, 60, 61, 69, 77, 84, 94, 96]
   },
-
-  // {
-  //   id: "realism",
-  //   difficult: "basic",
-  //   title: "Realism",
-  //   description: "For peaople who understand art",
-  //   completed: false,
-  //   available: false,
-  //   painters: [5, 8, 18, 25, 37, 47, 48, 58, 85, 113, 116, 117]
-  // },
-
   {
     id: "popular",
     difficult: "basic",

@@ -2,7 +2,7 @@ var quests = [
   {
     id: "picasso",
     difficult: "easy",
-    title: "Picasso or Dali?",
+    title: "Dali or Picasso?",
     description: "Great painters of the world",
     completed: false,
     available: false,
@@ -53,6 +53,51 @@ var quests = [
     painters: [2, 3, 9, 16, 17, 21, 30, 36, 49, 53, 57, 60, 61, 69, 77, 84, 94, 96]
   },
   {
+    id: "abstract",
+    difficult: "basic",
+    title: "Abstractionism",
+    description: "Know the difference in 2 minutes",
+    completed: false,
+    available: false,
+    painters: [1]
+  },
+  {
+    id: "artdeco",
+    difficult: "basic",
+    title: "Art Deco",
+    description: "Know the difference in 2 minutes",
+    completed: false,
+    available: false,
+    painters: [1]
+  },
+  {
+    id: "avantgarde",
+    difficult: "basic",
+    title: "Avant-garde",
+    description: "Know the difference in 2 minutes",
+    completed: false,
+    available: false,
+    painters: [1]
+  },
+  {
+    id: "italian",
+    difficult: "basic",
+    title: "Italian Painters",
+    description: "Know the difference in 2 minutes",
+    completed: false,
+    available: false,
+    painters: [1]
+  },
+  {
+    id: "surrealism",
+    difficult: "basic",
+    title: "Surrealism",
+    description: "Know the difference in 2 minutes",
+    completed: false,
+    available: false,
+    painters: [1]
+  },
+  {
     id: "popular",
     difficult: "basic",
     title: "All Popular Painters",
@@ -71,9 +116,9 @@ var quests = [
     painters: [3, 4, 5, 6, 8, 10, 11, 12, 13, 16, 19, 20, 23, 25, 26, 27, 37, 38, 44, 47, 48, 76, 81, 84, 85, 86, 103, 105, 113]
   },
   {
-    id: "renaissance",
+    id: "northernRenaissance",
     difficult: "hard",
-    title: "Renaissance",
+    title: "Northern Renaissance",
     description: "Renaissance Era painters",
     completed: false,
     available: false,

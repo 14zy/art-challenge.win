@@ -6,7 +6,7 @@ Vue.component('quest', {
       <div class="quest" :class="{'new-quest': newQuestAnimation}">
         <div class="py-2 px-4" :class="{'text-muted': !quest.available&&!quest.completed, 'text-dark': quest.completed || quest.available}">
           <div v-show="quest.completed" class="pt-3 small float-right" style="font-size: 22px">
-            <img class="" src="/img/ui/replay.png" width="52px">
+            <img class="" src="/img/ui/play.png" width="52px">
           </div>
           <div v-show="quest.available" class="pt-3 small float-right" style="font-size: 22px">
             <img class="" src="/img/ui/play.png" width="52px">

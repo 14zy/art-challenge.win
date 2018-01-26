@@ -73,3 +73,11 @@
 .text-dark {
   color: #333;
 }
+
+.text-goodPhrase {
+  margin-top: 15%;
+}
+
+.swal2-title {
+  margin-bottom: 0!important;
+}

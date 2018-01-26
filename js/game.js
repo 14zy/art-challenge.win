@@ -12,7 +12,7 @@ Vue.component('game-screen', {
           </div>
 
           <div class="col-2 text-right" style='font-size:20px'>
-            <span @click="swal('Painting name', window.app.currentPictureName)" class="p-1 px-2" style='notbackground-color: rgba(0,0,0,0.1); border-radius: 50px'><i class="fa fa-info"></i></span>
+            <span @click="swal('Painting name', window.app.currentPictureName)" class="p-1 px-2" style='notbackground-color: rgba(0,0,0,0.1); border-radius: 50px'><i class="fa fa-download"></i></span>
           </div>
         </div>
       </div>
@@ -117,13 +117,17 @@ Vue.component('painterBtn', {
           }, 100);
 
           swal({
-            position: "center",
-            title: this.painter.name,
-            text: this.$root.goodPhrase(),
-            imageUrl: 'img/painters/' + this.$root.currentPainter.id + '.png',
-            imageWidth: 260,
+            position: "top",
+            title: this.$root.goodPhrase(),
             timer: 1600,
+            backdrop: false,
+            width: "320px",
+            toast: false,
+            background: "rgba(255,255,255,0.9)",
+            animation: true,
+            customClass: "text-goodPhrase text-center",
             showConfirmButton: false,
+            padding: "1em",
             // showCloseButton: true,
             onOpen: () => {
               //swal.showLoading()
@@ -133,6 +137,24 @@ Vue.component('painterBtn', {
               //console.log('I was closed by the timer')
             }
           });
+
+          // swal({
+          //   position: "center",
+          //   title: this.painter.name,
+          //   text: this.$root.goodPhrase(),
+          //   imageUrl: 'img/painters/' + this.$root.currentPainter.id + '.png',
+          //   imageWidth: 260,
+          //   timer: 1600,
+          //   showConfirmButton: false,
+          //   // showCloseButton: true,
+          //   onOpen: () => {
+          //     //swal.showLoading()
+          //   }
+          // }).then((result) => {
+          //   if (result.dismiss === 'timer') {
+          //     //console.log('I was closed by the timer')
+          //   }
+          // });
 
         }
       } else {
@@ -151,6 +173,7 @@ Vue.component('painterBtn', {
           imageUrl: 'img/painters/' + this.$root.currentPainter.id + '.png',
           imageWidth: 260,
           timer: 1800,
+          background: "rgba(255,255,255,0.9)",
           showConfirmButton: false,
           // showCloseButton: true,
           onOpen: () => {
@@ -162,7 +185,7 @@ Vue.component('painterBtn', {
           }
         });
         setTimeout(function() {
-          $('.swal2-image').addClass('animated flash');
+          // $('.swal2-image').addClass('animated flash');
         }, 100);
 
       }
@@ -204,7 +227,7 @@ window.app = new Vue({
     } else {
         window.lang = "en";
     }
-    window.lang = "ru"; //////
+    // window.lang = "ru"; //////
     $.getScript("data/lang/"+window.lang+"/phrases.js").done(function() {});
   },
   methods: {

@@ -269,7 +269,18 @@ window.app = new Vue({
         }
       }).then((result) => {
         if (result.value) {
-          swal('ok!', 'Share function will be there', 'info');
+          // swal('ok!', 'Share function will be there', 'info');
+          if (navigator.share) {
+            navigator.share({
+              title: 'Web Fundamentals',
+              text: 'Check out Web Fundamentals — it rocks!',
+              url: 'https://developers.google.com/web',
+            })
+            .then(() => console.log('Successful share'))
+            .catch((error) => console.log('Error sharing', error));
+          } else {
+            console.log("none");
+          }
           window.app.celebrating = false;
           //this.newRound();
         } else if (result.dismiss === 'cancel') {

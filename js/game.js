@@ -111,7 +111,7 @@ Vue.component('painterBtn', {
 
       if (painter.id == this.$root.currentPainter.id) {
 
-        this.$root.zoomed = true;
+        // this.$root.zoomed = true;
 
         window.app.correctAnswers += 1;
         window.app.celebrating = true;
@@ -297,7 +297,7 @@ window.app = new Vue({
     },
     nextQuestion: function() {
 
-      this.$root.zoomed = false;
+      // this.$root.zoomed = false;
 
       //generate new question
       this.currentPainter = this.randomPainter();

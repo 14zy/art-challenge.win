@@ -177,6 +177,7 @@ Vue.component('painterBtn', {
 
         swal({
           title: "<i class='fa fa-check text-danger'></i> "+this.$root.currentPainter.name,
+          text: this.$root.currentPainter.years,
           position: 'bottom',
           imageUrl: 'img/painters/' + this.$root.currentPainter.id + '.png',
           imageWidth: 260,
@@ -186,6 +187,7 @@ Vue.component('painterBtn', {
           background: "rgba(255,255,255,0.9)",
           showConfirmButton: true,
           confirmButtonText:'More info',
+          // cancelButtonText:'',
           showCancelButton: true,
           // focusConfirm: true,
           // showCloseButton: true,

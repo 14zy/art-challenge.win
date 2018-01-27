@@ -186,6 +186,8 @@ Vue.component('painterBtn', {
           background: "rgba(255,255,255,0.9)",
           showConfirmButton: true,
           confirmButtonText:'More info',
+          showCancelButton: true,
+          // focusConfirm: true,
           // showCloseButton: true,
           onOpen: () => {
             // swal.showLoading()

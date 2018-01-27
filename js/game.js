@@ -8,11 +8,11 @@ Vue.component('game-screen', {
           </div>
 
           <div class="col-8 text-center">
-            <i class="fa fa-star text-warning" v-for="correct in this.$root.correctAnswers"></i><i class="fa fa-star" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i><i style="color: white" class="fa fa-star"></i>
+            <i class="fa fa-star text-warning" v-for="correct in this.$root.correctAnswers"></i><i class="fa fa-star" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i><i style="color: white" class="fa fa-gift"></i>
           </div>
 
           <div class="col-2 text-right" style='font-size:20px'>
-            <span @click="swal('Painting name', window.app.currentPictureName)" class="p-1 px-2" style='notbackground-color: rgba(0,0,0,0.1); border-radius: 50px'><i class="fa fa-download"></i></span>
+            <span @click="download()" class="p-1 px-2" style='notbackground-color: rgba(0,0,0,0.1); border-radius: 50px'><i class="fa fa-download"></i></span>
           </div>
         </div>
       </div>
@@ -28,7 +28,13 @@ Vue.component('game-screen', {
       </div>
     <question></question>
     <div class="text-capitalize text-muted text-center p-1 pb-2">{{this.$root.currentPictureName}}</div>
-  </div>`
+  </div>`,
+  methods: {
+    download() {
+      url = "http://artchallenge.me/painters/" + this.$root.currentPainter.id + "/" + this.$root.currentPicture + ".jpg";
+      window.open(url);
+    }
+  }
 });
 
 Vue.component('question', {
@@ -83,7 +89,7 @@ Vue.component('answers', {
 Vue.component('painterBtn', {
   props: ["painter"],
   template: `
-  <div class="py-2 painter-button" style='' @click="answer(painter);">
+  <div class="py-2 painter-button" @click="answer(painter);">
 
       <img onerror="this.src='/img/ui/person.png';" width="92" height="92" style="margin: 0 0 -2% -4%" :src="'img/painters/' + painter.id + '.png'" />
       <span class="text-right" style='right: 5%; top:10%; position: absolute;'>
@@ -102,7 +108,11 @@ Vue.component('painterBtn', {
   },
   methods: {
     answer: function(painter) {
+
       if (painter.id == this.$root.currentPainter.id) {
+
+        this.$root.zoomed = true;
+
         window.app.correctAnswers += 1;
         window.app.celebrating = true;
         setTimeout(function() {
@@ -111,14 +121,12 @@ Vue.component('painterBtn', {
         if (window.app.correctAnswers == 10) {
           window.app.winner();
         } else {
-
           setTimeout(function() {
             window.app.nextQuestion();
           }, 100);
-
           swal({
             position: "top",
-            title: this.$root.goodPhrase(),
+            title: "<i class='fa fa-check text-success'></i> "+this.$root.goodPhrase(),
             timer: 1600,
             backdrop: false,
             width: "320px",
@@ -129,8 +137,8 @@ Vue.component('painterBtn', {
             showConfirmButton: false,
             padding: "1em",
             // showCloseButton: true,
-            onOpen: () => {
-              //swal.showLoading()
+            onClose: () => {
+
             }
           }).then((result) => {
             if (result.dismiss === 'timer') {
@@ -168,20 +176,19 @@ Vue.component('painterBtn', {
         }, 100);
 
         swal({
-          title: this.$root.currentPainter.name,
+          title: "<i class='fa fa-check text-danger'></i> "+this.$root.currentPainter.name,
           position: 'bottom',
           imageUrl: 'img/painters/' + this.$root.currentPainter.id + '.png',
           imageWidth: 260,
-          timer: 1800,
+          timer: 3600,
+          showCloseButton: true,
+          focusConfirm: false,
           background: "rgba(255,255,255,0.9)",
-          showConfirmButton: false,
+          showConfirmButton: true,
+          confirmButtonText:'More info',
           // showCloseButton: true,
           onOpen: () => {
             // swal.showLoading()
-          }
-        }).then((result) => {
-          if (result.dismiss === 'timer') {
-            //console.log('I was closed by the timer')
           }
         });
         setTimeout(function() {
@@ -240,9 +247,9 @@ window.app = new Vue({
     winner: function() {
       window.app.celebrating = true;
       swal({
-        title: 'You are a winner!',
+        title: 'Congratulations!',
         position: 'center',
-        text: "Congratulations, you have successfully completed this challenge!",
+        text: "You have completed this class!",
         imageUrl: 'img/animations/correct-animated-gif-13.gif',
         showCloseButton: true,
         showCancelButton: true,
@@ -252,7 +259,10 @@ window.app = new Vue({
         confirmButtonClass: "text-primary",
         cancelButtonClass: "text-primary",
         cancelButtonColor: 'white',
-        confirmButtonColor: 'white'
+        confirmButtonColor: 'white',
+        onClose: () => {
+          window.app.celebrating = false;
+        }
       }).then((result) => {
         if (result.value) {
           swal('ok!', 'Share function will be there', 'info');
@@ -286,6 +296,8 @@ window.app = new Vue({
       return this.questionsDB[Math.floor(Math.random() * this.questionsDB.length)]
     },
     nextQuestion: function() {
+
+      this.$root.zoomed = false;
 
       //generate new question
       this.currentPainter = this.randomPainter();

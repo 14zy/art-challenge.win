@@ -1,7 +1,7 @@
 Vue.component('quest', {
   props: ['quest'],
   template: `
-    <div :id="quest.id" :class="{'animated  fadeOutRight': selected, 'animated flip': newQuestAnimation}" @click="selectQuest()">
+    <div :id="quest.id" :class="{'animated fadeOutRight': selected, 'animated flip': newQuestAnimation}" @click="selectQuest()">
     <img :src="'img/collections/'+quest.id+'.jpg'" :class="{'img-gray': !quest.available&&!quest.completed}" style="width: 100%">
       <div class="quest" :class="{'new-quest': newQuestAnimation}">
         <div class="py-2 px-4" :class="{'text-muted': !quest.available&&!quest.completed, 'text-dark': quest.completed || quest.available}">
@@ -15,13 +15,14 @@ Vue.component('quest', {
             {{quest.title}}
           </div>
           <div v-show="quest.completed" class='text-success'>
-            Completed
+            Completed <i class="fa fa-check text-success"></i>
+
           </div>
           <div v-show="quest.available" class='text-primary'>
-            Play Now
+            Play Now ∙
           </div>
           <div v-show="!quest.completed && !quest.available">
-            <i v-if="!quest.completed && !quest.available" class="fa fa-lock"></i> Closed
+            Closed <i v-if="!quest.completed && !quest.available" class="fa fa-lock"></i>
           </div>
           <span class="text-capitalize small text-muted">
             {{quest.painters.length}} Painters, {{quest.difficult}}

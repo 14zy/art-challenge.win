@@ -81,3 +81,7 @@
 .swal2-title {
   margin-bottom: 0!important;
 }
+
+.fixed-bottom {
+  z-index: 100!important;  
+}

@@ -413,4 +413,6 @@ function shuffle(a) {
   }
 }
 
-document.addEventListener('contextmenu', event => event.preventDefault());
+document.addEventListener('contextmenu', function (event) {
+  return event.preventDefault();
+});

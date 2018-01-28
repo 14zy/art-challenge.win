@@ -16,10 +16,9 @@ Vue.component('quest', {
           </div>
           <div v-show="quest.completed" class='text-success'>
             Completed <i class="fa fa-check text-success"></i>
-
           </div>
           <div v-show="quest.available" class='text-primary'>
-            Play Now <i class="fa fa-refresh fa-spin"></i>
+            Play Now
           </div>
           <div v-show="!quest.completed && !quest.available">
             Closed <i v-if="!quest.completed && !quest.available" class="fa fa-lock"></i>

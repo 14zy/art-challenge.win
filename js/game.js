@@ -8,7 +8,12 @@ Vue.component('game-screen', {
           </div>
 
           <div class="col-8 text-center">
-            <i class="fa fa-star text-warning" v-for="correct in this.$root.correctAnswers"></i><i class="fa fa-star" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i><i style="color: white" class="fa fa-star"></i>
+            <div v-if="this.$root.correctAnswers < 10">
+              <scoresTen></scoresTen>
+            </div>
+            <div v-else>
+              <scoresMax></scoresMax>
+            </div>
           </div>
 
           <div class="col-2 text-right" style='font-size:20px'>
@@ -36,6 +41,21 @@ Vue.component('game-screen', {
     }
   }
 });
+
+Vue.component('scoresTen', {
+  template: `<div>
+    <i class="fa fa-star text-warning" v-for="correct in this.$root.correctAnswers"></i><i class="fa fa-star" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i><i style="" class="fa fa-star"></i>
+    </div>`
+});
+
+Vue.component('scoresMax', {
+  template: `
+  <div>
+    {{this.$root.correctAnswers}}
+    <i class="fa fa-star text-warning"></i>
+  </div>`
+});
+
 
 Vue.component('question', {
   template: `
@@ -90,7 +110,6 @@ Vue.component('painterBtn', {
   props: ["painter"],
   template: `
   <div class="py-2 painter-button" @click="answer(painter);">
-
       <img onerror="this.src='/img/ui/person.png';" width="92" height="92" style="margin: 0 0 -2% -4%" :src="'img/painters/' + painter.id + '.png'" />
       <span class="text-right" style='right: 5%; top:10%; position: absolute;'>
         <div class='painter-name'>{{ painter.name }}</div>
@@ -99,7 +118,6 @@ Vue.component('painterBtn', {
         <img width="18" :src="'img/nationality/' + painter.nationality[0] + '.png'"/>
         <div style='line-height: 1.2;' class="painter-years small">{{ painter.years }}</div>
       </span>
-
   </div>`,
   data: function() {
     return {
@@ -110,9 +128,7 @@ Vue.component('painterBtn', {
     answer: function(painter) {
 
       if (painter.id == this.$root.currentPainter.id) {
-
         // this.$root.zoomed = true;
-
         window.app.correctAnswers += 1;
         window.app.celebrating = true;
         setTimeout(function() {
@@ -120,6 +136,9 @@ Vue.component('painterBtn', {
         }, 1200);
         if (window.app.correctAnswers == 10) {
           window.app.winner();
+          setTimeout(function() {
+            window.app.nextQuestion();
+          }, 100);
         } else {
           setTimeout(function() {
             window.app.nextQuestion();

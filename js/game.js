@@ -8,7 +8,7 @@ Vue.component('game-screen', {
           </div>
 
           <div class="col-8 text-center">
-            <i class="fa fa-star text-warning" v-for="correct in this.$root.correctAnswers"></i><i class="fa fa-star" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i><i style="color: white" class="fa fa-gift"></i>
+            <i class="fa fa-star text-warning" v-for="correct in this.$root.correctAnswers"></i><i class="fa fa-star" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i><i style="color: white" class="fa fa-star"></i>
           </div>
 
           <div class="col-2 text-right" style='font-size:20px'>

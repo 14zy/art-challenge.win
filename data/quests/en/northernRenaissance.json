@@ -79,7 +79,7 @@
     "paintings": 46
   }, {
     "id": 95,
-    "name": "Raphael",
+    "name": "Raphael Sanzio",
     "years": "1483 – 1520",
     "nationality": ["Italy"],
     "paintings": 109
@@ -133,7 +133,7 @@
     "paintings": 358
   }, {
     "id": 112,
-    "name": "Michelangelo",
+    "name": "Michelangelo Buonarroti ",
     "years": "1475 – 1564",
     "nationality": ["Italy"],
     "paintings": 49

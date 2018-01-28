@@ -18,12 +18,6 @@
     "nationality": ["France"],
     "paintings": 73
   }, {
-    "id": 16,
-    "name": "Сергей Виноградов",
-    "years": "1869 – 1963",
-    "nationality": ["Russia"],
-    "paintings": 102
-  }, {
     "id": 17,
     "name": "Эдуард Мане",
     "years": "1832 - 1883",

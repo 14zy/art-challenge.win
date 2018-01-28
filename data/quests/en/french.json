@@ -79,7 +79,7 @@
     "paintings": 45
   }, {
     "id": 69,
-    "name": "Paul Cezanne",
+    "name": "Paul Cézanne",
     "years": "1839 – 1906",
     "nationality": ["France"],
     "paintings": 47
@@ -91,7 +91,7 @@
     "paintings": 31
   }, {
     "id": 73,
-    "name": "Eugene Delacroix",
+    "name": "Eugène Delacroix",
     "years": "1798 – 1863",
     "nationality": ["France"],
     "paintings": 31
@@ -131,5 +131,5 @@
     "years": "1594 – 1665",
     "nationality": ["France"],
     "paintings": 135
-  }]
+  } ]
 }

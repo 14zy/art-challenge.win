@@ -18,12 +18,6 @@
     "nationality": ["France"],
     "paintings": 73
   }, {
-    "id": 16,
-    "name": "Sergei Vinogradov",
-    "years": "1869 – 1963",
-    "nationality": ["Russia"],
-    "paintings": 102
-  }, {
     "id": 17,
     "name": "Edouard Manet",
     "years": "1832 - 1883",
@@ -31,7 +25,7 @@
     "paintings": 90
   }, {
     "id": 21,
-    "name": "Vincent van Gogh",
+    "name": "Vincent Willem van Gogh",
     "years": "1853 – 1890",
     "nationality": ["Netherlands"],
     "paintings": 877
@@ -79,7 +73,7 @@
     "paintings": 91
   }, {
     "id": 69,
-    "name": "Paul Cezanne",
+    "name": "Paul Cézanne",
     "years": "1839 – 1906",
     "nationality": ["France"],
     "paintings": 47

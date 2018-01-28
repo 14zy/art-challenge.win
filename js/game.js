@@ -128,7 +128,6 @@ Vue.component('painterBtn', {
     answer: function(painter) {
 
       if (painter.id == this.$root.currentPainter.id) {
-        // this.$root.zoomed = true;
         window.app.correctAnswers += 1;
         window.app.celebrating = true;
         setTimeout(function() {
@@ -154,34 +153,8 @@ Vue.component('painterBtn', {
             animation: true,
             customClass: "text-goodPhrase text-center",
             showConfirmButton: false,
-            padding: "1em",
-            // showCloseButton: true,
-            onClose: () => {
-
-            }
-          }).then((result) => {
-            if (result.dismiss === 'timer') {
-              //console.log('I was closed by the timer')
-            }
+            padding: "1em"
           });
-
-          // swal({
-          //   position: "center",
-          //   title: this.painter.name,
-          //   text: this.$root.goodPhrase(),
-          //   imageUrl: 'img/painters/' + this.$root.currentPainter.id + '.png',
-          //   imageWidth: 260,
-          //   timer: 1600,
-          //   showConfirmButton: false,
-          //   // showCloseButton: true,
-          //   onOpen: () => {
-          //     //swal.showLoading()
-          //   }
-          // }).then((result) => {
-          //   if (result.dismiss === 'timer') {
-          //     //console.log('I was closed by the timer')
-          //   }
-          // });
 
         }
       } else {
@@ -206,13 +179,7 @@ Vue.component('painterBtn', {
           background: "rgba(255,255,255,0.9)",
           showConfirmButton: true,
           confirmButtonText:'More info',
-          // cancelButtonText:'',
-          showCancelButton: true,
-          // focusConfirm: true,
-          // showCloseButton: true,
-          onOpen: () => {
-            // swal.showLoading()
-          }
+          showCancelButton: true
         });
         setTimeout(function() {
           // $('.swal2-image').addClass('animated flash');
@@ -283,10 +250,10 @@ window.app = new Vue({
         cancelButtonClass: "text-primary",
         cancelButtonColor: 'white',
         confirmButtonColor: 'white',
-        onClose: () => {
+        onClose: function() {
           window.app.celebrating = false;
         }
-      }).then((result) => {
+      }).then(function(result) {
         if (result.value) {
           // swal('ok!', 'Share function will be there', 'info');
           if (navigator.share) {
@@ -294,9 +261,9 @@ window.app = new Vue({
               title: 'Web Fundamentals',
               text: 'Check out Web Fundamentals — it rocks!',
               url: 'https://developers.google.com/web',
-            })
-            .then(() => console.log('Successful share'))
-            .catch((error) => console.log('Error sharing', error));
+            }).then(function() {
+              console.log('Successful share');
+            }).catch(function(error) {console.log('Error sharing', error)});
           } else {
             console.log("none");
           }

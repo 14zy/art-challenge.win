@@ -276,7 +276,7 @@ window.app = new Vue({
         showCancelButton: true,
         confirmButtonText: "Share",
         // imageWidth: 220,
-        cancelButtonText: "Take Next",
+        cancelButtonText: "Next",
         confirmButtonClass: "text-primary",
         cancelButtonClass: "text-primary",
         cancelButtonColor: 'white',

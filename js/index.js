@@ -12,10 +12,10 @@ Vue.component('quest', {
             {{quest.title}}
           </div>
           <div v-show="quest.completed" class='text-success text-capitalize'>
-            <i class="fa fa-check text-success"></i> {{quest.difficult}}
+            <i class="fa fa-check"></i> {{quest.difficult}}
           </div>
-          <div v-show="quest.available" class='text-primary text-capitalize'>
-            {{quest.difficult}}
+          <div v-show="quest.available && !quest.completed" class='text-primary text-capitalize'>
+            <i class="fa fa-play"></i> {{quest.difficult}}
           </div>
           <div v-show="!quest.completed && !quest.available" class="text-capitalize">
             <i class="fa fa-lock"></i> {{quest.difficult}}
@@ -34,7 +34,7 @@ Vue.component('quest', {
   },
   updated: function() {
     if (this.quest.available && this.$route.query.completed) {
-      $("html, body").animate({scrollTop: $("#"+this.quest.id).offset().top+260}, 1600);
+      // $("html, body").animate({scrollTop: $("#"+this.quest.id).offset().top+260}, 1600);
       this.newQuestAnimation = true;
     }
   },

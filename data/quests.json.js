@@ -24,7 +24,7 @@ var quests = [
   },
   {
     id: "surrealism",
-    difficult: "basic",
+    difficult: "easy",
     title: "Surrealism",
     completed: false,
     available: false,
@@ -33,19 +33,11 @@ var quests = [
 
   {
     id: "american",
-    difficult: "basic",
+    difficult: "easy",
     title: "USA Painters",
     completed: false,
     available: false,
     painters: [83, 116, 118, 18, 60]
-  },
-  {
-    id: "italian",
-    difficult: "basic",
-    title: "Italian Masters",
-    completed: false,
-    available: false,
-    painters: [1, 41, 42, 43, 45, 55, 87, 95, 101, 106, 108, 112]
   },
   {
     id: "popular",
@@ -54,6 +46,14 @@ var quests = [
     completed: false,
     available: false,
     painters: [1, 4, 7, 9, 14, 15, 17, 19, 21, 22, 24, 26, 27, 28, 29, 30, 32, 33, 34, 35, 36, 39, 40, 41, 42, 43, 45, 46, 49, 50, 53, 54, 55, 57, 58, 61, 62, 63, 69, 73, 75, 77, 79, 80, 82, 83, 94, 95, 112, 118]
+  },  
+  {
+    id: "impressionism",
+    difficult: "basic",
+    title: "Impressionism",
+    completed: false,
+    available: false,
+    painters: [2, 3, 9, 17, 21, 30, 36, 49, 53, 57, 60, 61, 69, 77, 84, 94, 96]
   },
   {
     id: "avantgarde",
@@ -64,12 +64,12 @@ var quests = [
     painters: [26, 4, 40, 52, 1, 63, 83, 118, 28, 80, 82, 49, 94, 15]
   },
   {
-    id: "impressionism",
+    id: "italian",
     difficult: "basic",
-    title: "Impressionism",
+    title: "Italian Masters",
     completed: false,
     available: false,
-    painters: [2, 3, 9, 17, 21, 30, 36, 49, 53, 57, 60, 61, 69, 77, 84, 94, 96]
+    painters: [1, 41, 42, 43, 45, 55, 87, 95, 101, 106, 108, 112]
   },
 
 

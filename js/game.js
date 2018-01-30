@@ -50,7 +50,7 @@ Vue.component('scoresTen', {
 
 Vue.component('scoresMax', {
   template: `
-  <div>
+  <div @click='window.app.winner()'>
     {{this.$root.correctAnswers}}
     <i class="fa fa-star text-warning"></i>
   </div>`
@@ -181,12 +181,12 @@ Vue.component('painterBtn', {
           background: "rgba(255,255,255,1)",
           showConfirmButton: true,
           confirmButtonText:'Info',
-          showCancelButton: true
+          showCancelButton: true,
+          cancelButtonText:'Close'
         }).then(function(result) {
 
           html = `
           <div class="text-left">
-
             <h3><img width="48px" src="/img/painters/` + window.app.currentPainter.id + `.png">`+window.app.currentPainter.name+`</h3>
             <img class="img-fluid pb-2" src="http://artchallenge.me/painters/`+ window.app.currentPainter.id+`/1.jpg">
             ` + window.painterDetails.bio[window.lang]+`
@@ -205,9 +205,9 @@ Vue.component('painterBtn', {
               showCloseButton: true,
               focusConfirm: true,
               background: "rgba(255,255,255,1)",
-              showConfirmButton: false,
-              cancelButtonText:'Close',
-              showCancelButton: true
+              showConfirmButton: false
+              // cancelButtonText:'Close',
+              // showCancelButton: true
             })
           }
         });
@@ -271,7 +271,7 @@ window.app = new Vue({
         title: 'Congratulations!',
         position: 'center',
         text: "You have completed this class!",
-        // imageUrl: 'img/animations/tumblr_static_ktd_warp_star_artwork.gif',
+        imageUrl: 'img/awards/laurel-wreath_web.jpg',
         showCloseButton: true,
         showCancelButton: true,
         confirmButtonText: "Share",

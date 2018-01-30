@@ -170,15 +170,17 @@ Vue.component('painterBtn', {
         swal({
           title: "<i class='fa fa-check text-danger'></i> "+this.$root.currentPainter.name,
           text: this.$root.currentPainter.years,
-          position: 'bottom',
+          position: 'center',
           imageUrl: 'img/painters/' + this.$root.currentPainter.id + '.png',
           imageWidth: 260,
           timer: 3600,
+          backdrop: false,
+          width: '340px',
           showCloseButton: true,
           focusConfirm: false,
           background: "rgba(255,255,255,0.9)",
           showConfirmButton: true,
-          confirmButtonText:'More info',
+          confirmButtonText:'Info',
           showCancelButton: true
         });
         setTimeout(function() {

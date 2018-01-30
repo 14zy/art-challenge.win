@@ -107,6 +107,7 @@ $.getScript( "data/quests.json.js", function( data, textStatus, jqxhr ) {
          }
          //Смотрим локалсторадж
 
+         this.quests[0].available = true;
        }
   });
 

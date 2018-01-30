@@ -1,7 +1,7 @@
 Vue.component('quest', {
   props: ['quest'],
   template: `
-    <div :id="quest.id" :class="{'animated flip': newQuestAnimation}" @click="selectQuest()">
+    <div :id="quest.id" :class="{'animated fadeIn': newQuestAnimation}" @click="selectQuest()">
       <img :src="'img/collections/'+quest.id+'.jpg'" :class="{'img-gray': !quest.available&&!quest.completed}" style="width: 100%">
       <div class="quest" :class="{'new-quest': newQuestAnimation}">
         <div class="py-2 px-4" :class="{'text-muted': !quest.available&&!quest.completed, 'text-dark': quest.completed || quest.available}">
@@ -34,7 +34,7 @@ Vue.component('quest', {
   },
   updated: function() {
     if (this.quest.available && this.quest.id != "picasso" && this.$route.query.completed) {
-      $('html, body').animate({scrollTop: $("#"+this.quest.id).offset().top-80}, 600);
+      $("html, body").animate({scrollTop: $("#"+this.quest.id).offset().top+260}, 1600);
       this.newQuestAnimation = true;
     }
   },

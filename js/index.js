@@ -1,15 +1,12 @@
 Vue.component('quest', {
   props: ['quest'],
   template: `
-    <div :id="quest.id" :class="{'animated fadeOutRight': selected, 'animated flip': newQuestAnimation}" @click="selectQuest()">
-    <img :src="'img/collections/'+quest.id+'.jpg'" :class="{'img-gray': !quest.available&&!quest.completed}" style="width: 100%">
+    <div :id="quest.id" :class="{'animated flip': newQuestAnimation}" @click="selectQuest()">
+      <img :src="'img/collections/'+quest.id+'.jpg'" :class="{'img-gray': !quest.available&&!quest.completed}" style="width: 100%">
       <div class="quest" :class="{'new-quest': newQuestAnimation}">
         <div class="py-2 px-4" :class="{'text-muted': !quest.available&&!quest.completed, 'text-dark': quest.completed || quest.available}">
-          <div v-show="quest.completed" class="pt-3 small float-right" style="font-size: 22px">
-            <img class="" src="/img/ui/play.png" width="52px">
-          </div>
-          <div v-show="quest.available" class="pt-3 small float-right" style="font-size: 22px">
-            <img class="" src="/img/ui/play.png" width="52px">
+          <div v-show="quest.available || quest.completed" class="pt-3 small float-right" :class="{'animated fadeOutRight': selected}">
+            <img src="/img/ui/play.png" width="52px">
           </div>
           <div style="font-size: 28px">
             {{quest.title}}
@@ -45,7 +42,11 @@ Vue.component('quest', {
     selectQuest() {
       this.selected = true;
       // window.app.loading = true;
-      window.location.href = 'game.html?quest=' + this.quest.id + '&difficult=' + this.quest.difficult;
+
+      link = 'game.html?quest=' + this.quest.id + '&difficult=' + this.quest.difficult;
+      window.location.href = link;
+
+
     }
   }
 });

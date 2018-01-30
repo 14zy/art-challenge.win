@@ -271,7 +271,7 @@ window.app = new Vue({
         title: 'Congratulations!',
         position: 'center',
         text: "You have completed this class!",
-        imageUrl: 'img/animations/tumblr_static_ktd_warp_star_artwork.gif',
+        // imageUrl: 'img/animations/tumblr_static_ktd_warp_star_artwork.gif',
         showCloseButton: true,
         showCancelButton: true,
         confirmButtonText: "Share",

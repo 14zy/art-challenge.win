@@ -191,7 +191,7 @@ Vue.component('painterBtn', {
           </div>
           `;
 
-          if (result) {
+          if (result.value) {
             swal({
               // title: window.app.currentPainter.name,
               html: html,
@@ -208,8 +208,6 @@ Vue.component('painterBtn', {
               confirmButtonText:'Info',
               showCancelButton: false
             })
-
-            console.log();
           }
         });
 

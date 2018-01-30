@@ -11,17 +11,17 @@ Vue.component('quest', {
           <div style="font-size: 28px">
             {{quest.title}}
           </div>
-          <div v-show="quest.completed" class='text-success'>
-            Completed <i class="fa fa-check text-success"></i>
+          <div v-show="quest.completed" class='text-success text-capitalize'>
+            <i class="fa fa-check text-success"></i> {{quest.difficult}}
           </div>
-          <div v-show="quest.available" class='text-primary'>
-            Play Now
+          <div v-show="quest.available" class='text-primary text-capitalize'>
+            {{quest.difficult}}
           </div>
-          <div v-show="!quest.completed && !quest.available">
-            Closed <i v-if="!quest.completed && !quest.available" class="fa fa-lock"></i>
+          <div v-show="!quest.completed && !quest.available" class="text-capitalize">
+            <i class="fa fa-lock"></i> {{quest.difficult}}
           </div>
           <span class="text-capitalize small text-muted">
-            {{quest.painters.length}} Painters, {{quest.difficult}}
+            {{quest.painters.length}} Painters, {{quest.pictures}} Pictures
           </span>
         </div>
       </div>
@@ -33,24 +33,32 @@ Vue.component('quest', {
     }
   },
   updated: function() {
-    if (this.quest.available && this.quest.id != "picasso" && this.$route.query.completed) {
+    if (this.quest.available && this.$route.query.completed) {
       $("html, body").animate({scrollTop: $("#"+this.quest.id).offset().top+260}, 1600);
       this.newQuestAnimation = true;
     }
   },
   methods: {
     selectQuest() {
-      this.selected = true;
-      // window.app.loading = true;
-
-      link = 'game.html?quest=' + this.quest.id + '&difficult=' + this.quest.difficult;
-      window.location.href = link;
-
-
+      if (this.quest.available || this.quest.completed) {
+        this.selected = true;
+        // window.app.loading = true;
+        link = 'game.html?quest=' + this.quest.id + '&difficult=' + this.quest.difficult;
+        window.location.href = link;
+      } else {
+        swal("Locked", "Complete other classes to unlock this one", "info");
+      }
     }
   }
 });
 
+////// TOTAL ///////
+// var total = 0;
+// for (var i = 0; i < window.app.questionsDB.length; i++) {
+//   total = total + window.app.questionsDB[i].paintings;
+// }
+// console.log(total);
+/////// JS ///////
 
 Vue.component('quests-list', {
   template: `

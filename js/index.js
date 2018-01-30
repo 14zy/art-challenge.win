@@ -84,7 +84,7 @@ $.getScript( "data/quests.json.js", function( data, textStatus, jqxhr ) {
       },
       methods: {
         wipe: function () {
-          localStorage.setItem("completed", "");  
+          localStorage.setItem("completed", "");
         }
       },
       mounted: function() {

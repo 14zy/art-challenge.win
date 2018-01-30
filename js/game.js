@@ -165,7 +165,7 @@ Vue.component('painterBtn', {
 
         setTimeout(function() {
           window.app.nextQuestion();
-        }, 100);
+        }, 2800);
 
         swal({
           title: "<i class='fa fa-check text-danger'></i> "+this.$root.currentPainter.name,
@@ -182,10 +182,40 @@ Vue.component('painterBtn', {
           showConfirmButton: true,
           confirmButtonText:'Info',
           showCancelButton: true
+        }).then(function(result) {
+
+          html = `
+          <div class="text-left">
+            <h3><img width="48px" src="/img/painters/` + window.app.currentPainter.id + `.png">`+window.app.currentPainter.name+`</h3>
+            ` + window.painterDetails.bio[window.lang]+`
+          </div>
+          `;
+
+          if (result) {
+            swal({
+              // title: window.app.currentPainter.name,
+              html: html,
+              position: 'top',
+              // imageUrl: 'img/painters/' + window.app.currentPainter.id + '.png',
+              // imageWidth: 60,
+              timer: false,
+              backdrop: false,
+              width: '340px',
+              showCloseButton: true,
+              focusConfirm: false,
+              background: "rgba(255,255,255,0.9)",
+              showConfirmButton: false,
+              confirmButtonText:'Info',
+              showCancelButton: false
+            })
+
+            console.log();
+          }
         });
-        setTimeout(function() {
-          // $('.swal2-image').addClass('animated flash');
-        }, 100);
+
+        // setTimeout(function() {
+        //    $('.swal2-image').addClass('animated flash');
+        // }, 100);
 
       }
     }
@@ -314,6 +344,7 @@ window.app = new Vue({
          type: 'get',
          dataType: 'jsonp',
          success: function(data) {
+           window.painterDetails = data;
            image = data.paintings[window.app.currentPicture-1];
            window.app.currentPictureName = image.name[window.lang];
          }

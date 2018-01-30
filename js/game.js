@@ -178,7 +178,7 @@ Vue.component('painterBtn', {
           width: '340px',
           showCloseButton: true,
           focusConfirm: false,
-          background: "rgba(255,255,255,0.9)",
+          background: "rgba(255,255,255,1)",
           showConfirmButton: true,
           confirmButtonText:'Info',
           showCancelButton: true
@@ -203,7 +203,7 @@ Vue.component('painterBtn', {
               width: '340px',
               showCloseButton: true,
               focusConfirm: false,
-              background: "rgba(255,255,255,0.9)",
+              background: "rgba(255,255,255,1)",
               showConfirmButton: false,
               confirmButtonText:'Info',
               showCancelButton: false

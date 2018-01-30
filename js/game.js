@@ -186,27 +186,28 @@ Vue.component('painterBtn', {
 
           html = `
           <div class="text-left">
+
             <h3><img width="48px" src="/img/painters/` + window.app.currentPainter.id + `.png">`+window.app.currentPainter.name+`</h3>
+            <img class="img-fluid pb-2" src="http://artchallenge.me/painters/`+ window.app.currentPainter.id+`/1.jpg">
             ` + window.painterDetails.bio[window.lang]+`
           </div>
           `;
 
           if (result.value) {
             swal({
-              // title: window.app.currentPainter.name,
+              // title: "<img width='48px' src='/img/painters/" + window.app.currentPainter.id + ".png'>" + window.app.currentPainter.name,
               html: html,
               position: 'top',
               // imageUrl: 'img/painters/' + window.app.currentPainter.id + '.png',
               // imageWidth: 60,
               timer: false,
-              backdrop: false,
               width: '340px',
               showCloseButton: true,
-              focusConfirm: false,
+              focusConfirm: true,
               background: "rgba(255,255,255,1)",
               showConfirmButton: false,
-              confirmButtonText:'Info',
-              showCancelButton: false
+              cancelButtonText:'Close',
+              showCancelButton: true
             })
           }
         });

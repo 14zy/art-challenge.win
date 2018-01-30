@@ -17,15 +17,6 @@ var quests = [
     painters: [9, 17]
   },
   {
-    id: "popularEasy",
-    difficult: "easy",
-    title: "10 Famous Painters",
-    completed: false,
-    available: false,
-    pictures: 2475,
-    painters: [21, 15, 9, 28, 45, 54, 112, 63, 17, 30]
-  },
-  {
     id: "surrealism",
     difficult: "easy",
     title: "Famous Surrealism",
@@ -33,6 +24,24 @@ var quests = [
     available: false,
     pictures: 743,
     painters: [33, 14, 15, 79, 82]
+  },
+  {
+    id: "popularEasy",
+    difficult: "basic",
+    title: "10 Famous Painters",
+    completed: false,
+    available: false,
+    pictures: 2475,
+    painters: [21, 15, 9, 28, 45, 54, 112, 63, 17, 30]
+  },
+  {
+    id: "popular",
+    difficult: "basic",
+    title: "50 Famous Painters",
+    completed: false,
+    available: false,
+    pictures: 8446,
+    painters: [1, 4, 7, 9, 14, 15, 17, 19, 21, 22, 24, 26, 27, 28, 29, 30, 32, 33, 34, 35, 36, 39, 40, 41, 42, 43, 45, 46, 49, 50, 53, 54, 55, 57, 58, 61, 62, 63, 69, 73, 75, 77, 79, 80, 82, 83, 94, 95, 112, 118]
   },
   {
     id: "impressionism",
@@ -51,15 +60,7 @@ var quests = [
   //   available: false,
   //   painters: [83, 116, 118, 18, 60]
   // },
-  {
-    id: "popular",
-    difficult: "basic",
-    title: "50 Famous Painters",
-    completed: false,
-    available: false,
-    pictures: 8446,
-    painters: [1, 4, 7, 9, 14, 15, 17, 19, 21, 22, 24, 26, 27, 28, 29, 30, 32, 33, 34, 35, 36, 39, 40, 41, 42, 43, 45, 46, 49, 50, 53, 54, 55, 57, 58, 61, 62, 63, 69, 73, 75, 77, 79, 80, 82, 83, 94, 95, 112, 118]
-  },
+
   {
     id: "avantgarde",
     difficult: "basic",

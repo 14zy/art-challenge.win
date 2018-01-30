@@ -32,7 +32,7 @@ Vue.component('game-screen', {
         </div>
       </div>
     <question></question>
-    <div class="text-capitalize text-muted text-center p-1 pb-2">{{this.$root.currentPictureName}}</div>
+    <div v-show="window.lang == 'ru'" class="text-capitalize text-muted text-center p-1 pb-2">{{this.$root.currentPictureName}}</div>
   </div>`,
   methods: {
     download() {

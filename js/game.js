@@ -109,7 +109,7 @@ Vue.component('answers', {
 Vue.component('painterBtn', {
   props: ["painter"],
   template: `
-  <div class="py-2 painter-button" @click="answer(painter);">
+  <div class="py-2 painter-button text-left" @click="answer(painter);">
       <img onerror="this.src='/img/ui/person.png';" width="92" height="92" style="margin: 0 0 -2% -4%" :src="'img/painters/' + painter.id + '.png'" />
       <span class="text-right" style='right: 5%; top:10%; position: absolute;'>
         <div class='painter-name'>{{ painter.name }}</div>
@@ -170,7 +170,7 @@ Vue.component('painterBtn', {
         swal({
           title: "<i class='fa fa-check text-danger'></i> "+this.$root.currentPainter.name,
           text: this.$root.currentPainter.years,
-          position: 'center',
+          position: 'top',
           imageUrl: 'img/painters/800x800/' + this.$root.currentPainter.id + '.png',
           imageWidth: 260,
           timer: 3600,
@@ -203,11 +203,9 @@ Vue.component('painterBtn', {
               timer: false,
               width: '340px',
               showCloseButton: true,
-              focusConfirm: true,
               background: "rgba(255,255,255,1)",
-              showConfirmButton: false
-              // cancelButtonText:'Close',
-              // showCancelButton: true
+              cancelButtonText:'Wikipedia',
+              showCancelButton: true
             })
           }
         });
@@ -268,11 +266,11 @@ window.app = new Vue({
     winner: function() {
       window.app.celebrating = true;
       swal({
-        title: 'Congratulations!',
+        title: 'Congratulations',
         position: 'center',
-        text: "You have completed this class!",
-        imageUrl: 'img/awards/laurel-wreath_web.jpg',
-        showCloseButton: true,
+        text: "You have completed this class",
+        imageUrl: 'img/awards/olive.gif',
+        // showCloseButton: true,
         showCancelButton: true,
         confirmButtonText: "Share",
         // imageWidth: 220,

@@ -30,7 +30,7 @@
   <link rel="apple-touch-icon" sizes="384x384" href="/apple-icon-384x384.png">
   <link rel="apple-touch-icon" sizes="512x512" href="/apple-icon-512x512.png">
 
-  <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="shortcut icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -84,30 +84,34 @@
   <noscript>Your device does not support JavaScript!</noscript>
 
   <!-- Yandex.Metrika counter -->
-  <script type="text/javascript" >
-      (function (d, w, c) {
-          (w[c] = w[c] || []).push(function() {
-              try {
-                  w.yaCounter47503357 = new Ya.Metrika2({
-                      id:47503357,
-                      clickmap:true,
-                      trackLinks:true,
-                      accurateTrackBounce:true
-                  });
-              } catch(e) { }
+  <script type="text/javascript">
+    (function(d, w, c) {
+      (w[c] = w[c] || []).push(function() {
+        try {
+          w.yaCounter47503357 = new Ya.Metrika2({
+            id: 47503357,
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true
           });
+        } catch (e) {}
+      });
 
-          var n = d.getElementsByTagName("script")[0],
-              s = d.createElement("script"),
-              f = function () { n.parentNode.insertBefore(s, n); };
-          s.type = "text/javascript";
-          s.async = true;
-          s.src = "https://mc.yandex.ru/metrika/tag.js";
+      var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function() {
+          n.parentNode.insertBefore(s, n);
+        };
+      s.type = "text/javascript";
+      s.async = true;
+      s.src = "https://mc.yandex.ru/metrika/tag.js";
 
-          if (w.opera == "[object Opera]") {
-              d.addEventListener("DOMContentLoaded", f, false);
-          } else { f(); }
-      })(document, window, "yandex_metrika_callbacks2");
+      if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+      } else {
+        f();
+      }
+    })(document, window, "yandex_metrika_callbacks2");
   </script>
   <noscript><div><img src="https://mc.yandex.ru/watch/47503357" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
   <!-- /Yandex.Metrika counter -->
@@ -115,9 +119,12 @@
 
 <body>
 
-  <div id="app" class="nobackground">
+  <div id="app" class="container">
+    <div class='row pl-2 pr-2'>
 
-    <!-- <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut" mode="out-in">
+      <div class="col-xs-12">
+
+        <!-- <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut" mode="out-in">
       <div v-show="loading" class="text-center py-5 fixed-top" style='background-color: white; z-index:9999'>
         <img src="img/loadings/gem.gif" class="img-fluid"/>
         LOADING
@@ -125,16 +132,16 @@
       </div>
     </transition> -->
 
-  <div class="text-center p-4">
-    <br>
-    <img class="p-2" width="100px" src="apple-icon-512x512.png">
-    <h2 class="" style="color: #333;">Art Challenge</h2>
-    <h6 class="text-muted">Select a class to continue</h6>
-    <br>
-  </div>
+        <div class="text-center p-4">
+          <br>
+          <img class="p-2" width="100px" src="apple-icon-512x512.png">
+          <h2 class="" style="color: #333;">Art Challenge</h2>
+          <h6 class="text-muted">Select a class to continue</h6>
+          <br>
+        </div>
 
 
-  <!--
+        <!--
     <div id="onBoardngCards" class="carousel slide px-3" style="noheight: 0px" data-ride="carousel">
       <div class="carousel-inner" role="listbox">
         <div class="carousel-item active">
@@ -149,52 +156,67 @@
       </div>
     </div> -->
 
-    <div id="questsList" class="px-0 pt-0 pb-3">
-      <!-- <div class="text-center text-muted small">
+        <div id="questsList" class="px-0 pt-0 pb-3">
+          <!-- <div class="text-center text-muted small">
         <p> ––– START YOUR CHALLENGE ––– </p>
       </div> -->
-      <quests-list></quests-list>
+          <quests-list></quests-list>
+        </div>
+
+        <!-- <div class="footer fixed-bottom text-left" style="background-color: white; border-style: solid; border-width: 1px;">
+
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2407992058828148" data-ad-slot="3910414450" data-ad-format="horizontal"></ins>
+    </div> -->
+      </div>
+      <div class="col pl-4" style="">
+        <div class="text-center" style="">
+          <!-- <img class="d-block img-fluid" src="img/animations/giphy-2 copy.gif" alt="First slide"> -->
 
 
 
-      <div class="text-center" style="nobackground-color: white">
-        <!-- <img class="d-block img-fluid" src="img/animations/giphy-2 copy.gif" alt="First slide"> -->
-        <br><br>
-        This is a free game created by art lovers
-        <br>
-        <a href="/about.html">Read more</a> /
-        <a href="/donate.html">Donate</a>
-        <br><br><br>
-        <h3 class="text-primary">
+          <div class="d-none d-md-block">
+            <br><br><br><br><br><br><br><br><br><br><br><br>
+          </div>
+
+          This is a fun education game created by art lovers.
+          <br><br> It's build as Hybrid Mobile App, so you can install it on your device by clicking Add to Home Screen button in your browser menu.
+          <br>
+          <br>
+          <a>Read more</a> /
+          <a>Contacts</a> /
+          <a>Donate</a>
+
+          <br><br>
+          <a href="#" @click="wipe()">Clear your data</a>
+          <br><br><br>
+          <h3 class="text-primary">
           <i class="fa fa-facebook px-2"></i>
           <i class="fa fa-twitter px-2"></i>
           <i class="fa fa-vk px-2"></i>
           <i class="fa fa-pinterest px-2"></i>
-        </h3>
-        Share with friends
-        <br><br><br>
-        © 2018 Art Challenge
-        <br><br>
-        <a href="#" @click="wipe()">Clear data</a>
-        <!-- Art Challenge, 2018. -->
+        </h3> Share with friends
+          <br><br><br> © 2018 Art Challenge
 
-        <!-- Have a request?
+
+
+
+
+          <!-- Art Challenge, 2018. -->
+
+          <!-- Have a request?
         Wish your favorite painter will be added to the game?
         textfield
         и выпадающий список 0, 2$, 5$, 10$, 15$, 20$, 50$, 100$
         Send and donate
         or Just Send -->
 
-        <br><br>
+          <br><br>
+        </div>
       </div>
-
     </div>
 
-    <!-- <div class="footer fixed-bottom text-left" style="background-color: white; border-style: solid; border-width: 1px;">
-
-      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2407992058828148" data-ad-slot="3910414450" data-ad-format="horizontal"></ins>
-    </div> -->
   </div>
+
 
   <script src="dist/jquery-3.2.1.min.js"></script>
   <script src="dist/popper.min.js"></script>
@@ -205,8 +227,10 @@
   <script src="js/index.js"></script>
 
   <script>
-    $( document ).ready(function() {
-      $('.carousel').bcSwipe({ threshold: 50 });
+    $(document).ready(function() {
+      $('.carousel').bcSwipe({
+        threshold: 50
+      });
     });
   </script>
 </body>

@@ -126,14 +126,18 @@
     <game-screen></game-screen>
 
     <transition enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown" mode="out-in">
-      <div v-show="!zoomed" class="footer fixed-bottom text-left" style="background-color: rgba(255,255,255,1); box-shadow: 0 3px 2px #777;">
-        <answers></answers>
-        <!-- ArtChallenge.ru_responsive -->
-        <div style="border-style: dotted; border-width: 1px; border-color: lightgray; min-height: 100px;">
-          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2407992058828148" data-ad-slot="3910414450" data-ad-format="horizontal"></ins>
-        </div>
+
+      <div v-show="!zoomed" class="footer fixed-bottom" style="max-width: 512px; background-color: rgba(255,255,255,1); box-shadow: 0 3px 2px #777;">
+
+          <answers></answers>
+          <!-- ArtChallenge.ru_responsive -->
+          <div style="border-style: dotted; border-width: 1px; border-color: lightgray; min-height: 100px;">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2407992058828148" data-ad-slot="3910414450" data-ad-format="horizontal"></ins>
+          </div>
+        
       </div>
     </transition>
+
   </div>
 
   <script src="dist/jquery-3.2.1.min.js"></script>

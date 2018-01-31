@@ -171,7 +171,7 @@ Vue.component('painterBtn', {
           title: "<i class='fa fa-check text-danger'></i> "+this.$root.currentPainter.name,
           text: this.$root.currentPainter.years,
           position: 'center',
-          imageUrl: 'img/painters/' + this.$root.currentPainter.id + '.png',
+          imageUrl: 'img/painters/800x800/' + this.$root.currentPainter.id + '.png',
           imageWidth: 260,
           timer: 3600,
           backdrop: false,

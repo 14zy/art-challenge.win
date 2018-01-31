@@ -27,7 +27,7 @@ var quests = [
   },
   {
     id: "popularEasy",
-    difficult: "basic",
+    difficult: "easy",
     title: "10 Famous Painters",
     completed: false,
     available: false,

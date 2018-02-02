@@ -113,7 +113,7 @@ Vue.component('answers', {
 Vue.component('painterBtn', {
   props: ["painter"],
   template: `
-  <div class="py-2 painter-button text-left" @click="answer(painter);">
+  <div @click="answer(painter);" :class="this.class">
       <img onerror="this.src='/img/ui/person.png';" width="92" height="92" style="margin: 0 0 -2% -4%" :src="'img/painters/' + painter.id + '.png'" />
       <span class="text-right" style='right: 5%; top:10%; position: absolute;'>
         <div class='painter-name'>{{ painter.name }}</div>
@@ -125,7 +125,7 @@ Vue.component('painterBtn', {
   </div>`,
   data: function() {
     return {
-      style: ""
+      class: ["py-2", "painter-button", "text-left"]
     }
   },
   methods: {
@@ -133,16 +133,20 @@ Vue.component('painterBtn', {
 
       if (painter.id == this.$root.currentPainter.id) {
         window.app.correctAnswers += 1;
+
         window.app.celebrating = true;
+        // this.class.push("animated tada");
         setTimeout(function() {
           window.app.celebrating = false;
         }, 1200);
+
         if (window.app.correctAnswers == 10) {
           window.app.winner();
           setTimeout(function() {
             window.app.nextQuestion();
           }, 100);
         } else {
+          // this.class.push("animated pulse");
           setTimeout(function() {
             window.app.nextQuestion();
           }, 100);
@@ -162,6 +166,9 @@ Vue.component('painterBtn', {
 
         }
       } else {
+
+        // this.class.push("animated tada");
+
         window.app.correctAnswers = window.app.correctAnswers - 1;
         if (window.app.correctAnswers < 0) {
           window.app.correctAnswers = 0;

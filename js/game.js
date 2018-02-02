@@ -179,7 +179,7 @@ Vue.component('painterBtn', {
         }, 2800);
 
         swal({
-          title: "<i class='fa fa-check text-danger'></i> "+this.$root.currentPainter.name,
+          title: "<i class='fa fa-times text-danger'></i> "+this.$root.currentPainter.name,
           text: this.$root.currentPainter.years,
           position: 'top',
           imageUrl: 'img/painters/800x800/' + this.$root.currentPainter.id + '.png',
@@ -189,7 +189,7 @@ Vue.component('painterBtn', {
           width: '340px',
           showCloseButton: true,
           focusConfirm: false,
-          background: "rgba(255,255,255,1)",
+          background: "rgba(255,255,255,0.9)",
           showConfirmButton: true,
           confirmButtonText:'Info',
           showCancelButton: true,
@@ -217,6 +217,7 @@ Vue.component('painterBtn', {
               background: "rgba(255,255,255,1)",
               cancelButtonText:'Wikipedia',
               showCancelButton: true,
+              showConfirmButton: false,
               animation: false,
               customClass: 'animated fadeIn'
             })

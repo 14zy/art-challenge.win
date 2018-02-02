@@ -297,18 +297,21 @@ window.app = new Vue({
         }
       }).then(function(result) {
         if (result.value) {
-          // swal('ok!', 'Share function will be there', 'info');
-          if (navigator.share) {
-            navigator.share({
-              title: 'Web Fundamentals',
-              text: 'Check out Web Fundamentals — it rocks!',
-              url: 'https://developers.google.com/web',
-            }).then(function() {
-              console.log('Successful share');
-            }).catch(function(error) {console.log('Error sharing', error)});
-          } else {
-            console.log("none");
-          }
+
+          // html = ``
+          // swal({
+          //   title: "Share",
+          //   html: html
+          // });
+
+
+          url = "https://www.facebook.com/dialog/feed?app_id=478531102278887&display=popup&link=http://artchallenge.win/?utm_source=fb-win&redirect_uri=http://artchallenge.ru/1.html&picture=" + "http://artchallenge.win/medalShare.jpg" + "&source=" + "http://artchallenge.win/medalShare.jpg" + "&name=" + "shares.title" + "&caption=" + "shares.caption" + "&description=" + "shares.description";
+
+          //window.open(url, 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=604,height=401');
+          window.location.href=url;
+          //yaCounter24594722.reachGoal('WINNER-SHARE-FB');
+
+
           window.app.celebrating = false;
           //this.newRound();
         } else if (result.dismiss === 'cancel') {

@@ -4,7 +4,9 @@ Vue.component('game-screen', {
       <div v-show="!this.$root.zoomed" class="container-fluid fixed-top pt-3" style="color: white; font-size:18px;">
         <div class="row">
           <div class="col-2 text-left">
-            <span @click="window.location.href='/';" class="p-1 px-2" style='notbackground-color: rgba(0,0,0,0.1); border-radius: 50px'><i class="fa fa-arrow-left"></i></span>
+            <a href="/" class="text-white p-1 px-2">
+              <i class="fa fa-arrow-left"></i>
+            </a>
           </div>
 
           <div class="col-8 text-center">
@@ -17,7 +19,9 @@ Vue.component('game-screen', {
           </div>
 
           <div class="col-2 text-right" style='font-size:20px'>
-            <span @click="download()" class="p-1 px-2" style='notbackground-color: rgba(0,0,0,0.1); border-radius: 50px'><i class="fa fa-download"></i></span>
+            <a target="_blank" :href="returnURL()" class="text-white p-1 px-2">
+              <i class="fa fa-download"></i>
+            </a>
           </div>
         </div>
       </div>
@@ -35,9 +39,9 @@ Vue.component('game-screen', {
     <div v-show="window.lang == 'ru'" class="text-capitalize text-muted text-center p-1 pb-2">{{this.$root.currentPictureName}}</div>
   </div>`,
   methods: {
-    download() {
-      url = "http://artchallenge.me/painters/" + this.$root.currentPainter.id + "/" + this.$root.currentPicture + ".jpg";
-      window.open(url);
+    returnURL() {
+      return "http://artchallenge.me/painters/" + this.$root.currentPainter.id + "/" + this.$root.currentPicture + ".jpg";
+      // window.open(url);
     }
   }
 });
@@ -101,7 +105,7 @@ Vue.component('answers', {
   template: `
     <div class="container">
       <div class='row'>
-        <painterBtn class="col-6 p-1" style='paddig: 0' v-for="painter in this.$root.currentAnswers" :key="painter.id" :painter="painter"></painterBtn>
+        <painterBtn class="btn col-6 p-1" style='border-radius:0; paddig: 0' v-for="painter in this.$root.currentAnswers" :key="painter.id" :painter="painter"></painterBtn>
       </div>
     </div>`
 });

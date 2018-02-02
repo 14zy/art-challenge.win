@@ -38,7 +38,7 @@ Vue.component('quest', {
   },
   updated: function() {
     if (this.quest.available && this.$route.query.completed) {
-      $("html, body").animate({scrollTop: $("#"+this.quest.id).offset().top+260}, 600);
+      $("html, body").animate({scrollTop: $("#"+this.quest.id).offset().top+260}, 360);
       this.newQuestAnimation = true;
     };
     this.link = 'game.html?quest=' + this.quest.id + '&difficult=' + this.quest.difficult;

@@ -182,9 +182,10 @@ Vue.component('painterBtn', {
           showConfirmButton: true,
           confirmButtonText:'Info',
           showCancelButton: true,
-          cancelButtonText:'Close'
+          cancelButtonText:'Close',
+          animation: false,
+          customClass: 'animated fadeIn'
         }).then(function(result) {
-
           html = `
           <div class="text-left">
             <h3><img width="48px" src="/img/painters/` + window.app.currentPainter.id + `.png">`+window.app.currentPainter.name+`</h3>
@@ -192,7 +193,6 @@ Vue.component('painterBtn', {
             ` + window.painterDetails.bio[window.lang]+`
           </div>
           `;
-
           if (result.value) {
             swal({
               // title: "<img width='48px' src='/img/painters/" + window.app.currentPainter.id + ".png'>" + window.app.currentPainter.name,
@@ -205,7 +205,9 @@ Vue.component('painterBtn', {
               showCloseButton: true,
               background: "rgba(255,255,255,1)",
               cancelButtonText:'Wikipedia',
-              showCancelButton: true
+              showCancelButton: true,
+              animation: false,
+              customClass: 'animated fadeIn'
             })
           }
         });

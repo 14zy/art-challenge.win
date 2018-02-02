@@ -6,7 +6,9 @@ Vue.component('quest', {
       <div class="quest" :class="{'new-quest': newQuestAnimation}">
         <div class="pt-2 pb-0 pr-4 pl-3" :class="{'text-muted': !quest.available&&!quest.completed, 'text-dark': quest.completed || quest.available}">
           <div v-show="quest.available || quest.completed" class="pt-4 small float-right" :class="{'animated fadeOutRight': selected}">
-            <img src="/img/ui/play.png" width="52px">
+            <a :href="link">
+              <img src="/img/ui/play.png" width="52px">
+            </a>
           </div>
           <div style="font-size: 28px">
             {{quest.title}}
@@ -30,22 +32,23 @@ Vue.component('quest', {
   data: function() {
     return {
       selected: false,
-      newQuestAnimation: false
+      newQuestAnimation: false,
+      link: ""
     }
   },
   updated: function() {
     if (this.quest.available && this.$route.query.completed) {
-      // $("html, body").animate({scrollTop: $("#"+this.quest.id).offset().top+260}, 1600);
+      $("html, body").animate({scrollTop: $("#"+this.quest.id).offset().top+260}, 600);
       this.newQuestAnimation = true;
-    }
+    };
+    this.link = 'game.html?quest=' + this.quest.id + '&difficult=' + this.quest.difficult;
   },
   methods: {
     selectQuest() {
       if (this.quest.available || this.quest.completed) {
         this.selected = true;
         // window.app.loading = true;
-        link = 'game.html?quest=' + this.quest.id + '&difficult=' + this.quest.difficult;
-        window.location.href = link;
+        window.location.href = this.link;
       } else {
         swal("Locked", "Complete other classes to unlock this one", "info");
       }

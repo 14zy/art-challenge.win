@@ -305,10 +305,12 @@ window.app = new Vue({
           // });
 
 
-          url = "https://www.facebook.com/dialog/feed?app_id=478531102278887&display=popup&link=http://artchallenge.win/?utm_source=fb-win&redirect_uri=http://artchallenge.ru/1.html&picture=" + "http://artchallenge.win/medalShare.jpg" + "&source=" + "http://artchallenge.win/medalShare.jpg" + "&name=" + "shares.title" + "&caption=" + "shares.caption" + "&description=" + "shares.description";
-
-          //window.open(url, 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=604,height=401');
+          url = "https://www.facebook.com/dialog/feed?app_id=478531102278887&display=popup&link=http://artchallenge.win/?utm_source=fb-win&redirect_uri=http://artchallenge.ru/1.html&picture=" + "http://artchallenge.win/shareMedal.jpg" + "&source=" + "http://artchallenge.win/shareMedal.jpg" + "&name=" + "Name" + "&caption=" + "Caption" + "&description=" + "Description";
+          console.log(url);
           window.location.href=url;
+          
+          //window.open(url, 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=604,height=401');
+
           //yaCounter24594722.reachGoal('WINNER-SHARE-FB');
 
 

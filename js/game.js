@@ -179,11 +179,11 @@ Vue.component('painterBtn', {
         }, 2800);
 
         swal({
-          title: "<i class='fa fa-times text-danger'></i> "+this.$root.currentPainter.name,
+          title: "<i class='fa fa-check text-danger'></i> "+this.$root.currentPainter.name,
           text: this.$root.currentPainter.years,
           position: 'top',
           imageUrl: 'img/painters/' + this.$root.currentPainter.id + '.png',
-          imageWidth: 260,
+          imageWidth: 142,
           timer: 3600,
           backdrop: false,
           width: '340px',
@@ -191,10 +191,11 @@ Vue.component('painterBtn', {
           focusConfirm: false,
           background: "rgba(255,255,255,0.9)",
           showConfirmButton: true,
-          confirmButtonText:'Info',
-          showCancelButton: true,
-          cancelButtonText:'Close',
+          confirmButtonText:'Who is it?',
+          // showCancelButton: true,
+          // cancelButtonText:'Close',
           animation: false,
+          // type: "error",
           customClass: 'animated fadeIn'
         }).then(function(result) {
           html = `
@@ -215,7 +216,7 @@ Vue.component('painterBtn', {
               width: '340px',
               showCloseButton: true,
               background: "rgba(255,255,255,1)",
-              cancelButtonText:'Wikipedia',
+              cancelButtonText:'Close',
               showCancelButton: true,
               showConfirmButton: false,
               animation: false,

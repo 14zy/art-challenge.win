@@ -4,7 +4,14 @@
     "name": "Amedeo Modigliani",
     "years": "1884 - 1920",
     "nationality": ["Italy"],
-    "paintings": 193
+    "paintingsN": 193,
+    "paintings": [
+      {
+        "id": 1,
+        "en": "",
+        "ru": ""
+      }
+    ]
   }, {
     "id": 2,
     "name": "Henri Lebasque",

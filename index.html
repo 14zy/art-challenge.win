@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <title>🖌 Art Challenge – A Quiz Game of Famous Painters</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
   <meta name="description" content="Art Challenge – A Quiz Game of Famous Painters. Try to guess 10 painters in a row and beat your friends!">
-  <link rel="image_src" href="http://artchallenge.win/share2.jpg">
+  <link rel="image_src" href="http://artchallenge.win/share.jpg">
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="http://artchallenge.win/" />
   <meta property="og:image" content="http://artchallenge.win/share.jpg" />
   <meta property="og:site_name" content="Art Challenge" />
-  <meta property="og:title" content="Ladies and Gentlemen, I am really good at Art!" />
-  <meta property="og:description" content="Art Challenge – A Quiz Game of Famous Painters. Try to guess 10 painters in a row and beat your friends!" />
+  <meta property="og:title" content="Art Challenge – A Quiz Game of Famous Painters" />
+  <meta property="og:description" content="Try to guess 10 painters in a row and beat your friends!" />
   <meta property="fb:app_id" content="478531102278887" />
 
   <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
@@ -60,16 +59,11 @@
   <script src="dist/vue-router.min.js"></script>
 
   <script>
-    if (navigator.serviceWorker.controller) {
-      //console.log('[PWA Builder] active service worker found, no need to register')
-    } else {
-      //Register the ServiceWorker
-      navigator.serviceWorker.register('sw.js', {
-        scope: './'
-      }).then(function(reg) {
-        //console.log('Service worker has been registered for scope:'+ reg.scope);
-      });
-    }
+  if (navigator.serviceWorker.controller) {} else {
+    navigator.serviceWorker.register('sw.js', {
+      scope: './'
+    });
+  }
   </script>
   <noscript>Your device does not support JavaScript!</noscript>
 
@@ -78,40 +72,38 @@
   <script>
   window.fbAsyncInit = function() {
     FB.init({
-      appId      : '478531102278887',
-      xfbml      : true,
-      version    : 'v2.12'
+      appId: '478531102278887',
+      xfbml: true,
+      version: 'v2.12'
     });
-
     FB.AppEvents.logPageView();
-
   };
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {
+      return;
+    }
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+  </script>
 </head>
 
 <body>
 
   <div id="app" class="container">
     <div class='row pl-2 pr-2'>
-
       <div class="col-xs-12">
-
         <!-- <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut" mode="out-in">
-      <div v-show="loading" class="text-center py-5 fixed-top" style='background-color: white; z-index:9999'>
+        <div v-show="loading" class="text-center py-5 fixed-top" style='background-color: white; z-index:9999'>
         <img src="img/loadings/gem.gif" class="img-fluid"/>
         LOADING
         <br><br><br><br><br><br><br><br><br><br><br><br>
-      </div>
-    </transition> -->
-
+        </div>
+        </transition> -->
         <div class="text-center p-4">
           <br>
           <img class="p-2" width="100px" src="apple-icon-512x512.png">
@@ -119,107 +111,99 @@
           <h6 class="text-muted">Select a class to continue</h6>
           <br>
         </div>
-
-
         <!--
-    <div id="onBoardngCards" class="carousel slide px-3" style="noheight: 0px" data-ride="carousel">
-      <div class="carousel-inner" role="listbox">
+        <div id="onBoardngCards" class="carousel slide px-3" style="noheight: 0px" data-ride="carousel">
+        <div class="carousel-inner" role="listbox">
         <div class="carousel-item active">
-          <img class="d-block img-fluid" src="img/animations/giphy-2 copy.gif" alt="First slide">
+        <img class="d-block img-fluid" src="img/animations/giphy-2 copy.gif" alt="First slide">
         </div>
         <div class="carousel-item">
-          <img class="d-block img-fluid" src="img/loadings/source-5.gif" alt="Add to Home Screen">
+        <img class="d-block img-fluid" src="img/loadings/source-5.gif" alt="Add to Home Screen">
         </div>
         <div class="carousel-item">
-          <img class="d-block img-fluid" src="img/animations/2.gif" alt="Browse artbook">
+        <img class="d-block img-fluid" src="img/animations/2.gif" alt="Browse artbook">
         </div>
-      </div>
-    </div> -->
-
+        </div>
+        </div> -->
         <div id="questsList" class="px-2 pt-0 pb-3">
-          <!-- <div class="text-center text-muted small">
-        <p> ––– START YOUR CHALLENGE ––– </p>
-      </div> -->
           <quests-list></quests-list>
         </div>
-
-        <!-- <div class="footer fixed-bottom text-left" style="background-color: white; border-style: solid; border-width: 1px;">
-
-      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2407992058828148" data-ad-slot="3910414450" data-ad-format="horizontal"></ins>
-    </div> -->
       </div>
-      <div class="col pl-md-4 ml-md-4 ml-xs-0 pl-md-0" style="">
-        <div class="text-left text-dark" style="">
-          <!-- <img class="d-block img-fluid" src="img/animations/giphy-2 copy.gif" alt="First slide"> -->
-
-          <div class="d-none d-md-block">
-            <br><br><br><br><br><br><br><br><br><br><br>
+      <div class="col pl-md-4 ml-md-4 ml-xs-0 pl-md-0">
+        <div class="text-left text-dark">
+          <div class="d-none d-md-block"><br><br><br><br><br><br><br><br><br><br><br></div>
+          <h2>What's going on here?</h2> We offer you to have some fun by playing the art history game!
+          <br><br>
+          <h2>How does it work?</h2> You need to guess the artists who made famous paintings. You win if you manage to guess 10 painters in a row.
+          <br><br>
+          <h2>What’s the use of it?</h2> Play in your free time and very soon you’ll be able to tell Claude Monet from Edouard Manet at a glance, let alone Alfred Sisley :)
+          <br>
+          <br>Click 'Add to Home Screen' button on your browser menu to install this game on your device.
+          <br><br>
+          <a href="mailto:info@artchallenge.ru">Contact us</a> if you find any errors or have ideas.
+          <br><br>
+          <h2>How can I help?</h2> Please, share this game with your friends if you like it.
+          <br><br>
+          <div id="share-buttons">
+            <!-- Facebook -->
+            <a href="http://www.facebook.com/sharer.php?u=http://artchallenge.win" target="_blank">
+              <img src="/img/social/facebook.png" alt="Facebook" />
+            </a>
+            <!-- Google+ -->
+            <a href="https://plus.google.com/share?url=http://artchallenge.win" target="_blank">
+              <img src="/img/social/google.png" alt="Google" />
+            </a>
+            <!-- Twitter -->
+            <a href="https://twitter.com/share?url=http://artchallenge.win&amp;text=Art%20Challenge&amp;hashtags=artchallenge" target="_blank">
+              <img src="/img/social/twitter.png" alt="Twitter" />
+            </a>
+            <!-- VK -->
+            <a href="http://vkontakte.ru/share.php?url=http://artchallenge.win" target="_blank">
+              <img src="/img/social/vk.png" alt="VK" />
+            </a>
+            <!-- LinkedIn -->
+            <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://artchallenge.win" target="_blank">
+              <img src="/img/social/linkedin.png" alt="LinkedIn" />
+            </a>
+            <!-- Pinterest -->
+            <a href="javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());">
+              <img src="/img/social/pinterest.png" alt="Pinterest" />
+            </a>
+            <!-- Reddit -->
+            <a href="http://reddit.com/submit?url=http://artchallenge.win&amp;title=Art%20Challenge" target="_blank">
+              <img src="/img/social/reddit.png" alt="Reddit" />
+            </a>
+            <!-- StumbleUpon-->
+            <a href="http://www.stumbleupon.com/submit?url=http://artchallenge.win&amp;title=Art%20Challenge" target="_blank">
+              <img src="/img/social/stumbleupon.png" alt="StumbleUpon" />
+            </a>
+            <!-- Tumblr-->
+            <a href="http://www.tumblr.com/share/link?url=http://artchallenge.win&amp;title=Art%20Challenge" target="_blank">
+              <img src="/img/social/tumblr.png" alt="Tumblr" />
+            </a>
+            <!-- Buffer -->
+            <a href="https://bufferapp.com/add?url=http://artchallenge.win&amp;text=Art%20Challenge" target="_blank">
+              <img src="/img/social/buffer.png" alt="Buffer" />
+            </a>
+            <!-- Digg -->
+            <a href="http://www.digg.com/submit?url=http://artchallenge.win" target="_blank">
+              <img src="/img/social/diggit.png" alt="Digg" />
+            </a>
+            <!-- Email -->
+            <a href="mailto:?Subject=Art%20Challenge&amp;Body=I%20saw%20this%20and%20thought%20of%20you!%20 http://artchallenge.win">
+              <img src="/img/social/email.png" alt="Email" />
+            </a>
           </div>
-
-          <h2>What's going on here?</h2>
-          We offer you to have some fun by playing the art history game!
-          <br><br>
-
-          <h2>How does it work?</h2>
-          You need to guess the artists who made famous paintings.
-          You win if you manage to guess 10 painters in a row.
-          <br><br>
-
-          <h2>What’s the use of it?</h2>
-          Play in your free time and very soon you’ll be able to tell Claude Monet from Edouard Manet at a glance, let alone Alfred Sisley :)
-          <br><br>
-
-          <h2>How can I help?</h2>
-          Please, share this game with your friends if you like it.
+          <br>
           <a href="https://money.yandex.ru/to/41001585423948" target="_blank">Donations</a> also a good way to show your love!
-
           <br><br>
-          <h3 class="text-primary text-center">
-            <i class="fa fa-facebook px-2"></i>
-            <i class="fa fa-twitter px-2"></i>
-            <i class="fa fa-vk px-2"></i>
-            <i class="fa fa-pinterest px-2"></i>
-          </h3>
-
-
-          <!-- Art Challenge is free education game created by art lovers. -->
-          <br> Install this game on your device by clicking Add to Home Screen button in your browser menu.
-          <br>
-          <br>
-
-
-          <a href="mailto:info@artchallenge.ru">Contact us</a>
-
-          <br><br>
-          <a href="#" @click="wipe()">Clear your data</a>
-
-
-
-
-
+          <a href="#wipe" @click="wipe()">Clear your data</a>
           <br><br> © 2018 Art Challenge
-
-
-
-
-
-          <!-- Art Challenge, 2018. -->
-
-          <!-- Have a request?
-        Wish your favorite painter will be added to the game?
-        textfield
-        и выпадающий список 0, 2$, 5$, 10$, 15$, 20$, 50$, 100$
-        Send and donate
-        or Just Send -->
-
           <br><br>
         </div>
       </div>
     </div>
-
   </div>
-
-
   <script src="dist/jquery-3.2.1.min.js"></script>
   <script src="dist/popper.min.js"></script>
   <script src="dist/bootstrap.min.js"></script>
@@ -227,14 +211,12 @@
   <script src="dist/jquery.bcSwipe.min.js"></script>
 
   <script src="js/index.js"></script>
-
   <script>
-    $(document).ready(function() {
-      $('.carousel').bcSwipe({
-        threshold: 50
-      });
-    });
+    // $(document).ready(function() {
+    //   $('.carousel').bcSwipe({
+    //     threshold: 50
+    //   });
+    // });
   </script>
 </body>
-
 </html>

@@ -27,6 +27,7 @@ Vue.component('quest', {
           </span>
         </div>
       </div>
+      <div class="d-none d-md-block"><br></div>
     </div>`,
   data: function() {
     return {

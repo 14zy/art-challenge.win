@@ -98,9 +98,9 @@ Vue.component('questionPicture', {
     zoom() {
       this.$root.zoomed = !this.$root.zoomed;
       // if (this.$root.zoomed) {
-      //   this.style = "max-width: 180%; width: 180%;";
+      //   this.style = "height: auto; width: 100%";
       // } else {
-      //   this.style = "";
+      //   this.style = "height: 100%; width: auto;";
       // }
     }
   }
@@ -142,7 +142,7 @@ Vue.component('painterBtn', {
         $('.painting').addClass('animated flash');
 
         window.app.celebrating = true;
-        // this.class.push("animated tada");
+
         setTimeout(function() {
           window.app.celebrating = false;
         }, 1200);
@@ -153,7 +153,7 @@ Vue.component('painterBtn', {
             window.app.nextQuestion();
           }, 100);
         } else {
-          // this.class.push("animated pulse");
+
           setTimeout(function() {
             window.app.nextQuestion();
           }, 400);
@@ -174,8 +174,8 @@ Vue.component('painterBtn', {
         }
       } else {
 
-        // this.class.push("animated tada");
-        $('.painting').addClass('animated tada');
+
+        $('.painting').addClass('animated jello');
 
         window.app.correctAnswers = window.app.correctAnswers - 1;
         if (window.app.correctAnswers < 0) {
@@ -184,10 +184,10 @@ Vue.component('painterBtn', {
 
         setTimeout(function() {
           window.app.nextQuestion();
-        }, 2800);
+        }, 2200);
 
         swal({
-          title: "<i class='fa fa-check text-danger'></i> "+this.$root.currentPainter.name,
+          title: this.$root.currentPainter.name,
           text: this.$root.currentPainter.years,
           position: 'top',
           imageUrl: 'img/painters/' + this.$root.currentPainter.id + '.png',
@@ -373,7 +373,7 @@ window.app = new Vue({
     nextQuestion: function() {
 
 
-      $('.painting').removeClass('animated tada');
+      $('.painting').removeClass('animated jello');
       $('.painting').removeClass('animated flash');
 
       //generate new question

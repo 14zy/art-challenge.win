@@ -1,7 +1,27 @@
+Vue.component('level', {
+  props: ['level'],
+  template: `
+  <div :id="thisQuest.id + '|' + thisQuest.difficult">
+    <h3 class="text-center mt-1 text-dark">{{thisQuest.title}}</h3>
+    <img class="d-block img-fluid mb-2" :src="'img/collections/' + thisQuest.id + '.jpg'" alt="">
+    <span class="text-dark text-capitalize">
+      <i class="fa fa-star-o text-waring"></i> {{thisQuest.difficult}}
+      <i class="fa fa-user text-waring pl-2"></i> {{thisQuest.painters.length}} Painters
+      <i class="fa fa-image text-waring pl-2"></i> {{thisQuest.pictures}} Pictures
+    </span>
+  </div>
+  `,
+  computed: {
+    thisQuest() {
+      return this.$root.quests[this.level]
+    }
+  }
+});
+
 Vue.component('quest', {
   props: ['quest'],
   template: `
-    <div :id="quest.id" :class="{'animated fadeIn': newQuestAnimation}" @click="selectQuest()">
+    <div :id="quest.id" class="carousel-item quest" @click="selectQuest()">
       <img :src="'img/collections/'+quest.id+'.jpg'" :class="{'img-gray': !quest.available&&!quest.completed}" style="width: 100%">
       <div class="quest" :class="{'new-quest': newQuestAnimation}">
         <div class="pt-2 pb-0 pr-4 pl-3" :class="{'text-muted': !quest.available&&!quest.completed, 'text-dark': quest.completed || quest.available}">
@@ -71,6 +91,16 @@ Vue.component('quests-list', {
   </div>`
 });
 
+Vue.component('quests-carousel', {
+  template: `
+  <div id="onBoardngCards" class="carousel slide px-3" style="height: 220px" data-ride="carousel">
+    <div class="carousel-inner" role="listbox">
+      <quest v-for="quest in this.$root.quests" :key="quest.id" :quest="quest"></quest>
+    </div>
+  </div>
+  `
+});
+
 var router = new VueRouter({
     mode: 'history',
     routes: []
@@ -89,6 +119,10 @@ $.getScript( "data/quests.json.js", function( data, textStatus, jqxhr ) {
       methods: {
         wipe: function () {
           localStorage.setItem("completed", "");
+        },
+        gogo: function () {
+          this.link = 'game.html?quest=' + $('.active').children()[0].id.split("|")[0] + '&difficult=' + $('.active').children()[0].id.split("|")[1];
+          window.location.href = this.link;
         }
       },
       mounted: function() {

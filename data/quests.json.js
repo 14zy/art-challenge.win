@@ -16,19 +16,19 @@ var quests = [
     pictures: 163,
     painters: [9, 17]
   },
-  {
-    id: "surrealism",
-    difficult: "easy",
-    title: "Famous Surrealism",
-    completed: false,
-    available: false,
-    pictures: 743,
-    painters: [33, 14, 15, 79, 82]
-  },
+  // {
+  //   id: "surrealism",
+  //   difficult: "easy",
+  //   title: "Famous Surrealism",
+  //   completed: false,
+  //   available: false,
+  //   pictures: 743,
+  //   painters: [33, 14, 15, 79, 82]
+  // },
   {
     id: "popularEasy",
     difficult: "easy",
-    title: "10 Famous Painters",
+    title: "Easy Ten",
     completed: false,
     available: false,
     pictures: 2475,
@@ -37,20 +37,11 @@ var quests = [
   {
     id: "popular",
     difficult: "basic",
-    title: "50 Famous Painters",
+    title: "Popular Painters",
     completed: false,
     available: false,
     pictures: 8446,
     painters: [1, 4, 7, 9, 14, 15, 17, 19, 21, 22, 24, 26, 27, 28, 29, 30, 32, 33, 34, 35, 36, 39, 40, 41, 42, 43, 45, 46, 49, 50, 53, 54, 55, 57, 58, 61, 62, 63, 69, 73, 75, 77, 79, 80, 82, 83, 94, 95, 112, 118]
-  },
-  {
-    id: "impressionism",
-    difficult: "basic",
-    title: "Impressionism",
-    completed: false,
-    available: false,
-    pictures: 4124,
-    painters: [2, 3, 9, 17, 21, 30, 36, 49, 53, 57, 60, 61, 69, 77, 84, 94, 96]
   },
   // {
   //   id: "american",
@@ -64,7 +55,7 @@ var quests = [
   {
     id: "avantgarde",
     difficult: "basic",
-    title: "A V A N T G A R D E",
+    title: "Avantgarde",
     completed: false,
     available: false,
     pictures: 2423,
@@ -109,6 +100,15 @@ var quests = [
     painters: [2, 9, 17, 30, 36, 40, 49, 53, 57, 58, 61, 64, 65, 69, 70, 73, 75, 77, 93, 94, 96, 97]
   },
   {
+    id: "impressionism",
+    difficult: "hard",
+    title: "Impressionism",
+    completed: false,
+    available: false,
+    pictures: 4124,
+    painters: [2, 3, 9, 17, 21, 30, 36, 49, 53, 57, 60, 61, 69, 77, 84, 94, 96]
+  },
+  {
     id: "russian",
     difficult: "hard",
     title: "Russian Painters",
@@ -129,7 +129,7 @@ var quests = [
   {
     id: "popularAll",
     difficult: "hard",
-    title: "100 Famous Painters",
+    title: "All Famous Painters",
     completed: false,
     available: false,
     pictures: 22744,

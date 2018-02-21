@@ -106,7 +106,7 @@ Vue.component('questionPicture', {
 
 Vue.component('answers', {
   template: `
-    <div class="container">
+    <div class="container-fluid">
     <div class='row painter-button pt-1' style="background-color: rgba(255,255,255,1)">
       <div class="col-2 text-left">
         <a href="/" class="text-dark p-1 px-2">
@@ -126,7 +126,7 @@ Vue.component('answers', {
     </div>
 
       <div class='row' style="background-color: rgba(255,255,255,1)">
-        <painterBtn class="col-6 p-1" style='border-radius:0; paddig: 0' v-for="painter in this.$root.currentAnswers" :key="painter.id" :painter="painter"></painterBtn>
+        <painterBtn class="col p-1" style='border-radius:0; paddig: 0; min-width: 150px' v-for="painter in this.$root.currentAnswers" :key="painter.id" :painter="painter"></painterBtn>
       </div>
     </div>`
 });

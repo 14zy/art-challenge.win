@@ -159,9 +159,7 @@ window.fbAsyncInit = function() {
             <level :level='"9"'></level>
           </div>
 
-          <div class="carousel-item px-0">
-            <level :level='"10"'></level>
-          </div>
+
 
         </div>
          <a class="carousel-control-prev" href="#onBoardngCards" role="button" data-slide="prev">
@@ -178,7 +176,7 @@ window.fbAsyncInit = function() {
     </div>
 
     <br>
-    <button class="btn btn-lg btn-outline-success mt-4 px-4 py-2" @click="gogo()">
+    <button class="btn btn-lg btn-outline-primary mt-4 px-4 py-2" @click="gogo()">
       <h2 class="mb-0">PLAY</h2>
     </button>
 
@@ -205,7 +203,7 @@ window.fbAsyncInit = function() {
 <script>
 $(document).ready(function() {
   $('.carousel').bcSwipe({
-    // threshold: 50
+    threshold: 50
   });
 });
 </script>

@@ -2,7 +2,7 @@ Vue.component('game-screen', {
   template: `
   <div>
       <transition enter-active-class="animated fadeInDown" leave-active-class="animated fadeOutUp" mode="out-in">
-        <div v-show="!this.$root.zoomed" class="container-fluid fixed-top pt-3" style="color: white; font-size:18px;">
+        <div v-show="false" class="container-fluid fixed-top pt-3" style="color: white; font-size:18px;">
           <small>
             <div class="row">
               <div class="col-2 text-left">
@@ -21,7 +21,7 @@ Vue.component('game-screen', {
               </div>
 
               <div class="col-2 text-right" style='font-size:20px'>
-                <a target="_blank" :href="returnURL()" class="text-white p-1 px-2">
+                <a target="_blank" href="" class="text-white p-1 px-2">
                   <i class="fa fa-download"></i>
                 </a>
               </div>
@@ -42,25 +42,25 @@ Vue.component('game-screen', {
     <question></question>
   </div>`,
   methods: {
-    returnURL() {
-      return "http://artchallenge.me/painters/" + this.$root.currentPainter.id + "/" + this.$root.currentPicture + ".jpg";
-      // window.open(url);
-    }
+    // returnURL() {
+    //   return "http://artchallenge.me/painters/" + this.$root.currentPainter.id + "/" + this.$root.currentPicture + ".jpg";
+    //   // window.open(url);
+    // }
   }
 });
 
 Vue.component('scoresTen', {
-  template: `<div>
-    <i class="fa fa-star text-warning" v-for="correct in this.$root.correctAnswers"></i><i class="fa fa-star" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i><i style="" class="fa fa-gift"></i>
+  template: `<div class="">
+    <i class="fa fa-star text-warning" v-for="correct in this.$root.correctAnswers"></i><i class="fa fa-star-o" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i><i style="" class="fa fa-gift"></i>
     </div>`
 });
 
 Vue.component('scoresMax', {
   template: `
-  <div @click=''>
+  <a href='#' class='text-dark'>
     {{this.$root.correctAnswers}}
-    <i class="fa fa-star"></i>
-  </div>`
+    <i class="fa fa-star text-warning"></i>
+  </a>`
 });
 
 
@@ -74,9 +74,7 @@ Vue.component('question', {
 Vue.component('questionPicture', {
   template: `
   <div class="text-center img-scroll">
-
     <img @click="zoom()" :style="this.style" class="painting" :src="pictureURL()"/>
-
   </div>`,
   data: function() {
     return {
@@ -109,8 +107,26 @@ Vue.component('questionPicture', {
 Vue.component('answers', {
   template: `
     <div class="container">
-      <div class='row'>
-        <painterBtn class=" col-6 p-1" style='border-radius:0; paddig: 0' v-for="painter in this.$root.currentAnswers" :key="painter.id" :painter="painter"></painterBtn>
+    <div class='row painter-button pt-1' style="background-color: rgba(255,255,255,1)">
+      <div class="col-2 text-left">
+        <a href="/" class="text-dark p-1 px-2">
+          <i class="fa fa-arrow-left"></i>
+        </a>
+      </div>
+
+      <div class="col-8 text-center">
+          <scoresMax></scoresMax>
+      </div>
+
+      <div class="col-2 text-right" style='font-size:20px'>
+        <a target="_blank" href="#" class="text-dark p-1 px-2">
+          <i class="fa fa-save"></i>
+        </a>
+      </div>
+    </div>
+
+      <div class='row' style="background-color: rgba(255,255,255,1)">
+        <painterBtn class="col-6 p-1" style='border-radius:0; paddig: 0' v-for="painter in this.$root.currentAnswers" :key="painter.id" :painter="painter"></painterBtn>
       </div>
     </div>`
 });
@@ -295,6 +311,10 @@ window.app = new Vue({
     $.getScript("data/lang/"+window.lang+"/phrases.js").done(function() {});
   },
   methods: {
+    returnURL: function() {
+      return "http://artchallenge.me/painters/" + window.app.currentPainter.id + "/" + window.app.currentPicture + ".jpg";
+      // window.open(url);
+    },
     endGame: function() {
       //not using anymore?
     },

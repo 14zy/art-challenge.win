@@ -38,11 +38,13 @@
   /*height: 28px;*/
   font-weight: normal;
   overflow-x: hidden;
+  color: #333;
 }
 
 .painter-years  {
   font-size: 12px
   font-weight: 100;
+  color: #333;
 }
 
 .painter-button  {

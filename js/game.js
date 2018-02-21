@@ -1,42 +1,45 @@
 Vue.component('game-screen', {
   template: `
   <div>
-      <div v-show="!this.$root.zoomed" class="container-fluid fixed-top pt-3" style="color: white; font-size:18px;">
-        <div class="row">
-          <div class="col-2 text-left">
-            <a href="/" class="text-white p-1 px-2">
-              <i class="fa fa-arrow-left"></i>
-            </a>
-          </div>
+      <transition enter-active-class="animated fadeInDown" leave-active-class="animated fadeOutUp" mode="out-in">
+        <div v-show="!this.$root.zoomed" class="container-fluid fixed-top pt-3" style="color: white; font-size:18px;">
+          <small>
+            <div class="row">
+              <div class="col-2 text-left">
+                <a href="/" class="text-white p-1 px-2">
+                  <i class="fa fa-arrow-left"></i>
+                </a>
+              </div>
 
-          <div class="col-8 text-center">
-            <div v-if="this.$root.correctAnswers < 10">
-              <scoresTen></scoresTen>
-            </div>
-            <div v-else>
-              <scoresMax></scoresMax>
+              <div class="col-8 text-center">
+                <div v-if="this.$root.correctAnswers < 0">
+                  <scoresTen></scoresTen>
+                </div>
+                <div v-else>
+                  <scoresMax></scoresMax>
+                </div>
+              </div>
+
+              <div class="col-2 text-right" style='font-size:20px'>
+                <a target="_blank" :href="returnURL()" class="text-white p-1 px-2">
+                  <i class="fa fa-download"></i>
+                </a>
+              </div>
             </div>
           </div>
+        </transition>
 
-          <div class="col-2 text-right" style='font-size:20px'>
-            <a target="_blank" :href="returnURL()" class="text-white p-1 px-2">
-              <i class="fa fa-download"></i>
-            </a>
+        <div v-show="this.$root.zoomed" class="container-fluid fixed-top pt-3" style="pointer-events: none; font-size:22px; color: white;">
+          <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8"></div>
+            <div class="col-2 text-right">
+              <!-- <span class="p-1 px-2" style='background-color: rgba(0,0,0,0.1); border-radius: 50px'><i class="fa fa-comments"></i></span> -->
+            </div>
           </div>
         </div>
-      </div>
-
-      <div v-show="this.$root.zoomed" class="container-fluid fixed-top pt-3" style="pointer-events: none; font-size:22px; color: white;">
-        <div class="row">
-          <div class="col-2"></div>
-          <div class="col-8"></div>
-          <div class="col-2 text-right">
-            <span class="p-1 px-2" style='background-color: rgba(0,0,0,0.1); border-radius: 50px'><i class="fa fa-close"></i></span>
-          </div>
-        </div>
-      </div>
+      </small>
     <question></question>
-    <div v-show="window.lang == 'ru'" class="text-capitalize text-muted text-center p-1 pb-2">{{this.$root.currentPictureName}}</div>
   </div>`,
   methods: {
     returnURL() {
@@ -48,15 +51,15 @@ Vue.component('game-screen', {
 
 Vue.component('scoresTen', {
   template: `<div>
-    <i class="fa fa-star text-warning" v-for="correct in this.$root.correctAnswers"></i><i class="fa fa-star" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i><i style="" class="fa fa-star"></i>
+    <i class="fa fa-star text-warning" v-for="correct in this.$root.correctAnswers"></i><i class="fa fa-star" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i><i style="" class="fa fa-gift"></i>
     </div>`
 });
 
 Vue.component('scoresMax', {
   template: `
-  <div @click='window.app.winner()'>
+  <div @click=''>
     {{this.$root.correctAnswers}}
-    <i class="fa fa-star text-warning"></i>
+    <i class="fa fa-star"></i>
   </div>`
 });
 
@@ -71,7 +74,9 @@ Vue.component('question', {
 Vue.component('questionPicture', {
   template: `
   <div class="text-center img-scroll">
+
     <img @click="zoom()" :style="this.style" class="painting" :src="pictureURL()"/>
+
   </div>`,
   data: function() {
     return {
@@ -92,11 +97,11 @@ Vue.component('questionPicture', {
     },
     zoom() {
       this.$root.zoomed = !this.$root.zoomed;
-      if (this.$root.zoomed) {
-        this.style = "max-width: 180%; width: 180%;";
-      } else {
-        this.style = "";
-      }
+      // if (this.$root.zoomed) {
+      //   this.style = "max-width: 180%; width: 180%;";
+      // } else {
+      //   this.style = "";
+      // }
     }
   }
 });
@@ -130,9 +135,11 @@ Vue.component('painterBtn', {
   },
   methods: {
     answer: function(painter) {
+      this.$root.zoomed = true;
 
       if (painter.id == this.$root.currentPainter.id) {
         window.app.correctAnswers += 1;
+        $('.painting').addClass('animated flash');
 
         window.app.celebrating = true;
         // this.class.push("animated tada");
@@ -149,9 +156,9 @@ Vue.component('painterBtn', {
           // this.class.push("animated pulse");
           setTimeout(function() {
             window.app.nextQuestion();
-          }, 100);
+          }, 400);
           swal({
-            position: "top",
+            position: "center",
             title: "<i class='fa fa-check text-success'></i> "+this.$root.goodPhrase(),
             timer: 1600,
             backdrop: false,
@@ -168,6 +175,7 @@ Vue.component('painterBtn', {
       } else {
 
         // this.class.push("animated tada");
+        $('.painting').addClass('animated tada');
 
         window.app.correctAnswers = window.app.correctAnswers - 1;
         if (window.app.correctAnswers < 0) {
@@ -191,38 +199,53 @@ Vue.component('painterBtn', {
           focusConfirm: false,
           background: "rgba(255,255,255,0.9)",
           showConfirmButton: true,
-          confirmButtonText:'Who is it?',
+          confirmButtonText:'Read more',
           // showCancelButton: true,
           // cancelButtonText:'Close',
           animation: false,
           // type: "error",
-          customClass: 'animated fadeIn'
+          customClass: 'animated fadeInDown'
         }).then(function(result) {
-          html = `
-          <div class="text-left">
-            <h3><img width="48px" src="/img/painters/` + window.app.currentPainter.id + `.png">`+window.app.currentPainter.name+`</h3>
-            <img class="img-fluid pb-2" src="http://artchallenge.me/painters/`+ window.app.currentPainter.id+`/1.jpg">
-            ` + window.painterDetails.bio[window.lang]+`
-          </div>
-          `;
           if (result.value) {
-            swal({
-              // title: "<img width='48px' src='/img/painters/" + window.app.currentPainter.id + ".png'>" + window.app.currentPainter.name,
-              html: html,
-              position: 'top',
-              // imageUrl: 'img/painters/' + window.app.currentPainter.id + '.png',
-              // imageWidth: 60,
-              timer: false,
-              width: '340px',
-              showCloseButton: true,
-              background: "rgba(255,255,255,1)",
-              cancelButtonText:'Close',
-              showCancelButton: true,
-              showConfirmButton: false,
-              animation: false,
-              customClass: 'animated fadeIn'
-            })
+            $.ajax({
+               url: 'http://178.62.133.139:5994/painters/'+window.app.currentPainter.id,
+               type: 'get',
+               dataType: 'jsonp',
+               success: function(data) {
+                 window.painterDetails = data;
+                 image = data.paintings[window.app.currentPicture-1];
+                 window.app.currentPictureName = image.name[window.lang];
+                html = `
+                <div class="text-left">
+                  <h3><img width="64px" src="/img/painters/` + window.app.currentPainter.id + `.png">`+window.app.currentPainter.name+`</h3>
+                  <img class="img-fluid pb-2" src="http://artchallenge.me/painters/`+ window.app.currentPainter.id+`/1.jpg">
+                  ` + window.painterDetails.bio[window.lang]+`
+                </div>
+                `;
+
+                swal({
+                  // title: "<img width='48px' src='/img/painters/" + window.app.currentPainter.id + ".png'>" + window.app.currentPainter.name,
+                  html: html,
+                  position: 'top',
+                  // imageUrl: 'img/painters/' + window.app.currentPainter.id + '.png',
+                  // imageWidth: 60,
+                  timer: false,
+                  width: '340px',
+                  showCloseButton: true,
+                  background: "rgba(255,255,255,1)",
+                  cancelButtonText:'Close',
+                  showCancelButton: true,
+                  showConfirmButton: false,
+                  animation: false,
+                  customClass: 'animated fadeIn'
+                })
+              }
+
+
+            });
+
           }
+
         });
 
         // setTimeout(function() {
@@ -243,7 +266,7 @@ window.app = new Vue({
   router,
   el: '#app',
   data: {
-    zoomed: false,
+    zoomed: true,
     celebrating: false,
     currentQuest: "",
     questions: 10,
@@ -268,7 +291,7 @@ window.app = new Vue({
     } else {
         window.lang = "en";
     }
-    // window.lang = "ru"; //////
+    window.lang = "en";
     $.getScript("data/lang/"+window.lang+"/phrases.js").done(function() {});
   },
   methods: {
@@ -283,7 +306,7 @@ window.app = new Vue({
       swal({
         title: 'Congratulations',
         position: 'center',
-        text: "You have completed this class",
+        text: "You are great at Art!",
         imageUrl: 'img/awards/olive.gif',
         // showCloseButton: true,
         showCancelButton: true,
@@ -349,7 +372,9 @@ window.app = new Vue({
     },
     nextQuestion: function() {
 
-      // this.$root.zoomed = false;
+
+      $('.painting').removeClass('animated tada');
+      $('.painting').removeClass('animated flash');
 
       //generate new question
       this.currentPainter = this.randomPainter();
@@ -358,16 +383,16 @@ window.app = new Vue({
       this.currentPicture = Math.floor(Math.random() * this.currentPainter.paintings) + 1;
 
       //picture name
-      $.ajax({
-         url: 'http://178.62.133.139:5994/painters/'+this.currentPainter.id,
-         type: 'get',
-         dataType: 'jsonp',
-         success: function(data) {
-           window.painterDetails = data;
-           image = data.paintings[window.app.currentPicture-1];
-           window.app.currentPictureName = image.name[window.lang];
-         }
-      });
+      // $.ajax({
+      //    url: 'http://178.62.133.139:5994/painters/'+this.currentPainter.id,
+      //    type: 'get',
+      //    dataType: 'jsonp',
+      //    success: function(data) {
+      //      window.painterDetails = data;
+      //      image = data.paintings[window.app.currentPicture-1];
+      //      window.app.currentPictureName = image.name[window.lang];
+      //    }
+      // });
 
       //generate new answers //need generate more answers (2/16)
       this.currentAnswers = [];

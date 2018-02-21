@@ -12,7 +12,7 @@ Vue.component('game-screen', {
               </div>
 
               <div class="col-8 text-center">
-                <div v-if="this.$root.correctAnswers < 0">
+                <div v-if="this.$root.correctAnswers < 10">
                   <scoresTen></scoresTen>
                 </div>
                 <div v-else>

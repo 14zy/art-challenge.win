@@ -1,34 +1,6 @@
 Vue.component('game-screen', {
   template: `
   <div>
-      <transition enter-active-class="animated fadeInDown" leave-active-class="animated fadeOutUp" mode="out-in">
-        <div v-show="false" class="container-fluid fixed-top pt-3" style="color: white; font-size:18px;">
-          <small>
-            <div class="row">
-              <div class="col-2 text-left">
-                <a href="/" class="text-white p-1 px-2">
-                  <i class="fa fa-arrow-left"></i>
-                </a>
-              </div>
-
-              <div class="col-8 text-center">
-                <div v-if="this.$root.correctAnswers < 10">
-                  <scoresTen></scoresTen>
-                </div>
-                <div v-else>
-                  <scoresMax></scoresMax>
-                </div>
-              </div>
-
-              <div class="col-2 text-right" style='font-size:20px'>
-                <a target="_blank" href="" class="text-white p-1 px-2">
-                  <i class="fa fa-download"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </transition>
-
         <div v-show="this.$root.zoomed" class="container-fluid fixed-top pt-3" style="pointer-events: none; font-size:22px; color: white;">
           <div class="row">
             <div class="col-2"></div>
@@ -38,8 +10,18 @@ Vue.component('game-screen', {
             </div>
           </div>
         </div>
-      </small>
     <question></question>
+
+    <div v-show="this.$root.hint" class="container-fluid pt-3" style="color: white; font-size:18px;">
+        <div class="row">
+          <div class="col-2"></div>
+          <div class="col-8 text-center text-dark mb-2">
+            <img src="img/ui/tap3.png" class="m-2" width="48">
+            <p class="">Click on picture to answer</p>
+          </div>
+          <div class="col-2"></div>
+        </div>
+      </div>
   </div>`,
   methods: {
     // returnURL() {
@@ -95,6 +77,7 @@ Vue.component('questionPicture', {
     },
     zoom() {
       this.$root.zoomed = !this.$root.zoomed;
+      this.$root.hint = false;
       // if (this.$root.zoomed) {
       //   this.style = "height: auto; width: 100%";
       // } else {
@@ -107,23 +90,23 @@ Vue.component('questionPicture', {
 Vue.component('answers', {
   template: `
     <div class="container-fluid">
-    <div class='row painter-button pt-1' style="background-color: rgba(255,255,255,1)">
-      <div class="col-2 text-left">
-        <a href="/" class="text-dark p-1 px-2">
-          <i class="fa fa-arrow-left"></i>
-        </a>
-      </div>
+      <div class='row painter-button pt-1' style="background-color: rgba(255,255,255,1)">
+        <div class="col-2 text-left">
+          <a href="/" class="text-dark p-1 px-2">
+            <i class="fa fa-arrow-left"></i>
+          </a>
+        </div>
 
-      <div class="col-8 text-center">
-          <scoresMax></scoresMax>
-      </div>
+        <div class="col-8 text-center">
+            <scoresMax></scoresMax>
+        </div>
 
-      <div class="col-2 text-right" style='font-size:20px'>
-        <a target="_blank" href="#" class="text-dark p-1 px-2">
-          <i class="fa fa-save"></i>
-        </a>
+        <div class="col-2 text-right" style='font-size:20px'>
+          <a target="_blank" href="#" class="text-dark p-1 px-2">
+            <i class="fa fa-save"></i>
+          </a>
+        </div>
       </div>
-    </div>
 
       <div class='row' style="background-color: rgba(255,255,255,1)">
         <painterBtn class="col p-1" style='border-radius:0; paddig: 0; min-width: 150px' v-for="painter in this.$root.currentAnswers" :key="painter.id" :painter="painter"></painterBtn>
@@ -294,6 +277,7 @@ window.app = new Vue({
     currentAnswers: [],
     completedQuests: [],
     currentQuestDifficult: "",
+    hint: true,
     goodPhrases: window.goodPhrases
   },
   created: function() {
@@ -391,7 +375,6 @@ window.app = new Vue({
       return this.questionsDB[Math.floor(Math.random() * this.questionsDB.length)]
     },
     nextQuestion: function() {
-
 
       $('.painting').removeClass('animated jello');
       $('.painting').removeClass('animated flash');

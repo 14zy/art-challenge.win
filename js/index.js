@@ -119,10 +119,6 @@ $.getScript( "data/quests.json.js", function( data, textStatus, jqxhr ) {
       methods: {
         wipe: function () {
           localStorage.setItem("completed", "");
-        },
-        gogo: function () {
-          this.link = 'game.html?quest=' + $('.active').children()[0].id.split("|")[0] + '&difficult=' + $('.active').children()[0].id.split("|")[1];
-          window.location.href = this.link;
         }
       },
       mounted: function() {
@@ -157,7 +153,30 @@ $.getScript( "data/quests.json.js", function( data, textStatus, jqxhr ) {
 });
 
 $(document).ready(function() {
-  $('.carousel').bcSwipe({
-    threshold: 50
-  });
+  var mySwiper = new Swiper ('.swiper-container', {
+     direction: 'horizontal',
+     loop: true,
+     initialSlide: 2,
+     effect: "slide",
+     spaceBetween: 20,
+     centeredSlides: true,
+     pagination: {
+       el: '.swiper-pagination',
+       clickable: true,
+     },
+     autoplay: {
+       delay: 4100,
+       disableOnInteraction: false,
+     },
+     // navigation: {
+     //   nextEl: '.swiper-button-next',
+     //   prevEl: '.swiper-button-prev',
+     // },
+   })
+
+    mySwiper.on('slideChange', function () {
+      var link = '/game.html?quest=' + $(mySwiper.slides[mySwiper.activeIndex]).children()[0].id.split("|")[0] + '&difficult=' + $(mySwiper.slides[mySwiper.activeIndex]).children()[0].id.split("|")[1];
+      $('#playBtn').prop('href', link)
+    });
+
 });

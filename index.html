@@ -52,6 +52,7 @@
   <link rel="stylesheet" href="dist/bootstrap.min.css">
   <link rel="stylesheet" href="dist/font-awesome.min.css">
   <link rel="stylesheet" href="dist/animate.css" />
+  <link rel="stylesheet" href="dist/swiper.min.css" />
   <link rel="stylesheet" href="css/style.css">
 
   <script src="dist/vue.min.js"></script>
@@ -95,7 +96,7 @@ window.fbAsyncInit = function() {
 
   <div id="app" class="container">
     <div class='row pl-0 pr-0'>
-      <div class="col-xs-12 text-center">
+      <div class="col-xs-12 text-center" style="width: 100%">
         <!-- <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut" mode="out-in">
         <div v-show="loading" class="text-center py-5 fixed-top" style='background-color: white; z-index:9999'>
         <img src="img/loadings/gem.gif" class="img-fluid"/>
@@ -113,10 +114,10 @@ window.fbAsyncInit = function() {
 
     </div>
 
-    <div id="questsList" class="px-0 pt-4 pb-0 text-center">
+    <!-- <div id="questsList" class="px-0 pt-4 pb-0 text-center"> -->
       <!-- <quests-carousel></quests-carousel> -->
 
-      <div id="onBoardngCards" class="carousel slide" style="noheight: 0px" data-ride="carousel">
+      <!-- <div id="onBoardngCards" class="carousel slide" style="noheight: 0px" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
 
           <div class="carousel-item px-0">
@@ -170,15 +171,58 @@ window.fbAsyncInit = function() {
            <span class="carousel-control-next-icon" aria-hidden="true"></span>
            <span class="sr-only">Next</span>
          </a>
+      </div> -->
+      <!-- </div> -->
+
+      <!-- Swiper -->
+      <br>
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <level :level='"0"'></level>
       </div>
+      <div class="swiper-slide">
+        <level :level='"1"'></level>
+      </div>
+      <div class="swiper-slide">
+        <level :level='"2"'></level>
+      </div>
+      <div class="swiper-slide">
+        <level :level='"3"'></level>
+      </div>
+      <div class="swiper-slide">
+        <level :level='"4"'></level>
+      </div>
+      <div class="swiper-slide">
+        <level :level='"5"'></level>
+      </div>
+      <div class="swiper-slide">
+        <level :level='"6"'></level>
+      </div>
+      <div class="swiper-slide">
+        <level :level='"7"'></level>
+      </div>
+      <div class="swiper-slide">
+        <level :level='"8"'></level>
+      </div>
+      <div class="swiper-slide">
+        <level :level='"9"'></level>
+      </div>
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+    <!-- Add Arrows -->
+    <!-- <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div> -->
+  </div>
 
       <!-- <quests-list></quests-list> -->
-    </div>
+
 
     <br>
-    <button class="btn btn-lg btn-outline-primary mt-4 px-4 py-2" @click="gogo()">
+    <a id="playBtn" class="btn btn-lg btn-outline-primary mt-4 px-4 py-2" href="/game.html?quest=popular&difficult=basic">
       <h2 class="mb-0">PLAY</h2>
-    </button>
+    </a>
 
     <div class="text-center text-dark">
       <br><br>
@@ -197,7 +241,8 @@ window.fbAsyncInit = function() {
 <script src="dist/popper.min.js"></script>
 <script src="dist/bootstrap.min.js"></script>
 <script defer src="dist/sweetalert2.all.js"></script>
-<script src="dist/jquery.bcSwipe.min.js"></script>
+
+<script src="dist/swiper.min.js"></script>
 
 <script src="js/index.js"></script>
 

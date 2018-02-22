@@ -155,3 +155,9 @@ $.getScript( "data/quests.json.js", function( data, textStatus, jqxhr ) {
   });
 
 });
+
+$(document).ready(function() {
+  $('.carousel').bcSwipe({
+    threshold: 50
+  });
+});

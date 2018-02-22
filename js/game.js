@@ -89,7 +89,7 @@ Vue.component('questionPicture', {
 
 Vue.component('answers', {
   template: `
-    <div class="container-fluid">
+    <div class="container-fluid pl-1 pr-2">
       <div class='row painter-button pt-1' style="background-color: rgba(255,255,255,1)">
         <div class="col-2 text-left">
           <a href="/" class="text-dark p-1 px-2">
@@ -102,7 +102,7 @@ Vue.component('answers', {
         </div>
 
         <div class="col-2 text-right" style='font-size:20px'>
-          <a target="_blank" href="#" class="text-dark p-1 px-2">
+          <a target="_blank" href="#" class="text-dark">
             <i class="fa fa-save"></i>
           </a>
         </div>

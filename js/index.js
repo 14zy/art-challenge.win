@@ -147,36 +147,41 @@ $.getScript( "data/quests.json.js", function( data, textStatus, jqxhr ) {
          //Смотрим локалсторадж
 
          this.quests[0].available = true;
+
+         var mySwiper = new Swiper ('.swiper-container', {
+            direction: 'horizontal',
+            loop: true,
+            initialSlide: 2,
+            effect: "slide",
+            spaceBetween: 20,
+            centeredSlides: true,
+            pagination: {
+              el: '.swiper-pagination',
+              clickable: true,
+            },
+            autoplay: {
+              delay: 4100,
+              disableOnInteraction: false,
+            },
+            // navigation: {
+            //   nextEl: '.swiper-button-next',
+            //   prevEl: '.swiper-button-prev',
+            // },
+          })
+
+           mySwiper.on('slideChange', function () {
+             var link = '/game.html?quest=' + $(mySwiper.slides[mySwiper.activeIndex]).children()[0].id.split("|")[0] + '&difficult=' + $(mySwiper.slides[mySwiper.activeIndex]).children()[0].id.split("|")[1];
+             $('#playBtn').prop('href', link)
+           });
+
+
        }
   });
 
 });
 
-$(document).ready(function() {
-  var mySwiper = new Swiper ('.swiper-container', {
-     direction: 'horizontal',
-     loop: true,
-     initialSlide: 2,
-     effect: "slide",
-     spaceBetween: 20,
-     centeredSlides: true,
-     pagination: {
-       el: '.swiper-pagination',
-       clickable: true,
-     },
-     autoplay: {
-       delay: 4100,
-       disableOnInteraction: false,
-     },
-     // navigation: {
-     //   nextEl: '.swiper-button-next',
-     //   prevEl: '.swiper-button-prev',
-     // },
-   })
-
-    mySwiper.on('slideChange', function () {
-      var link = '/game.html?quest=' + $(mySwiper.slides[mySwiper.activeIndex]).children()[0].id.split("|")[0] + '&difficult=' + $(mySwiper.slides[mySwiper.activeIndex]).children()[0].id.split("|")[1];
-      $('#playBtn').prop('href', link)
-    });
-
-});
+// $(document).ready(function() {
+//
+//
+//
+// });

@@ -3,9 +3,9 @@
   /* min-height: 100%;
   min-width: 100%; */
 
-  min-width: 100%;
-  max-width: 100%;
-  /* min-height: 70%; */
+  width: 100%;
+  max-width: 1024px;
+  /* max-height: 1024px; */
 
 
   /* box-shadow: 0 3px 2px #777; */
@@ -54,7 +54,7 @@
 }
 
 .painter-button:hover {
-  /*background-color: #EEE;*/
+  background-color: #EEE;
 }
 
 .quest {
@@ -106,6 +106,10 @@
 
 .swiper-container {
     width: 100%;
-    max-width: 380px;
+    max-width: 410px;
     height: 340px;
+}
+
+.swiper-slide {
+  padding: 20px;
 }

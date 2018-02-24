@@ -33,7 +33,7 @@ Vue.component('game-screen', {
 
 Vue.component('scoresTen', {
   template: `<div class="">
-    <i class="fa fa-star text-warning" v-for="correct in this.$root.correctAnswers"></i><i class="fa fa-star-o" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i><i style="" class="fa fa-gift"></i>
+    <i class="fa fa-star text-warning" v-for="correct in this.$root.correctAnswers"></i><i class="fa fa-star text-dark" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i><i style="" class="fa fa-gift text-dark"></i>
     </div>`
 });
 
@@ -89,27 +89,30 @@ Vue.component('questionPicture', {
 
 Vue.component('answers', {
   template: `
-    <div class="container-fluid pl-1 pr-2">
-      <div class='row painter-button pt-1' style="background-color: rgba(255,255,255,1)">
+    <div class="">
+      <div class='row m-0 painter-button pt-1' style="background-color: rgba(255,255,255,1)">
         <div class="col-2 text-left">
           <a href="/" class="text-dark p-1 px-2">
             <i class="fa fa-arrow-left"></i>
           </a>
         </div>
-
         <div class="col-8 text-center">
+          <div v-if="this.$root.correctAnswers < 10">
+            <scoresTen></scoresTen>
+          </div>
+          <div v-else>
             <scoresMax></scoresMax>
+          </div>
         </div>
-
         <div class="col-2 text-right" style='font-size:20px'>
           <a target="_blank" href="#" class="text-dark">
-            <i class="fa fa-save"></i>
+            <i class="fa fa-download"></i>
           </a>
         </div>
       </div>
 
-      <div class='row' style="background-color: rgba(255,255,255,1)">
-        <painterBtn class="col p-1" style='border-radius:0; paddig: 0; min-width: 150px' v-for="painter in this.$root.currentAnswers" :key="painter.id" :painter="painter"></painterBtn>
+      <div class='row m-0' style="background-color: rgba(255,255,255,1)">
+        <painterBtn style='cursor: pointer; border-radius:0; min-width: 150px' v-for="painter in this.$root.currentAnswers" :key="painter.id" :painter="painter"></painterBtn>
       </div>
     </div>`
 });
@@ -118,18 +121,22 @@ Vue.component('painterBtn', {
   props: ["painter"],
   template: `
   <div @click="answer(painter);" :class="this.class">
-      <img onerror="this.src='/img/ui/person.png';" width="92" height="92" style="margin: 0 0 -2% -4%" :src="'img/painters/' + painter.id + '.png'" />
+
+      <img onerror="this.src='/img/ui/person.png';" width="100" style="margin-left: -20px " :src="'img/painters/' + painter.id + '.png'" />
+
       <span class="text-right" style='right: 5%; top:10%; position: absolute;'>
         <div class='painter-name'>{{ painter.name }}</div>
       </span>
+
       <span class="text-right" style='right: 5%; bottom:10%; position: absolute;'>
         <img width="18" :src="'img/nationality/' + painter.nationality[0] + '.png'"/>
         <div style='line-height: 1.2;' class="painter-years small">{{ painter.years }}</div>
       </span>
+
   </div>`,
   data: function() {
     return {
-      class: ["py-2", "painter-button", "text-left"]
+      class: ["col", "painter-button", ""]
     }
   },
   methods: {
@@ -196,7 +203,7 @@ Vue.component('painterBtn', {
           width: '340px',
           showCloseButton: true,
           focusConfirm: false,
-          background: "rgba(255,255,255,0.9)",
+          background: "rgba(255,255,255,1)",
           showConfirmButton: true,
           confirmButtonText:'Read more',
           // showCancelButton: true,
@@ -326,30 +333,12 @@ window.app = new Vue({
         }
       }).then(function(result) {
         if (result.value) {
-
-          // html = ``
-          // swal({
-          //   title: "Share",
-          //   html: html
-          // });
-
-
-          // url = "https://www.facebook.com/dialog/feed?app_id=478531102278887&display=popup&link=http://artchallenge.win/?utm_source=fb-win&redirect_uri=http://artchallenge.ru/1.html&picture=" + "http://artchallenge.win/shareMedal.jpg" + "&source=" + "http://artchallenge.win/shareMedal.jpg" + "&name=" + "Name" + "&caption=" + "Caption" + "&description=" + "Description";
           url=`https://www.facebook.com/dialog/share?app_id=478531102278887&display=popup&href=http://artchallenge.win/?utm_source=fb-win&redirect_uri=http://artchallenge.win/`;
-
-          console.log(url);
-          window.location.href=url;
-
-          //window.open(url, 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=604,height=401');
-
-          //yaCounter24594722.reachGoal('WINNER-SHARE-FB');
-
-
+          window.location.href = url;
           window.app.celebrating = false;
-          //this.newRound();
+          //yaCounter24594722.reachGoal('WINNER-SHARE-FB');
         } else if (result.dismiss === 'cancel') {
           window.location.href='/?completed=true';
-          // window.history.back();
         }
       });
 

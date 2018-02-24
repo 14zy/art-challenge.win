@@ -160,7 +160,7 @@ $.getScript( "data/quests.json.js", function( data, textStatus, jqxhr ) {
               clickable: true,
             },
             autoplay: {
-              delay: 4100,
+              delay: 14000,
               disableOnInteraction: false,
             },
             // navigation: {

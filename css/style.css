@@ -105,6 +105,7 @@
 }
 
 .swiper-container {
-    width: 375px;
+    width: 100%;
+    max-width: 380px;
     height: 340px;
 }

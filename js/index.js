@@ -4,10 +4,21 @@ Vue.component('level', {
   <div :id="thisQuest.id + '|' + thisQuest.difficult">
     <h3 class="text-center mt-1 text-dark">{{thisQuest.title}}</h3>
     <img class="d-block img-fluid mb-2" :src="'img/collections/' + thisQuest.id + '.jpg'" alt="">
-    <span class="text-dark text-capitalize">
-      <i class="fa fa-star-o text-waring"></i> {{thisQuest.difficult}}
-      <i class="fa fa-user text-waring pl-2"></i> {{thisQuest.painters.length}} Painters
-      <i class="fa fa-image text-waring pl-2"></i> {{thisQuest.pictures}} Pictures
+    <span class="text-capitalize">
+      <span v-if="thisQuest.difficult == 'easy'">
+        <i class="fa fa-star text-success"></i> {{thisQuest.difficult}}
+      </span>
+      <span v-if="thisQuest.difficult == 'basic'">
+        <i class="fa fa-star text-primary"></i> {{thisQuest.difficult}}
+      </span>
+      <span v-if="thisQuest.difficult == 'advanced'">
+        <i class="fa fa-star text-warning"></i> {{thisQuest.difficult}}
+      </span>
+      <span v-if="thisQuest.difficult == 'hard'">
+        <i class="fa fa-star text-danger"></i> {{thisQuest.difficult}}
+      </span>
+      <i class="fa fa-user text-dark  pl-2"></i> {{thisQuest.painters.length}} Painters
+      <i class="fa fa-image text-dark  pl-2"></i> {{thisQuest.pictures}} Pictures
     </span>
   </div>
   `,

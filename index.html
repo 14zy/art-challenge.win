@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 
   <title>🖼 Play Art Challenge 🎭 Relax 🖌 Edutainment Game 🎨 Learn Painters 🏞  Master Your Skills 🏆</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no,,shrink-to-fit=yes" />
   <meta name="description" content="Try to guess painters and master your skill!">
   <link rel="image_src" href="http://artchallenge.win/share.jpg">
   <meta property="og:type" content="website" />
@@ -94,14 +94,13 @@ window.fbAsyncInit = function() {
 
 <body>
 
-  <div id="app" class="container">
-    <div class='row pl-0 pr-0'>
-      <div class="col-xs-12 text-center" style="width: 100%">
-      <br>
-      <img class="p-2" width="100px" src="apple-icon-512x512.png">
-      <h2 style="color: #333;">Art Challenge</h2>
-      <h6 class="text-muted">Select a class to continue</h6>
-      <br>
+  <div id="app" class="">
+    <div class='row px-0'>
+      <div class="col-12 p-4 text-center">
+        <img class="img-fluid" width="128" src="apple-icon-256x256.png">
+      </div>
+
+      <div class="col-12 p-0 text-center">
         <div class="swiper-container">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
@@ -140,27 +139,30 @@ window.fbAsyncInit = function() {
           <!-- <div class="swiper-button-next"></div>
           <div class="swiper-button-prev"></div> -->
         </div>
-    <br>
-    <a id="playBtn" class="btn btn-lg btn-outline-primary mt-4 px-4 py-2" href="/game.html?quest=popular&difficult=basic">
-      <h2 class="mb-0">PLAY</h2>
-    </a>
 
-    <div class="text-center text-dark">
-      <br><br>
-      © 2018 Art Challenge
-      <br>
-      <a href="https://paypal.me/artchallenge/5USD" target="_blank">Donate</a>
-      <br><br>
+        <a id="playBtn" class="btn btn-lg" href="/game.html?quest=popular&difficult=basic">
+          <h1 class="" style="font-size: 80px">
+            <i class="fa fa-play-circle"></i>
+          </h1>
+        </a>
+
+        <div class="text-center text-dark">
+          <br>
+          © 2018 Art Challenge
+          <br>
+          <a href="https://paypal.me/artchallenge/5USD" target="_blank">Donate</a>
+          <br><br>
+        </div>
+      </div>
+
     </div>
   </div>
-</div>
-</div>
-<script src="dist/jquery-3.2.1.min.js"></script>
-<script src="dist/popper.min.js"></script>
-<script src="dist/bootstrap.min.js"></script>
-<script defer src="dist/sweetalert2.all.js"></script>
-<script src="dist/swiper.min.js"></script>
-<script src="js/index.js"></script>
+  <script src="dist/jquery-3.2.1.min.js"></script>
+  <script src="dist/popper.min.js"></script>
+  <script src="dist/bootstrap.min.js"></script>
+  <script defer src="dist/sweetalert2.all.js"></script>
+  <script src="dist/swiper.min.js"></script>
+  <script src="js/index.js"></script>
 
 </body>
 </html>

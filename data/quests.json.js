@@ -28,7 +28,7 @@ var quests = [
   {
     id: "popularEasy",
     difficult: "easy",
-    title: "Easy Ten",
+    title: "Easy 10 Painters",
     completed: false,
     available: false,
     pictures: 2475,

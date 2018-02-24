@@ -103,7 +103,8 @@
   box-shadow: 0;
   display: inline;
 }
+
 .swiper-container {
-    width: 380px;
+    width: 375px;
     height: 340px;
 }

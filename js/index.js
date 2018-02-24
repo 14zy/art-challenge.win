@@ -153,7 +153,7 @@ $.getScript( "data/quests.json.js", function( data, textStatus, jqxhr ) {
             loop: true,
             initialSlide: 2,
             effect: "slide",
-            spaceBetween: 20,
+            spaceBetween: 0,
             centeredSlides: true,
             pagination: {
               el: '.swiper-pagination',

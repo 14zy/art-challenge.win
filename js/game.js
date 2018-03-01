@@ -92,7 +92,7 @@ Vue.component('answers', {
     <div class="">
       <div class='row m-0 painter-button pt-1' style="background-color: rgba(255,255,255,1)">
         <div class="col-2 text-left">
-          <a href="/" class="text-dark p-1 px-2">
+          <a href="/" class="text-dark">
             <i class="fa fa-arrow-left"></i>
           </a>
         </div>
@@ -164,7 +164,7 @@ Vue.component('painterBtn', {
             window.app.nextQuestion();
           }, 400);
           swal({
-            position: "center",
+            position: "top",
             title: "<i class='fa fa-check text-success'></i> "+this.$root.goodPhrase(),
             timer: 1600,
             backdrop: false,

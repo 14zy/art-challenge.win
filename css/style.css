@@ -107,9 +107,9 @@
 .swiper-container {
     width: 100%;
     max-width: 410px;
-    height: 340px;
+    height: 320px;
 }
 
 .swiper-slide {
-  padding: 20px;
+  padding: 20px 16px 0 16px;
 }

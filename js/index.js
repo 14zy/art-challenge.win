@@ -5,15 +5,22 @@ Vue.component('level', {
     <h3 class="text-center mt-1 text-dark">{{thisQuest.title}}</h3>
     <img class="d-block img-fluid mb-2" :src="'img/collections/' + thisQuest.id + '.jpg'" alt="">
     <div class="row text-capitalize">
-      <div class='col-6 text-left'>
+      <div class="col-6 text-left">
+        <i class="fa fa-user text-dark"></i>
+         {{thisQuest.painters.length}}
+      </div>
+      <div class='col-6 text-right'>
         <span v-if="thisQuest.difficult == 'easy'">
+        <i class="fa fa-star text-success"></i>
           <i class="fa fa-star text-success"></i>
         </span>
         <span v-if="thisQuest.difficult == 'basic'">
           <i class="fa fa-star text-primary"></i>
           <i class="fa fa-star text-primary"></i>
+          <i class="fa fa-star text-primary"></i>
         </span>
         <span v-if="thisQuest.difficult == 'advanced'">
+          <i class="fa fa-star text-warning"></i>
           <i class="fa fa-star text-warning"></i>
           <i class="fa fa-star text-warning"></i>
           <i class="fa fa-star text-warning"></i>
@@ -23,12 +30,10 @@ Vue.component('level', {
           <i class="fa fa-star text-danger"></i>
           <i class="fa fa-star text-danger"></i>
           <i class="fa fa-star text-danger"></i>
+          <i class="fa fa-star text-danger"></i>
         </span>
       </div>
-      <div class="col-6 text-right">
-        <i class="fa fa-user text-dark"></i>
-         {{thisQuest.painters.length}} Painters
-      </div>
+
     </div>
   </div>
   `,
@@ -178,7 +183,7 @@ $.getScript( "data/quests.json.js", function( data, textStatus, jqxhr ) {
             centeredSlides: true,
             pagination: {
               el: '.swiper-pagination',
-              clickable: true,
+              clickable: true
             },
             autoplay: {
               delay: 14000,

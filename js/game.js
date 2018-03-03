@@ -1,17 +1,7 @@
 Vue.component('game-screen', {
   template: `
   <div>
-        <div v-show="this.$root.zoomed" class="container-fluid fixed-top pt-3" style="pointer-events: none; font-size:22px; color: white;">
-          <div class="row">
-            <div class="col-2"></div>
-            <div class="col-8"></div>
-            <div class="col-2 text-right">
-              <!-- <span class="p-1 px-2" style='background-color: rgba(0,0,0,0.1); border-radius: 50px'><i class="fa fa-comments"></i></span> -->
-            </div>
-          </div>
-        </div>
     <question></question>
-
     <div v-show="this.$root.hint" class="container-fluid pt-3" style="color: white; font-size:18px;">
         <div class="row">
           <div class="col-2"></div>
@@ -22,29 +12,8 @@ Vue.component('game-screen', {
           <div class="col-2"></div>
         </div>
       </div>
-  </div>`,
-  methods: {
-    // returnURL() {
-    //   return "http://artchallenge.me/painters/" + this.$root.currentPainter.id + "/" + this.$root.currentPicture + ".jpg";
-    //   // window.open(url);
-    // }
-  }
-});
-
-Vue.component('scoresTen', {
-  template: `<div class="">
-    <i class="fa fa-star text-warning" v-for="correct in this.$root.correctAnswers"></i><i class="fa fa-star text-dark" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i><i style="" class="fa fa-gift text-dark"></i>
-    </div>`
-});
-
-Vue.component('scoresMax', {
-  template: `
-  <div class='text-dark'>
-    {{this.$root.correctAnswers}}
-    <i class="fa fa-star text-warning"></i>
   </div>`
 });
-
 
 Vue.component('question', {
   template: `
@@ -78,21 +47,31 @@ Vue.component('questionPicture', {
     zoom() {
       this.$root.zoomed = !this.$root.zoomed;
       this.$root.hint = false;
-      // if (this.$root.zoomed) {
-      //   this.style = "height: auto; width: 100%";
-      // } else {
-      //   this.style = "height: 100%; width: auto;";
-      // }
     }
   }
 });
 
+Vue.component('scoresTen', {
+  template: `
+    <div>
+      <i class="fa fa-check text-success" v-for="correct in this.$root.correctAnswers"></i><i class="fa fa-check text-darklight" v-for="questionMark in (this.$root.questions-this.$root.correctAnswers -1 )"></i><i style="" class="fa fa-check text-darklight"></i>
+    </div>`
+});
+
+Vue.component('scoresMax', {
+  template: `
+  <div class='text-dark'>
+    {{this.$root.correctAnswers}}
+    <i class="fa fa-check text-success"></i>
+  </div>`
+});
+
 Vue.component('answers', {
   template: `
-    <div class="">
+    <div>
       <div class='row m-0 painter-button pt-1' style="background-color: rgba(255,255,255,1)">
         <div class="col-2 text-left">
-          <a href="/" class="text-dark">
+          <a href="/" class="text-darklight">
             <i class="fa fa-arrow-left"></i>
           </a>
         </div>
@@ -105,7 +84,7 @@ Vue.component('answers', {
           </div>
         </div>
         <div class="col-2 text-right" style='font-size:20px'>
-          <a target="_blank" :href="returnURL()" class="text-dark">
+          <a target="_blank" :href="returnURL()" class="text-darklight">
             <i class="fa fa-download"></i>
           </a>
         </div>
@@ -126,18 +105,14 @@ Vue.component('painterBtn', {
   props: ["painter"],
   template: `
   <div @click="answer(painter);" :class="this.class">
-
       <img onerror="this.src='/img/ui/person.png';" width="100" style="margin-left: -20px " :src="'img/painters/' + painter.id + '.png'" />
-
       <span class="text-right" style='right: 5%; top:10%; position: absolute;'>
         <div class='painter-name'>{{ painter.name }}</div>
       </span>
-
       <span class="text-right" style='right: 5%; bottom:10%; position: absolute;'>
         <img width="18" :src="'img/nationality/' + painter.nationality[0] + '.png'"/>
         <div style='line-height: 1.2;' class="painter-years small">{{ painter.years }}</div>
       </span>
-
   </div>`,
   data: function() {
     return {
@@ -146,25 +121,27 @@ Vue.component('painterBtn', {
   },
   methods: {
     answer: function(painter) {
-      this.$root.zoomed = true;
-
+      //CORRECT ANSWER
       if (painter.id == this.$root.currentPainter.id) {
         window.app.correctAnswers += 1;
+        // Star aimtion here
         $('.painting').addClass('animated flash');
-
-        window.app.celebrating = true;
-
-        setTimeout(function() {
-          window.app.celebrating = false;
-        }, 1200);
-
+        // window.app.celebrating = true;
+        // setTimeout(function() {
+        //   window.app.celebrating = false;
+        // }, 1200);
         if (window.app.correctAnswers == 10) {
+          //WINNER ANSWER
+          window.app.zoomed = true;
           window.app.winner();
           setTimeout(function() {
             window.app.nextQuestion();
-          }, 100);
+          }, 1200);
         } else {
-
+        //REGULAR WINNER ANSWER
+          setTimeout(function() {
+            window.app.zoomed = true;
+          }, 200);
           setTimeout(function() {
             window.app.nextQuestion();
           }, 400);
@@ -181,28 +158,26 @@ Vue.component('painterBtn', {
             showConfirmButton: false,
             padding: "1em"
           });
-
         }
       } else {
-
-
+        //WRONG ANSWER
         $('.painting').addClass('animated jello');
+        // setTimeout(function() {
+        window.app.zoomed = true;
+        // }, 1200);
 
-        window.app.correctAnswers = window.app.correctAnswers - 1;
-        if (window.app.correctAnswers < 0) {
-          window.app.correctAnswers = 0;
-        }
-
-        setTimeout(function() {
-          window.app.nextQuestion();
-        }, 2200);
+        if(window.app.currentQuestDifficult=="easy"||window.app.currentQuestDifficult=="basic"){
+          window.app.correctAnswers=window.app.correctAnswers-1;
+          if(window.app.correctAnswers<0){window.app.correctAnswers=0;}
+        }else{window.app.correctAnswers=0;}
+        //star animation here
 
         swal({
-          title: this.$root.currentPainter.name,
-          text: this.$root.currentPainter.years,
+          title: this.$root.currentPainter.name,// "No!",
+          text: "It was me", //this.$root.currentPainter.years,
           position: 'top',
           imageUrl: 'img/painters/' + this.$root.currentPainter.id + '.png',
-          imageWidth: 142,
+          imageWidth: 200,
           timer: 3600,
           backdrop: false,
           width: '340px',
@@ -210,13 +185,11 @@ Vue.component('painterBtn', {
           focusConfirm: false,
           background: "rgba(255,255,255,1)",
           showConfirmButton: true,
-          confirmButtonText:'Read more',
-          // showCancelButton: true,
-          // cancelButtonText:'Close',
+          confirmButtonText:'More info',
           animation: false,
-          // type: "error",
           customClass: 'animated fadeInDown'
         }).then(function(result) {
+
           if (result.value) {
             $.ajax({
                url: 'http://178.62.133.139:5994/painters/'+window.app.currentPainter.id,
@@ -228,18 +201,19 @@ Vue.component('painterBtn', {
                  window.app.currentPictureName = image.name[window.lang];
                 html = `
                 <div class="text-left">
-                  <h3><img width="64px" src="/img/painters/` + window.app.currentPainter.id + `.png">`+window.app.currentPainter.name+`</h3>
+                  <h3>`
+                    +window.app.currentPainter.name+`
+                  </h3>
                   <img class="img-fluid pb-2" src="http://artchallenge.me/painters/`+ window.app.currentPainter.id+`/1.jpg">
                   ` + window.painterDetails.bio[window.lang]+`
                 </div>
+                <div class="text-center">
+                  <img width="160px" src="/img/painters/` + window.app.currentPainter.id + `.png">
+                </div>
                 `;
-
                 swal({
-                  // title: "<img width='48px' src='/img/painters/" + window.app.currentPainter.id + ".png'>" + window.app.currentPainter.name,
                   html: html,
                   position: 'top',
-                  // imageUrl: 'img/painters/' + window.app.currentPainter.id + '.png',
-                  // imageWidth: 60,
                   timer: false,
                   width: '340px',
                   showCloseButton: true,
@@ -249,23 +223,19 @@ Vue.component('painterBtn', {
                   showConfirmButton: false,
                   animation: false,
                   customClass: 'animated fadeIn'
-                })
+                });
+                setTimeout(function() {
+                  window.app.nextQuestion();
+                }, 3600);
               }
-
-
             });
-
+          } else {
+              window.app.nextQuestion();
           }
-
         });
-
-        // setTimeout(function() {
-        //    $('.swal2-image').addClass('animated flash');
-        // }, 100);
-
       }
     }
-  },
+  }
 });
 
 var router = new VueRouter({
@@ -278,7 +248,7 @@ window.app = new Vue({
   el: '#app',
   data: {
     zoomed: true,
-    celebrating: false,
+    // celebrating: false,
     currentQuest: "",
     questions: 10,
     correctAnswers: 0,
@@ -309,16 +279,12 @@ window.app = new Vue({
   methods: {
     returnURL: function() {
       return "http://artchallenge.me/painters/" + window.app.currentPainter.id + "/" + window.app.currentPicture + ".jpg";
-      // window.open(url);
-    },
-    endGame: function() {
-      //not using anymore?
     },
     goodPhrase: function() {
       return window.goodPhrases[Math.floor(Math.random() * window.goodPhrases.length)];
     },
     winner: function() {
-      window.app.celebrating = true;
+      // window.app.celebrating = true;
       swal({
         title: 'Victory',
         position: 'center',
@@ -333,43 +299,42 @@ window.app = new Vue({
         cancelButtonClass: "text-primary",
         cancelButtonColor: 'white',
         confirmButtonColor: 'white',
-        onClose: function() {
-          window.app.celebrating = false;
-        }
+        // onClose: function() {
+        //   window.app.celebrating = false;
+        // }
       }).then(function(result) {
         if (result.value) {
           url=`https://www.facebook.com/dialog/share?app_id=478531102278887&display=popup&href=http://artchallenge.win/?utm_source=fb-win&redirect_uri=http://artchallenge.win/`;
           window.location.href = url;
-          window.app.celebrating = false;
-          //yaCounter24594722.reachGoal('WINNER-SHARE-FB');
+          // window.app.celebrating = false;
+          // yaCounter24594722.reachGoal('WINNER-SHARE-FB');
         } else if (result.dismiss === 'cancel') {
           window.location.href='/?completed=true';
         }
       });
-
-      if (this.completedQuests) {
-        var newQuestWinning = true;
-        for (var i = 0; i < this.completedQuests.length; i++) {
-          if (this.completedQuests[i] == this.currentQuest) {
-            console.log("winnig this quest not first time");
-            newQuestWinning = false;
-          }
-        }
-        if (newQuestWinning) {
-          this.completedQuests.push(this.currentQuest);
-          console.log("winnig this quest in first time!");
-        }
-      } else {
-        this.completedQuests = [];
-        this.completedQuests.push(this.currentQuest);
-      }
-      localStorage.setItem("completed", this.completedQuests);
+      // if (this.completedQuests) {
+      //   var newQuestWinning = true;
+      //   for (var i = 0; i < this.completedQuests.length; i++) {
+      //     if (this.completedQuests[i] == this.currentQuest) {
+      //       console.log("winnig this quest not first time");
+      //       newQuestWinning = false;
+      //     }
+      //   }
+      //   if (newQuestWinning) {
+      //     this.completedQuests.push(this.currentQuest);
+      //     console.log("winnig this quest in first time!");
+      //   }
+      // } else {
+      //   this.completedQuests = [];
+      //   this.completedQuests.push(this.currentQuest);
+      // }
+      // localStorage.setItem("completed", this.completedQuests);
     },
     randomPainter: function() {
       return this.questionsDB[Math.floor(Math.random() * this.questionsDB.length)]
     },
     nextQuestion: function() {
-
+      // console.log("next question");
       $('.painting').removeClass('animated jello');
       $('.painting').removeClass('animated flash');
 
@@ -429,7 +394,6 @@ window.app = new Vue({
         }
         shuffle(this.currentAnswers);
       }
-
     },
     newRound: function() {
       this.correctAnswers = 0;
@@ -440,42 +404,37 @@ window.app = new Vue({
       if (this.$route.query.quest) {
         this.currentQuest = this.$route.query.quest;
         this.currentQuestDifficult = this.$route.query.difficult;
-
         // Загружаем художников из текущего режима в questionsDB
         $.getJSON("../data/quests/" + window.lang + "/" + this.currentQuest + ".json", function(data) {
           paintersDB = data.paintersDB;
           window.app.questionsDB = paintersDB;
           window.app.newRound();
         })
-
         //Смотрим локалсторадж
-        this.completedQuests = localStorage.getItem("completed");
-        if (this.completedQuests) {
-          this.completedQuests = this.completedQuests.split(",");
-          // console.log(this.completedQuests);
-          // for (var i = 0; i < this.quests.length; i++) {
-          //   if (this.completedQuests.slice(-1)[0] == this.quests[i].id) {
-          //     for (var z = 0; z < i; z++) {
-          //       this.quests[z].completed = true;
-          //     }
-          //     this.quests[i].completed = true;
-          //     this.quests[i+1].available = true;
-          //     if (this.quests[i].available) {
-          //       this.quests[i].available = false;
-          //     }
-          //     console.log(this.quests[i+1]);
-          //   }
-          // };
-        } else {
-          // this.quests[0].available = true;
-        }
+        // this.completedQuests = localStorage.getItem("completed");
+        // if (this.completedQuests) {
+        //   this.completedQuests = this.completedQuests.split(",");
+        //   // console.log(this.completedQuests);
+        //   // for (var i = 0; i < this.quests.length; i++) {
+        //   //   if (this.completedQuests.slice(-1)[0] == this.quests[i].id) {
+        //   //     for (var z = 0; z < i; z++) {
+        //   //       this.quests[z].completed = true;
+        //   //     }
+        //   //     this.quests[i].completed = true;
+        //   //     this.quests[i+1].available = true;
+        //   //     if (this.quests[i].available) {
+        //   //       this.quests[i].available = false;
+        //   //     }
+        //   //     console.log(this.quests[i+1]);
+        //   //   }
+        //   // };
+        // } else {
+        //   // this.quests[0].available = true;
+        // }
         //Смотрим локалсторадж
-
       }
-
   }
 });
-
 
 function shuffle(a) {
   var j, x, i;

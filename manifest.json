@@ -6,8 +6,8 @@
  "start_url": "/?utm_source=web_app_manifest",
  "display": "standalone",
  "orientation": "any",
- "background_color": "#333",
- "theme_color": "#333",
+ "background_color": "#FFF",
+ "theme_color": "#FFF",
  "icons": [
   {
    "src": "\/android-icon-36x36.png",

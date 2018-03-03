@@ -39,10 +39,10 @@ Vue.component('scoresTen', {
 
 Vue.component('scoresMax', {
   template: `
-  <a href='#' class='text-dark'>
+  <div class='text-dark'>
     {{this.$root.correctAnswers}}
     <i class="fa fa-star text-warning"></i>
-  </a>`
+  </div>`
 });
 
 
@@ -105,7 +105,7 @@ Vue.component('answers', {
           </div>
         </div>
         <div class="col-2 text-right" style='font-size:20px'>
-          <a target="_blank" href="#" class="text-dark">
+          <a target="_blank" :href="returnURL()" class="text-dark">
             <i class="fa fa-download"></i>
           </a>
         </div>
@@ -114,7 +114,12 @@ Vue.component('answers', {
       <div class='row m-0' style="background-color: rgba(255,255,255,1)">
         <painterBtn style='cursor: pointer; border-radius:0; min-width: 150px' v-for="painter in this.$root.currentAnswers" :key="painter.id" :painter="painter"></painterBtn>
       </div>
-    </div>`
+    </div>`,
+    methods: {
+      returnURL() {
+        return "http://artchallenge.me/painters/" + this.$root.currentPainter.id + "/" + this.$root.currentPicture + ".jpg";
+      }
+    }
 });
 
 Vue.component('painterBtn', {
@@ -315,11 +320,11 @@ window.app = new Vue({
     winner: function() {
       window.app.celebrating = true;
       swal({
-        title: 'Congratulations',
+        title: 'Victory',
         position: 'center',
-        text: "You are great at Art!",
+        text: "You have completed this class!",
         imageUrl: 'img/awards/olive.gif',
-        // showCloseButton: true,
+        showCloseButton: true,
         showCancelButton: true,
         confirmButtonText: "Share",
         // imageWidth: 220,

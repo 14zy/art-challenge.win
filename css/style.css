@@ -88,6 +88,10 @@
   color: #777;
 }
 
+.text-pink {
+  color: rgba(213,87,113, 0.8);
+}
+
 .text-goodPhrase {
   margin-top: 15%;
 }

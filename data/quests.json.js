@@ -1,12 +1,13 @@
 var quests = [
-  // {
-  //   id: "picasso",
-  //   difficult: "easy",
-  //   title: "Dali or Picasso?",
-  //   completed: false,
-  //   available: false,
-  //   painters: [28, 15]
-  // },
+  {
+    id: "picasso",
+    difficult: "easy",
+    title: "Dali or Picasso?",
+    completed: false,
+    available: false,
+    pictures: 141,
+    painters: [28, 15]
+  },
   {
     id: "monet",
     difficult: "easy",
@@ -37,7 +38,7 @@ var quests = [
   {
     id: "popular",
     difficult: "basic",
-    title: "Famous Painters",
+    title: "50 Popular Painters",
     completed: false,
     available: false,
     pictures: 8446,
@@ -52,27 +53,32 @@ var quests = [
   //   painters: [83, 116, 118, 18, 60]
   // },
   {
-    id: "italian",
-    difficult: "basic",
-    title: "Italian Masters",
-    completed: false,
-    available: false,
-    pictures: 1323,
-    painters: [1, 41, 42, 43, 45, 55, 87, 95, 101, 106, 108, 112]
-  },
-
-  {
     id: "avantgarde",
-    difficult: "advanced",
+    difficult: "basic",
     title: "Avantgarde",
     completed: false,
     available: false,
     pictures: 2423,
     painters: [26, 4, 40, 52, 1, 63, 83, 118, 28, 80, 82, 49, 94, 15]
   },
-
-
-
+  {
+    id: "french",
+    difficult: "basic",
+    title: "French Painters",
+    completed: false,
+    available: false,
+    pictures: 3757,
+    painters: [2, 9, 17, 30, 36, 40, 49, 53, 57, 58, 61, 64, 65, 69, 70, 73, 75, 77, 93, 94, 96, 97]
+  },
+  {
+    id: "italian",
+    difficult: "basic",
+    title: "Italian Painters",
+    completed: false,
+    available: false,
+    pictures: 1323,
+    painters: [1, 41, 42, 43, 45, 55, 87, 95, 101, 106, 108, 112]
+  },
   // {
   //   id: "abstractionism",
   //   difficult: "basic",
@@ -90,22 +96,13 @@ var quests = [
   //   painters: [56, 44]
   // },
   {
-    id: "french",
-    difficult: "advanced",
-    title: "French Painters",
+    id: "popularAll",
+    difficult: "hard",
+    title: "100 Famous Painters",
     completed: false,
     available: false,
-    pictures: 3757,
-    painters: [2, 9, 17, 30, 36, 40, 49, 53, 57, 58, 61, 64, 65, 69, 70, 73, 75, 77, 93, 94, 96, 97]
-  },
-  {
-    id: "russian",
-    difficult: "advanced",
-    title: "Russian Painters",
-    completed: false,
-    available: false,
-    pictures: 4777,
-    painters: [3, 4, 5, 6, 8, 10, 11, 12, 13, 16, 19, 20, 23, 25, 26, 27, 37, 38, 44, 47, 48, 76, 81, 84, 85, 86, 103, 105, 113]
+    pictures: 22744,
+    painters: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100]
   },
   {
     id: "impressionism",
@@ -117,6 +114,15 @@ var quests = [
     painters: [2, 3, 9, 17, 21, 30, 36, 49, 53, 57, 60, 61, 69, 77, 84, 94, 96]
   },
   {
+    id: "russian",
+    difficult: "hard",
+    title: "Russian Painters",
+    completed: false,
+    available: false,
+    pictures: 4777,
+    painters: [3, 4, 5, 6, 8, 10, 11, 12, 13, 16, 19, 20, 23, 25, 26, 27, 37, 38, 44, 47, 48, 76, 81, 84, 85, 86, 103, 105, 113]
+  },
+  {
     id: "northernRenaissance",
     difficult: "hard",
     title: "Northern Renaissance",
@@ -125,13 +131,4 @@ var quests = [
     pictures: 2764,
     painters: [24, 35, 39, 41, 42, 45, 50, 55, 87, 89, 90, 91, 92, 95, 98, 100, 101, 104, 106, 108, 110, 111, 112, 114]
   },
-  {
-    id: "popularAll",
-    difficult: "hard",
-    title: "All Popular Painters",
-    completed: false,
-    available: false,
-    pictures: 22744,
-    painters: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100]
-  }
 ]

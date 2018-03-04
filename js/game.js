@@ -169,9 +169,9 @@ Vue.component('painterBtn', {
         window.app.zoomed = true;
         // }, 1200);
 
-        if(window.app.currentQuestDifficult=="easy"||window.app.currentQuestDifficult=="basic"){
+        if(window.app.currentQuestDifficult!="hard"){
           window.app.correctAnswers=window.app.correctAnswers-1;
-          if(window.app.correctAnswers<0){window.app.correctAnswers=0;}
+          if(window.app.correctAnswers<0||window.app.correctAnswers>=10){window.app.correctAnswers=0;}
         }else{window.app.correctAnswers=0;}
         //star animation here
 

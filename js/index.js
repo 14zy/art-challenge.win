@@ -11,26 +11,19 @@ Vue.component('level', {
       </div>
       <div class='col-6 text-right'>
         <span v-if="thisQuest.difficult == 'easy'">
-        <i class="fa fa-star text-success"></i>
-          <i class="fa fa-star text-success"></i>
+          <i class="fa fa-star text-pink"></i>
+          <i class="fa fa-star-o text-darklight"></i>
+          <i class="fa fa-star-o text-darklight"></i>
         </span>
         <span v-if="thisQuest.difficult == 'basic'">
-          <i class="fa fa-star text-primary"></i>
-          <i class="fa fa-star text-primary"></i>
-          <i class="fa fa-star text-primary"></i>
-        </span>
-        <span v-if="thisQuest.difficult == 'advanced'">
-          <i class="fa fa-star text-warning"></i>
-          <i class="fa fa-star text-warning"></i>
-          <i class="fa fa-star text-warning"></i>
-          <i class="fa fa-star text-warning"></i>
+          <i class="fa fa-star text-pink"></i>
+          <i class="fa fa-star text-pink"></i>
+          <i class="fa fa-star-o text-darklight"></i>
         </span>
         <span v-if="thisQuest.difficult == 'hard'">
-          <i class="fa fa-star text-danger"></i>
-          <i class="fa fa-star text-danger"></i>
-          <i class="fa fa-star text-danger"></i>
-          <i class="fa fa-star text-danger"></i>
-          <i class="fa fa-star text-danger"></i>
+          <i class="fa fa-star text-pink"></i>
+          <i class="fa fa-star text-pink"></i>
+          <i class="fa fa-star text-pink"></i>
         </span>
       </div>
     </div>
@@ -171,7 +164,7 @@ $.getScript( "data/quests.json.js", function( data, textStatus, jqxhr ) {
          var mySwiper = new Swiper ('.swiper-container', {
             direction: 'horizontal',
             loop: true,
-            initialSlide: 2,
+            initialSlide: 3,
             effect: "slide",
             spaceBetween: 0,
             centeredSlides: true,

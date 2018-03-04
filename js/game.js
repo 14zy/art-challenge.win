@@ -120,6 +120,10 @@ Vue.component('painterBtn', {
   },
   methods: {
     answer: function(painter) {
+
+      if (!window.app.multiclick) {
+        window.app.multiclick = true
+
       //CORRECT ANSWER
       if (painter.id == this.$root.currentPainter.id) {
         window.app.correctAnswers += 1;
@@ -235,6 +239,7 @@ Vue.component('painterBtn', {
       }
     }
   }
+}
 });
 
 var router = new VueRouter({
@@ -247,6 +252,7 @@ window.app = new Vue({
   el: '#app',
   data: {
     zoomed: true,
+    multiclick: false,
     // celebrating: false,
     currentQuest: "",
     questions: 10,
@@ -331,6 +337,7 @@ window.app = new Vue({
     },
     nextQuestion: function() {
       // console.log("next question");
+      window.app.multiclick = false;
       $('.painting').removeClass('animated jello');
       $('.painting').removeClass('animated flash');
 

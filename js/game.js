@@ -121,7 +121,7 @@ Vue.component('painterBtn', {
   methods: {
     answer: function(painter) {
 
-      if (!window.app.multiclick) {
+    if (!window.app.multiclick) {
         window.app.multiclick = true
 
       //CORRECT ANSWER
@@ -177,7 +177,7 @@ Vue.component('painterBtn', {
 
         swal({
           title: this.$root.currentPainter.name,// "No!",
-          text: "It was me", //this.$root.currentPainter.years,
+          text: window.langDB.wrongSub, //this.$root.currentPainter.years,
           position: 'top',
           imageUrl: 'img/painters/' + this.$root.currentPainter.id + '.png',
           imageWidth: 200,
@@ -188,7 +188,7 @@ Vue.component('painterBtn', {
           focusConfirm: false,
           background: "rgba(255,255,255,1)",
           showConfirmButton: true,
-          confirmButtonText:'More info',
+          confirmButtonText: window.langDB.wrongBtn,
           animation: false,
           customClass: 'animated fadeInDown'
         }).then(function(result) {
@@ -221,7 +221,7 @@ Vue.component('painterBtn', {
                   width: '340px',
                   showCloseButton: true,
                   background: "rgba(255,255,255,1)",
-                  cancelButtonText:'Close',
+                  cancelButtonText: window.langDB.wrongMoreBtn,
                   showCancelButton: true,
                   showConfirmButton: false,
                   animation: false,
@@ -268,6 +268,7 @@ window.app = new Vue({
     goodPhrases: window.goodPhrases
   },
   created: function() {
+    //LANGUAGE
     var lang = window.navigator.userLanguage || window.navigator.language;
     lang = lang.substring(0, 2).toLowerCase();
     if (this.$route.query.lang) {
@@ -278,7 +279,7 @@ window.app = new Vue({
     } else {
         window.lang = "en";
     }
-    window.lang = "en";
+    // window.lang = "en";
     $.getScript("data/lang/"+window.lang+"/phrases.js").done(function() {});
   },
   methods: {
@@ -288,15 +289,15 @@ window.app = new Vue({
     winner: function() {
       // window.app.celebrating = true;
       swal({
-        title: 'Victory',
+        title: window.langDB.victoryTitle,
         position: 'center',
-        text: "You have completed this class!",
+        text: window.langDB.victorySub,
         imageUrl: 'img/awards/olive.gif',
         showCloseButton: true,
         showCancelButton: true,
-        confirmButtonText: "Share",
-        // imageWidth: 220,
-        cancelButtonText: "Next",
+        confirmButtonText: window.langDB.victoryBtn1,
+        imageWidth: 220,
+        cancelButtonText: window.langDB.victoryBtn2,
         confirmButtonClass: "text-primary",
         cancelButtonClass: "text-primary",
         cancelButtonColor: 'white',
@@ -347,6 +348,9 @@ window.app = new Vue({
 
       //generate new question
       this.currentPainter = this.randomPainter();
+
+      //Имена на мультиязыках как-то так надо сделать
+      // this.current.Painter.name = window.lang.painters[this.current.Painter.id].name;
 
       //generate new picture
       this.currentPicture = Math.floor(Math.random() * this.currentPainter.paintings) + 1;

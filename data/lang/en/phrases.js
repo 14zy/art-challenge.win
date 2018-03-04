@@ -21,3 +21,12 @@ window.goodPhrases = [
   "Incredible!",
   "Amazing!"
 ];
+
+window.langDB = {};
+window.langDB.wrongSub = "It was me";
+window.langDB.wrongBtn = "More info";
+window.langDB.wrongMoreBtn = "Close";
+window.langDB.victoryTitle = "Victory";
+window.langDB.victorySub = "You have completed this class!";
+window.langDB.victoryBtn1 = "Share";
+window.langDB.victoryBtn2 = "Next";

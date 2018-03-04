@@ -102,40 +102,30 @@
    }(document, 'script', 'facebook-jssdk'));
 </script>
 </head>
-
 <body>
 
   <div id="app">
-
     <!-- <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut" mode="out-in">
       <div v-if="celebrating" class="text-center fixed-top" style='pointer-events: none;z-index:9999'>
         <img :src="'img/animations/1.gif'" class="" style='height: 100%'/>
       </div>
     </transition> -->
-
     <game-screen></game-screen>
-
     <transition enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown" mode="out-in">
-
       <div v-show="!zoomed" class="footer fixed-bottom" style="box-shadow: 0 3px 2px #777;">
-
           <answers></answers>
           <!-- ArtChallenge.ru_responsive -->
           <!-- <div style="border-style: dotted; border-width: 1px; border-color: lightgray; min-height: 100px;">
             <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2407992058828148" data-ad-slot="3910414450" data-ad-format="horizontal"></ins>
           </div> -->
-
       </div>
-
     </transition>
-
   </div>
 
   <script src="dist/jquery-3.2.1.min.js"></script>
   <script src="dist/popper.min.js"></script>
   <script src="dist/bootstrap.min.js"></script>
   <script defer src="dist/sweetalert2.all.js"></script>
-
   <script src="js/game.js"></script>
 </body>
 

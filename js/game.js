@@ -6,8 +6,7 @@ Vue.component('game-screen', {
         <div class="row">
           <div class="col-2"></div>
           <div class="col-8 text-center text-dark mb-2">
-            <img src="img/ui/tap3.png" class="m-2" width="48">
-            <p class="">Click on picture to answer</p>
+
           </div>
           <div class="col-2"></div>
         </div>
@@ -277,9 +276,6 @@ window.app = new Vue({
     $.getScript("data/lang/"+window.lang+"/phrases.js").done(function() {});
   },
   methods: {
-    returnURL: function() {
-      return "http://artchallenge.me/painters/" + window.app.currentPainter.id + "/" + window.app.currentPicture + ".jpg";
-    },
     goodPhrase: function() {
       return window.goodPhrases[Math.floor(Math.random() * window.goodPhrases.length)];
     },
@@ -337,6 +333,10 @@ window.app = new Vue({
       // console.log("next question");
       $('.painting').removeClass('animated jello');
       $('.painting').removeClass('animated flash');
+
+      setTimeout(function(){
+        window.app.zoomed = false;
+      }, 2200);
 
       //generate new question
       this.currentPainter = this.randomPainter();

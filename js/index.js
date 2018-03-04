@@ -172,10 +172,10 @@ $.getScript( "data/quests.json.js", function( data, textStatus, jqxhr ) {
               el: '.swiper-pagination',
               clickable: true
             },
-            autoplay: {
-              delay: 28000,
-              disableOnInteraction: false,
-            },
+            // autoplay: {
+            //   delay: 28000,
+            //   disableOnInteraction: false,
+            // },
             // navigation: {
             //   nextEl: '.swiper-button-next',
             //   prevEl: '.swiper-button-prev',

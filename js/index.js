@@ -164,7 +164,7 @@ $.getScript( "data/quests.json.js", function( data, textStatus, jqxhr ) {
          var mySwiper = new Swiper ('.swiper-container', {
             direction: 'horizontal',
             loop: true,
-            initialSlide: 3,
+            initialSlide: 5,
             effect: "slide",
             spaceBetween: 0,
             centeredSlides: true,
@@ -172,10 +172,10 @@ $.getScript( "data/quests.json.js", function( data, textStatus, jqxhr ) {
               el: '.swiper-pagination',
               clickable: true
             },
-            // autoplay: {
-            //   delay: 28000,
-            //   disableOnInteraction: false,
-            // },
+            autoplay: {
+              delay: 14000,
+              disableOnInteraction: false,
+            },
             // navigation: {
             //   nextEl: '.swiper-button-next',
             //   prevEl: '.swiper-button-prev',

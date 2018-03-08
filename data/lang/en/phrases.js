@@ -30,3 +30,5 @@ window.langDB.victoryTitle = "Victory";
 window.langDB.victorySub = "You have completed this class!";
 window.langDB.victoryBtn1 = "Share";
 window.langDB.victoryBtn2 = "Next";
+window.langDB.shareTitle = "";
+window.langDB.shareSub = "";

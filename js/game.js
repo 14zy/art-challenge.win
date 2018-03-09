@@ -90,7 +90,7 @@ Vue.component('answers', {
       </div>
 
       <div class='row m-0' style="background-color: rgba(255,255,255,1)">
-        <painterBtn style='cursor: pointer; border-radius:0; min-width: 150px' v-for="painter in this.$root.currentAnswers" :key="painter.id" :painter="painter"></painterBtn>
+        <painterBtn style='cursor: pointer; border-radius:0; min-width: 150px;' v-for="painter in this.$root.currentAnswers" :key="painter.id" :painter="painter"></painterBtn>
       </div>
     </div>`,
     methods: {
@@ -105,9 +105,9 @@ Vue.component('painterBtn', {
   template: `
   <div @click="answer(painter);" :class="this.class">
       <img onerror="this.src='/img/ui/person.png';" width="100" style="margin-left: -20px " :src="'img/painters/' + painter.id + '.png'" />
-      <span class="text-right" style='right: 5%; top:10%; position: absolute;'>
+      <div class="text-right" style='right: 5%; top:10%; position: absolute;'>
         <div class='painter-name'>{{ painter.name }}</div>
-      </span>
+      </div>
       <span class="text-right" style='right: 5%; bottom:10%; position: absolute;'>
         <img width="18" :src="'img/nationality/' + painter.nationality[0] + '.png'"/>
         <div style='line-height: 1.2;' class="painter-years small">{{ painter.years }}</div>
@@ -177,7 +177,7 @@ Vue.component('painterBtn', {
           window.app.correctAnswers=0;
         // }
         //star animation here
-        
+
 
         swal({
           title: this.$root.currentPainter.name,// "No!",

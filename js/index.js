@@ -164,7 +164,7 @@ $.getScript( "data/quests.json.js", function( data, textStatus, jqxhr ) {
          var mySwiper = new Swiper ('.swiper-container', {
             direction: 'horizontal',
             loop: true,
-            initialSlide: 5,
+            initialSlide: 6,
             effect: "slide",
             spaceBetween: 0,
             centeredSlides: true,

@@ -5,9 +5,7 @@ Vue.component('game-screen', {
     <div v-show="this.$root.hint" class="container-fluid pt-3" style="color: white; font-size:18px;">
         <div class="row">
           <div class="col-2"></div>
-          <div class="col-8 text-center text-dark mb-2">
-
-          </div>
+          <div class="col-8 text-center text-dark mb-2"></div>
           <div class="col-2"></div>
         </div>
       </div>
@@ -178,7 +176,6 @@ Vue.component('painterBtn', {
         // }
         //star animation here
 
-
         swal({
           title: this.$root.currentPainter.name,// "No!",
           text: window.langDB.wrongSub, //this.$root.currentPainter.years,
@@ -319,23 +316,6 @@ window.app = new Vue({
           window.location.href='/?completed=true';
         }
       });
-      // if (this.completedQuests) {
-      //   var newQuestWinning = true;
-      //   for (var i = 0; i < this.completedQuests.length; i++) {
-      //     if (this.completedQuests[i] == this.currentQuest) {
-      //       console.log("winnig this quest not first time");
-      //       newQuestWinning = false;
-      //     }
-      //   }
-      //   if (newQuestWinning) {
-      //     this.completedQuests.push(this.currentQuest);
-      //     console.log("winnig this quest in first time!");
-      //   }
-      // } else {
-      //   this.completedQuests = [];
-      //   this.completedQuests.push(this.currentQuest);
-      // }
-      // localStorage.setItem("completed", this.completedQuests);
     },
     randomPainter: function() {
       return this.questionsDB[Math.floor(Math.random() * this.questionsDB.length)]
@@ -425,28 +405,6 @@ window.app = new Vue({
           window.app.questionsDB = paintersDB;
           window.app.newRound();
         })
-        //Смотрим локалсторадж
-        // this.completedQuests = localStorage.getItem("completed");
-        // if (this.completedQuests) {
-        //   this.completedQuests = this.completedQuests.split(",");
-        //   // console.log(this.completedQuests);
-        //   // for (var i = 0; i < this.quests.length; i++) {
-        //   //   if (this.completedQuests.slice(-1)[0] == this.quests[i].id) {
-        //   //     for (var z = 0; z < i; z++) {
-        //   //       this.quests[z].completed = true;
-        //   //     }
-        //   //     this.quests[i].completed = true;
-        //   //     this.quests[i+1].available = true;
-        //   //     if (this.quests[i].available) {
-        //   //       this.quests[i].available = false;
-        //   //     }
-        //   //     console.log(this.quests[i+1]);
-        //   //   }
-        //   // };
-        // } else {
-        //   // this.quests[0].available = true;
-        // }
-        //Смотрим локалсторадж
       }
   }
 });

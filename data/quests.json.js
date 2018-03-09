@@ -98,14 +98,6 @@ var quests = [
     pictures: 4777,
     painters: [3, 4, 5, 6, 8, 10, 11, 12, 13, 16, 19, 20, 23, 25, 26, 27, 37, 38, 44, 47, 48, 76, 81, 84, 85, 86, 103, 105, 113]
   },
-  // {
-  //   id: "abstractionism",
-  //   difficult: "basic",
-  //   title: "Abstractionism",
-  //   completed: false,
-  //   available: false,
-  //   painters: [1]
-  // },
   {
     id: "popularAll",
     level: 11,

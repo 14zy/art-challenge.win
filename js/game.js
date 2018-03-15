@@ -1,32 +1,11 @@
-Vue.component('game-screen', {
-  template: `
-  <div>
-    <question></question>
-    <div class="container-fluid pt-3" style="color: white; font-size:18px;">
-        <div class="row">
-          <div class="col-1"></div>
-          <div class="col-10 text-center text-dark mb-2">
-          <p>
-            {{this.$root.currentPictureName}}
-          </p>
-          </div>
-          <div class="col-1"></div>
-        </div>
-      </div>
-  </div>`
-});
 
 Vue.component('question', {
   template: `
-  <div>
-    <questionPicture></questionPicture>
-  </div>`
-});
-
-Vue.component('questionPicture', {
-  template: `
   <div class="text-center img-scroll">
     <img @click="zoom()" :style="this.style" class="painting" :src="pictureURL()"/>
+    <div v-if="window.app.currentPictureName" class="offset-1 col-10 text-dark mt-2 mb-2">
+      <p>{{this.$root.currentPictureName}}</p>
+    </div>
   </div>`,
   data: function() {
     return {

@@ -2,11 +2,15 @@ Vue.component('game-screen', {
   template: `
   <div>
     <question></question>
-    <div v-show="this.$root.hint" class="container-fluid pt-3" style="color: white; font-size:18px;">
+    <div class="container-fluid pt-3" style="color: white; font-size:18px;">
         <div class="row">
-          <div class="col-2"></div>
-          <div class="col-8 text-center text-dark mb-2"></div>
-          <div class="col-2"></div>
+          <div class="col-1"></div>
+          <div class="col-10 text-center text-dark mb-2">
+          <p>
+            {{this.$root.currentPictureName}}
+          </p>
+          </div>
+          <div class="col-1"></div>
         </div>
       </div>
   </div>`
@@ -102,7 +106,7 @@ Vue.component('painterBtn', {
   props: ["painter"],
   template: `
   <div @click="answer(painter);" :class="this.class">
-      <img onerror="this.src='/img/ui/person.png';" width="100" style="margin-left: -20px " :src="'img/painters/' + painter.id + '.png'" />
+      <img onerror="this.src='/img/ui/person.png';" width="100" style="margin-left: -20px " :src="'img/painters/200x200/' + painter.id + '.png'" />
       <div class="text-right" style='right: 5%; top:10%; position: absolute;'>
         <div class='painter-name'>{{ painter.name }}</div>
       </div>
@@ -180,7 +184,7 @@ Vue.component('painterBtn', {
           title: this.$root.currentPainter.name,// "No!",
           text: window.langDB.wrongSub, //this.$root.currentPainter.years,
           position: 'top',
-          imageUrl: 'img/painters/' + this.$root.currentPainter.id + '.png',
+          imageUrl: 'img/painters/200x200/' + this.$root.currentPainter.id + '.png',
           imageWidth: 200,
           timer: 3600,
           backdrop: false,
@@ -195,46 +199,40 @@ Vue.component('painterBtn', {
         }).then(function(result) {
 
           if (result.value) {
-            $.ajax({
-               url: 'http://178.62.133.139:5994/painters/'+window.app.currentPainter.id,
-               type: 'get',
-               dataType: 'jsonp',
-               success: function(data) {
-                 window.painterDetails = data;
-                 image = data.paintings[window.app.currentPicture-1];
-                 window.app.currentPictureName = image.name[window.lang];
-                html = `
-                <div class="text-left">
-                  <h3>`
-                    +window.app.currentPainter.name+`
-                  </h3>
-                  <img class="img-fluid pb-2" src="http://artchallenge.me/painters/`+ window.app.currentPainter.id+`/1.jpg">
-                  ` + window.painterDetails.bio[window.lang]+`
-                </div>
-                <div class="text-center">
-                  <img width="160px" src="/img/painters/` + window.app.currentPainter.id + `.png">
-                </div>
-                `;
-                swal({
-                  html: html,
-                  position: 'top',
-                  timer: false,
-                  width: '340px',
-                  showCloseButton: true,
-                  background: "rgba(255,255,255,1)",
-                  cancelButtonText: window.langDB.wrongMoreBtn,
-                  showCancelButton: true,
-                  showConfirmButton: false,
-                  animation: false,
-                  customClass: 'animated fadeIn'
-                });
-                setTimeout(function() {
-                  window.app.nextQuestion();
-                }, 3600);
-              }
+            bio = window.app.currentPainter.bio[window.lang];
+            if (bio == undefined) {
+              bio = window.app.currentPainter.bio["en"];
+            };
+            html = `
+            <div class="text-left">
+              <h3>`
+                +window.app.currentPainter.name+`
+              </h3>
+              <img class="img-fluid pb-2" src="http://artchallenge.me/painters/`+ window.app.currentPainter.id+`/1.jpg">
+              ` + bio +`
+            </div>
+            <div class="text-center">
+              <img width="160px" src="/img/painters/200x200/` + window.app.currentPainter.id + `.png">
+            </div>
+            `;
+            swal({
+              html: html,
+              position: 'top',
+              timer: false,
+              width: '340px',
+              showCloseButton: true,
+              background: "rgba(255,255,255,1)",
+              cancelButtonText: window.langDB.wrongMoreBtn,
+              showCancelButton: true,
+              showConfirmButton: false,
+              animation: false,
+              customClass: 'animated fadeIn'
             });
-          } else {
+            setTimeout(function() {
               window.app.nextQuestion();
+            }, 3600);
+          } else {
+            window.app.nextQuestion();
           }
         });
       }
@@ -248,25 +246,34 @@ var router = new VueRouter({
   routes: []
 });
 
+
+var mobile = false;
+if (screen && screen.width < 1024) {
+  mobile = true;
+}
+
 window.app = new Vue({
   router,
   el: '#app',
   data: {
+    mobile: mobile,
     zoomed: true,
     multiclick: false,
     // celebrating: false,
-    currentQuest: "",
     questions: 10,
     correctAnswers: 0,
     questionsDB: [],
+    questsDB: [],
+    currentQuest: "",
+    currentQuestData: {},
+    currentQuestDifficult: "",
     currentPainter: "",
     currentPicture: "",
     currentPictureName: "",
+    currentPictureData: {},
     currentAnswers: [],
-    completedQuests: [],
-    currentQuestDifficult: "",
     hint: true,
-    goodPhrases: window.goodPhrases
+    paintersNames: {}
   },
   created: function() {
     //LANGUAGE
@@ -275,17 +282,20 @@ window.app = new Vue({
     if (this.$route.query.lang) {
      lang = this.$route.query.lang
     }
-    if (lang == "ru" || lang == "en") {
+    if (lang == "ru" || lang == "en" || lang == "de" || lang == "es" || lang == "it") {
         window.lang = lang;
     } else {
         window.lang = "en";
     }
-    // window.lang = "en";
-    $.getScript("data/lang/"+window.lang+"/phrases.js").done(function() {});
+    // window.lang = "fr";
+    $.getScript("/data/lang/"+window.lang+"/phrases.js");
+    $.getJSON("/data/lang/"+window.lang+"/painters.json", function(data) {
+      window.app.paintersNames = data.paintersDB;
+    });
   },
   methods: {
     goodPhrase: function() {
-      return window.goodPhrases[Math.floor(Math.random() * window.goodPhrases.length)];
+      return window.langDB.goodPhrases[Math.floor(Math.random() * window.langDB.goodPhrases.length)];
     },
     winner: function() {
       // window.app.celebrating = true;
@@ -318,10 +328,11 @@ window.app = new Vue({
       });
     },
     randomPainter: function() {
-      return this.questionsDB[Math.floor(Math.random() * this.questionsDB.length)]
+      randPainter = this.questionsDB[Math.floor(Math.random() * this.questionsDB.length)];
+      randPainter.name = window.app.paintersNames[randPainter.id];
+      return randPainter;
     },
     nextQuestion: function() {
-      // console.log("next question");
       window.app.multiclick = false;
       $('.painting').removeClass('animated jello');
       $('.painting').removeClass('animated flash');
@@ -331,25 +342,18 @@ window.app = new Vue({
       }, 2200);
 
       //generate new question
-      this.currentPainter = this.randomPainter();
-
-      //Имена на мультиязыках как-то так надо сделать
-      // this.current.Painter.name = window.lang.painters[this.current.Painter.id].name;
+      window.app.currentPainter = window.app.randomPainter();
 
       //generate new picture
-      this.currentPicture = Math.floor(Math.random() * this.currentPainter.paintings) + 1;
+      window.app.currentPicture = window.app.currentPainter.paintingsDB[Math.floor(Math.random() * this.currentPainter.paintings) + 1].id;
 
-      //picture name
-      // $.ajax({
-      //    url: 'http://178.62.133.139:5994/painters/'+this.currentPainter.id,
-      //    type: 'get',
-      //    dataType: 'jsonp',
-      //    success: function(data) {
-      //      window.painterDetails = data;
-      //      image = data.paintings[window.app.currentPicture-1];
-      //      window.app.currentPictureName = image.name[window.lang];
-      //    }
-      // });
+      //loking for picture name
+      window.app.currentPictureData = window.app.currentPainter.paintingsDB[window.app.currentPicture-1];
+      if (window.lang == "ru" || window.lang == "en") {
+        window.app.currentPictureName = window.app.currentPictureData.name[window.lang];
+      } else {
+        window.app.currentPictureName = "";
+      }
 
       //generate new answers //need generate more answers (2/16)
       this.currentAnswers = [];
@@ -399,12 +403,33 @@ window.app = new Vue({
       if (this.$route.query.quest) {
         this.currentQuest = this.$route.query.quest;
         this.currentQuestDifficult = this.$route.query.difficult;
-        // Загружаем художников из текущего режима в questionsDB
-        $.getJSON("../data/quests/" + window.lang + "/" + this.currentQuest + ".json", function(data) {
-          paintersDB = data.paintersDB;
-          window.app.questionsDB = paintersDB;
-          window.app.newRound();
-        })
+
+        $.getScript( "/data/quests.json.js", function( data, textStatus, jqxhr ) {
+          window.app.questsDB = quests;
+        });
+
+        $.getJSON("/data/paintersDB.json", function(data) {
+            var currentQuestPianters = [];
+            for (var i = 0; i < window.app.questsDB.length; i++) {
+              if (window.app.currentQuest == window.app.questsDB[i].id) {
+                window.app.currentQuestData = window.app.questsDB[i];
+              }
+            }
+            for (var z = 0; z < window.app.currentQuestData.painters.length; z++) {
+              transferPainter = {};
+              transferPainter.id = data.docs[(window.app.currentQuestData.painters[z]-1)].id;
+              transferPainter.years= data.docs[(window.app.currentQuestData.painters[z]-1)].years;
+              transferPainter.name = data.docs[(window.app.currentQuestData.painters[z]-1)].name; // get from lang
+              transferPainter.nationality = data.docs[(window.app.currentQuestData.painters[z]-1)].nationality;
+              transferPainter.bio = data.docs[(window.app.currentQuestData.painters[z]-1)].bio; // get from lang
+              transferPainter.genre = data.docs[(window.app.currentQuestData.painters[z]-1)].genre;
+              transferPainter.paintings= data.docs[(window.app.currentQuestData.painters[z]-1)].paintings.length;
+              transferPainter.paintingsDB= data.docs[(window.app.currentQuestData.painters[z]-1)].paintings;
+              window.app.questionsDB.push(transferPainter);
+            }
+            //Вот до сюда можно показывать что идет загрузка
+            window.app.newRound();
+        });
       }
   }
 });

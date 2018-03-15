@@ -125,11 +125,25 @@
     <game-screen></game-screen>
     <transition enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown" mode="out-in">
       <div v-show="!zoomed" class="footer fixed-bottom" style="box-shadow: 0 3px 2px #777;">
+
+        <div v-if="window.app.mobile">
           <answers></answers>
-          <!-- ArtChallenge.ru_responsive -->
-          <!-- <div style="border-style: dotted; border-width: 1px; border-color: lightgray; min-height: 100px;">
-            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2407992058828148" data-ad-slot="3910414450" data-ad-format="horizontal"></ins>
-          </div> -->
+        </div>
+
+        <div v-else>
+          <div class="row">
+            <div class="col col-2"></div>
+            <div class="col col-8">
+              <answers></answers>
+            </div>
+            <div class="col col-2"></div>
+          </div>
+        </div>
+
+        <!-- ArtChallenge.ru_responsive -->
+        <!-- <div style="border-style: dotted; border-width: 1px; border-color: lightgray; min-height: 100px;">
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2407992058828148" data-ad-slot="3910414450" data-ad-format="horizontal"></ins>
+        </div> -->
       </div>
     </transition>
   </div>

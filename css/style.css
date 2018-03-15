@@ -1,13 +1,9 @@
 .painting {
-
   /* min-height: 100%;
   min-width: 100%; */
-
   width: 100%;
   max-width: 1024px;
   /* max-height: 1024px; */
-
-
   /* box-shadow: 0 3px 2px #777; */
 }
 
@@ -29,14 +25,6 @@
 }
 
 #playBtn {
-  /* -webkit-filter: drop-shadow(5px 5px 5px #222);
-  filter: drop-shadow(0 1px 1px #777); */
-
-
-	/* width: 300px;	height: 100px;
-  background-color: #FFFFFF;
-  position: relative;	 */
-  /* box-shadow: 0px 10px 4px 0px rgba(0, 0, 0, 0.22); */
 }
 
 .painter-name {
@@ -71,10 +59,10 @@
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
-.new-quest {
-  /*background-image: url(../img/animations/tumblr_ojsk8iRcSX1tgo015o3_500.gif);
-  background-size: cover;*/
-}
+/* .new-quest {
+  background-image: url(../img/animations/tumblr_ojsk8iRcSX1tgo015o3_500.gif);
+  background-size: cover;
+} */
 
 
 .list-enter-active, .list-leave-active {
@@ -109,18 +97,18 @@
   z-index: 100!important;
 }
 
-#share-buttons img {
+/* #share-buttons img {
   width: 35px;
   padding: 5px;
   border: 0;
   box-shadow: 0;
   display: inline;
-}
+} */
 
 .swiper-container {
-    width: 100%;
-    max-width: 410px;
-    height: 320px;
+  width: 100%;
+  max-width: 410px;
+  height: 320px;
 }
 
 .swiper-slide {

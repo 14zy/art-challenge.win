@@ -1,4 +1,5 @@
-window.goodPhrases = [
+window.langDB = {};
+window.langDB.goodPhrases = [
   "You got it right!",
   "Bravo!",
   "Excellent!",
@@ -22,8 +23,7 @@ window.goodPhrases = [
   "Amazing!"
 ];
 
-window.langDB = {};
-window.langDB.wrongSub = "It was me";
+window.langDB.wrongSub = "This is my painting";
 window.langDB.wrongBtn = "More info";
 window.langDB.wrongMoreBtn = "Close";
 window.langDB.victoryTitle = "Victory";

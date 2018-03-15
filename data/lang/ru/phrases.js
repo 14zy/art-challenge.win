@@ -1,4 +1,5 @@
-window.goodPhrases = [
+window.langDB = {};
+window.langDB.goodPhrases = [
   "Так держать!",
   "Верно!",
   "Браво!",
@@ -20,8 +21,7 @@ window.goodPhrases = [
   "Наша школа!"
 ];
 
-window.langDB = {};
-window.langDB.wrongSub = "Это была моя картина";
+window.langDB.wrongSub = "Это моя картина";
 window.langDB.wrongBtn = "Узнать больше";
 window.langDB.wrongMoreBtn = "Закрыть";
 window.langDB.victoryTitle = "Победа";

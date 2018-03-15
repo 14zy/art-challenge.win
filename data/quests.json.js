@@ -20,7 +20,7 @@ var quests = [
     painters: [9, 17]
   },
   {
-    id: "monet",
+    id: "artdeco",
     level: 3,
     difficult: "easy",
     title: "Art Deco",

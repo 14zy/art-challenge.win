@@ -302,7 +302,13 @@ window.app = new Vue({
           // window.app.celebrating = false;
           // yaCounter24594722.reachGoal('WINNER-SHARE-FB');
         } else if (result.dismiss === 'cancel') {
-          window.location.href='/?completed=true';
+
+          if (window.app.currentQuest < (window.app.questsDB.length)) {
+            window.location.href='/game.html?level='+ (parseInt(window.app.currentQuest)+1);
+          } else {
+            swal('Sorry', 'You completed all levels!', 'info');
+          }
+
         }
       });
     },

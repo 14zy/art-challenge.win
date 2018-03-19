@@ -405,7 +405,19 @@ window.app = new Vue({
               transferPainter.paintingsDB= data.docs[(window.app.currentQuestData.painters[z]-1)].paintings;
               window.app.questionsDB.push(transferPainter);
             }
-            //Вот до сюда можно показывать, что идет загрузка
+            swal({
+              position: "center",
+              html: "<h4 class='p-0 m-0'>"+window.app.currentQuestData.title + " <i class='fa fa-refresh fa-spin fa-fw'></i></h4>",
+              timer: 2600,
+              backdrop: false,
+              width: "320px",
+              toast: false,
+              background: "rgba(255,255,255,1)",
+              animation: true,
+              customClass: "",
+              showConfirmButton: false,
+              padding: "1em"
+            });
             window.app.newRound();
         });
       }

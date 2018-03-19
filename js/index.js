@@ -1,7 +1,7 @@
 Vue.component('level', {
   props: ['level'],
   template: `
-  <div :id="thisQuest.id + '|' + thisQuest.difficult">
+  <div :id="thisQuest.level + '|' + thisQuest.difficult">
     <h3 class="text-center mt-1 text-dark">{{thisQuest.title}}</h3>
     <img class="d-block img-fluid mb-2" :src="'img/collections/' + thisQuest.id + '.jpg'" alt="">
     <div class="row text-capitalize">
@@ -69,7 +69,7 @@ $.getScript( "data/quests.json.js", function( data, textStatus, jqxhr ) {
             }
           });
           mySwiper.on('slideChange', function () {
-           var link = '/game.html?quest=' + $(mySwiper.slides[mySwiper.activeIndex]).children()[0].id.split("|")[0] + '&difficult=' + $(mySwiper.slides[mySwiper.activeIndex]).children()[0].id.split("|")[1];
+           var link = '/game.html?level=' + $(mySwiper.slides[mySwiper.activeIndex]).children()[0].id.split("|")[0];
            $('#playBtn').prop('href', link)
          });
        }

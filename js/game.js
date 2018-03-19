@@ -379,21 +379,20 @@ window.app = new Vue({
     }
   },
   mounted: function() {
-      if (this.$route.query.quest) {
-        this.currentQuest = this.$route.query.quest;
-        this.currentQuestDifficult = this.$route.query.difficult;
+      if (this.$route.query.level) {
+        this.currentQuest = this.$route.query.level;
 
         $.getScript( "/data/quests.json.js", function( data, textStatus, jqxhr ) {
           window.app.questsDB = quests;
+          for (var i = 0; i < window.app.questsDB.length; i++) {
+            if (window.app.currentQuest == window.app.questsDB[i].level) {
+              window.app.currentQuestData = window.app.questsDB[i];
+              window.app.currentQuestDifficult = window.app.currentQuestData.difficult;
+            }
+          }
         });
 
         $.getJSON("/data/paintersDB.json", function(data) {
-            var currentQuestPianters = [];
-            for (var i = 0; i < window.app.questsDB.length; i++) {
-              if (window.app.currentQuest == window.app.questsDB[i].id) {
-                window.app.currentQuestData = window.app.questsDB[i];
-              }
-            }
             for (var z = 0; z < window.app.currentQuestData.painters.length; z++) {
               transferPainter = {};
               transferPainter.id = data.docs[(window.app.currentQuestData.painters[z]-1)].id;
@@ -406,7 +405,7 @@ window.app = new Vue({
               transferPainter.paintingsDB= data.docs[(window.app.currentQuestData.painters[z]-1)].paintings;
               window.app.questionsDB.push(transferPainter);
             }
-            //Вот до сюда можно показывать что идет загрузка
+            //Вот до сюда можно показывать, что идет загрузка
             window.app.newRound();
         });
       }

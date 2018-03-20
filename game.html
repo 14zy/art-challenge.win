@@ -122,6 +122,11 @@
         <img :src="'img/animations/1.gif'" class="" style='height: 100%'/>
       </div>
     </transition> -->
+
+    <div v-if="loading" class="text-center p-4">
+      <img src="img/loading/lg.dual-ring-loader.gif" alt="">
+      <!-- <h4 class="text-darklight"><i  class='fa fa-refresh fa-spin fa-fw'></i></h4> -->
+    </div>
     <question></question>
     <transition enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown" mode="out-in">
       <div v-show="!zoomed" class="footer fixed-bottom" style="box-shadow: 0 3px 2px #777;">

@@ -235,6 +235,7 @@ window.app = new Vue({
   router,
   el: '#app',
   data: {
+    loading: true,
     mobile: mobile,
     zoomed: true,
     multiclick: false,
@@ -387,7 +388,6 @@ window.app = new Vue({
   mounted: function() {
       if (this.$route.query.level) {
         this.currentQuest = this.$route.query.level;
-
         $.getScript( "/data/quests.json.js", function( data, textStatus, jqxhr ) {
           window.app.questsDB = quests;
           for (var i = 0; i < window.app.questsDB.length; i++) {
@@ -396,35 +396,35 @@ window.app = new Vue({
               window.app.currentQuestDifficult = window.app.currentQuestData.difficult;
             }
           }
-        });
-
-        $.getJSON("/data/paintersDB.json", function(data) {
-            for (var z = 0; z < window.app.currentQuestData.painters.length; z++) {
-              transferPainter = {};
-              transferPainter.id = data.docs[(window.app.currentQuestData.painters[z]-1)].id;
-              transferPainter.years= data.docs[(window.app.currentQuestData.painters[z]-1)].years;
-              transferPainter.name = data.docs[(window.app.currentQuestData.painters[z]-1)].name; // get from lang
-              transferPainter.nationality = data.docs[(window.app.currentQuestData.painters[z]-1)].nationality;
-              transferPainter.bio = data.docs[(window.app.currentQuestData.painters[z]-1)].bio; // get from lang
-              transferPainter.genre = data.docs[(window.app.currentQuestData.painters[z]-1)].genre;
-              transferPainter.paintings= data.docs[(window.app.currentQuestData.painters[z]-1)].paintings.length;
-              transferPainter.paintingsDB= data.docs[(window.app.currentQuestData.painters[z]-1)].paintings;
-              window.app.questionsDB.push(transferPainter);
-            }
-            swal({
-              position: "center",
-              html: "<h4 class='p-0 m-0'>"+window.app.currentQuestData.title + " <i class='fa fa-refresh fa-spin fa-fw'></i></h4>",
-              timer: 2600,
-              backdrop: false,
-              width: "320px",
-              toast: false,
-              background: "rgba(255,255,255,1)",
-              animation: true,
-              customClass: "",
-              showConfirmButton: false,
-              padding: "1em"
-            });
-            window.app.newRound();
+          $.getJSON("/data/paintersDB.json", function(data) {
+              for (var z = 0; z < window.app.currentQuestData.painters.length; z++) {
+                transferPainter = {};
+                transferPainter.id = data.docs[(window.app.currentQuestData.painters[z]-1)].id;
+                transferPainter.years= data.docs[(window.app.currentQuestData.painters[z]-1)].years;
+                transferPainter.name = data.docs[(window.app.currentQuestData.painters[z]-1)].name; // get from lang
+                transferPainter.nationality = data.docs[(window.app.currentQuestData.painters[z]-1)].nationality;
+                transferPainter.bio = data.docs[(window.app.currentQuestData.painters[z]-1)].bio; // get from lang
+                transferPainter.genre = data.docs[(window.app.currentQuestData.painters[z]-1)].genre;
+                transferPainter.paintings= data.docs[(window.app.currentQuestData.painters[z]-1)].paintings.length;
+                transferPainter.paintingsDB= data.docs[(window.app.currentQuestData.painters[z]-1)].paintings;
+                window.app.questionsDB.push(transferPainter);
+              }
+              window.app.loading = false;
+              swal({
+                position: "center",
+                html: "<h4 class='p-0 m-0'>"+window.app.currentQuestData.title + " <i class='fa fa-refresh fa-spin fa-fw'></i></h4>",
+                timer: 2600,
+                backdrop: false,
+                width: "320px",
+                toast: false,
+                background: "rgba(255,255,255,1)",
+                animation: true,
+                customClass: "",
+                showConfirmButton: false,
+                padding: "1em"
+              });
+              window.app.newRound();
+          });
         });
       }
   }

@@ -28,3 +28,6 @@ window.langDB.victoryTitle = "Победа";
 window.langDB.victorySub = "Вы прошли этот уровень!";
 window.langDB.victoryBtn1 = "Поделиться";
 window.langDB.victoryBtn2 = "Дальше";
+window.langDB.shareBtn = "";
+window.langDB.shareTitle = "";
+window.langDB.shareSub = "";

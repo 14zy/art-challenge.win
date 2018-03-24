@@ -19,18 +19,18 @@ var quests = [
     pictures: 163,
     painters: [9, 17]
   },
-  {
-    id: "artdeco",
-    level: 3,
-    difficult: "easy",
-    title: "Art Deco",
-    completed: false,
-    available: false,
-    painters: [56, 44]
-  },
+  // {
+  //   id: "artdeco",
+  //   level: 3,
+  //   difficult: "easy",
+  //   title: "Art Deco",
+  //   completed: false,
+  //   available: false,
+  //   painters: [56, 44]
+  // },
   {
     id: "surrealism",
-    level: 4,
+    level: 3,
     difficult: "easy",
     title: "Surrealism",
     completed: false,
@@ -38,18 +38,18 @@ var quests = [
     pictures: 743,
     painters: [33, 14, 15, 79, 82]
   },
-  {
-    id: "american",
-    level: 5,
-    difficult: "easy",
-    title: "USA Painters",
-    completed: false,
-    available: false,
-    painters: [83, 116, 118, 18, 60]
-  },
+  // {
+  //   id: "american",
+  //   level: 5,
+  //   difficult: "easy",
+  //   title: "USA Painters",
+  //   completed: false,
+  //   available: false,
+  //   painters: [83, 116, 118, 18, 60]
+  // },
   {
     id: "popularEasy",
-    level: 6,
+    level: 4,
     difficult: "easy",
     title: "Famous Painters",
     completed: false,
@@ -59,7 +59,7 @@ var quests = [
   },
   {
     id: "popular",
-    level: 7,
+    level: 5,
     difficult: "basic",
     title: "Popular Painters",
     completed: false,
@@ -70,7 +70,7 @@ var quests = [
 
   {
     id: "french",
-    level: 8,
+    level: 6,
     difficult: "basic",
     title: "French Painters",
     completed: false,
@@ -80,7 +80,7 @@ var quests = [
   },
   {
     id: "italian",
-    level: 9,
+    level: 7,
     difficult: "basic",
     title: "Italian Painters",
     completed: false,
@@ -90,7 +90,7 @@ var quests = [
   },
   {
     id: "russian",
-    level: 10,
+    level: 8,
     difficult: "basic",
     title: "Russian Painters",
     completed: false,
@@ -100,7 +100,7 @@ var quests = [
   },
   {
     id: "popularAll",
-    level: 11,
+    level: 9,
     difficult: "basic",
     title: "Top 100 Painters",
     completed: false,
@@ -110,7 +110,7 @@ var quests = [
   },
   {
     id: "northernRenaissance",
-    level: 12,
+    level: 10,
     difficult: "hard",
     title: "Northern Renaissance",
     completed: false,
@@ -120,7 +120,7 @@ var quests = [
   },
   {
     id: "impressionism",
-    level: 13,
+    level: 11,
     difficult: "hard",
     title: "Impressionism",
     completed: false,
@@ -130,7 +130,7 @@ var quests = [
   },
   {
     id: "avantgarde",
-    level: 14,
+    level: 12,
     difficult: "hard",
     title: "Avantgarde",
     completed: false,

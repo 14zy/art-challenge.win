@@ -54,8 +54,8 @@ $.getScript( "data/quests.json.js", function( data, textStatus, jqxhr ) {
       mounted: function() {
          var mySwiper = new Swiper ('.swiper-container', {
             direction: 'horizontal',
-            loop: true,
-            initialSlide: 6,
+            // loop: true,
+            initialSlide: 4,
             effect: "slide",
             spaceBetween: 0,
             centeredSlides: true,
@@ -63,10 +63,10 @@ $.getScript( "data/quests.json.js", function( data, textStatus, jqxhr ) {
               el: '.swiper-pagination',
               clickable: true
             },
-            autoplay: {
-              delay: 14000,
-              disableOnInteraction: false,
-            }
+            // autoplay: {
+            //   delay: 14000,
+            //   disableOnInteraction: false,
+            // }
           });
           mySwiper.on('slideChange', function () {
            var link = '/game.html?level=' + $(mySwiper.slides[mySwiper.activeIndex]).children()[0].id.split("|")[0];

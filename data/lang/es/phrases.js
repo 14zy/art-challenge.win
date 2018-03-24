@@ -23,11 +23,12 @@ window.langDB.goodPhrases = [
 ];
 
 window.langDB.wrongSub = "Esta es mi imagen";
-window.langDB.wrongBtn = "More info";
+window.langDB.wrongBtn = "Aprende más";
 window.langDB.wrongMoreBtn = "Close";
-window.langDB.victoryTitle = "Victory";
+window.langDB.victoryTitle = "¡Enhorabuena!";
 window.langDB.victorySub = "You have completed this class!";
 window.langDB.victoryBtn1 = "Share";
 window.langDB.victoryBtn2 = "Next";
+window.langDB.shareBtn = "";
 window.langDB.shareTitle = "";
 window.langDB.shareSub = "";

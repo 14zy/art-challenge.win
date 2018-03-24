@@ -412,7 +412,7 @@ window.app = new Vue({
               window.app.loading = false;
               swal({
                 position: "center",
-                html: "<h4 class='p-0 m-0'>"+window.app.currentQuestData.title + " <i class='fa fa-refresh fa-spin fa-fw'></i></h4>",
+                html: "<img src='img/loading/lg.dual-ring-loader.gif'>" + "<h4 class='p-0 m-0'>"+window.app.currentQuestData.title + "</h4>",
                 timer: 2600,
                 backdrop: false,
                 width: "320px",

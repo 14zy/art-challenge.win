@@ -4,6 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no,,shrink-to-fit=yes" />
 
+  <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
+  <meta name="format-detection" content="telephone=no">
+
   <title>🖼 Art Challenge 🎭 Relaxing 🖌 Edutainment Game 🎨 Learn Painters 🏞  Master Your Skills 🏆</title>
   <meta name="description" content="Try to guess painters and master your skill!">
   <link rel="image_src" href="http://artchallenge.win/share.jpg">
@@ -58,6 +61,7 @@
   <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
   <meta name="msapplication-navbutton-color" content="#333">
   <meta name="msapplication-starturl" content="/index.html">
+  <meta name="msapplication-tap-highlight" content="no">
 
   <meta name="google" content="notranslate" />
 
@@ -156,7 +160,7 @@ window.fbAsyncInit = function() {
           <div class="swiper-pagination"></div>
         </div>
 
-        <a id="playBtn" class="" href="/game.html?level=5">
+        <a id="playBtn" class="" href="game.html?level=5">
           <span style="font-size: 110px; color: rgba(213,87,113, 0.8)">
             <i class="fa fa-play-circle"></i>
           </span>
@@ -181,6 +185,7 @@ window.fbAsyncInit = function() {
   <script src="dist/bootstrap.min.js"></script>
   <script defer src="dist/sweetalert2.all.js"></script>
   <script src="dist/swiper.min.js"></script>
+  <script type="text/javascript" src="cordova.js"></script>
   <script src="js/index.js"></script>
 
 </body>

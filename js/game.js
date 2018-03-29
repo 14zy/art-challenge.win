@@ -51,7 +51,7 @@ Vue.component('answers', {
     <div>
       <div class='row m-0 painter-button pt-1' style="background-color: rgba(255,255,255,1)">
         <div class="col-2 text-left">
-          <a href="/" class="text-darklight">
+          <a href="index.html" class="text-darklight">
             <i class="fa fa-arrow-left"></i>
           </a>
         </div>
@@ -191,7 +191,7 @@ Vue.component('painterBtn', {
               ` + bio +`
             </div>
             <div class="text-center">
-              <img width="160px" src="/img/painters/200x200/` + window.app.currentPainter.id + `.png">
+              <img width="160px" src="img/painters/200x200/` + window.app.currentPainter.id + `.png">
             </div>
             `;
             swal({
@@ -231,6 +231,7 @@ if (screen && screen.width < 1024) {
   mobile = true;
 }
 
+
 window.app = new Vue({
   router,
   el: '#app',
@@ -268,8 +269,9 @@ window.app = new Vue({
         window.lang = "en";
     }
     // window.lang = "fr";
-    $.getScript("/data/lang/"+window.lang+"/phrases.js");
-    $.getJSON("/data/lang/"+window.lang+"/painters.json", function(data) {
+    console.log("lang " + window.lang);
+    $.getScript("data/lang/"+window.lang+"/phrases.js");
+    $.getJSON("data/lang/"+window.lang+"/painters.json", function(data) {
       window.app.paintersNames = data.paintersDB;
     });
   },
@@ -305,7 +307,7 @@ window.app = new Vue({
         } else if (result.dismiss === 'cancel') {
 
           if (window.app.currentQuest < (window.app.questsDB.length)) {
-            window.location.href='/game.html?level='+ (parseInt(window.app.currentQuest)+1);
+            window.location.href='game.html?level='+ (parseInt(window.app.currentQuest)+1);
           } else {
             swal('Sorry', 'You completed all levels!', 'info');
           }
@@ -388,7 +390,7 @@ window.app = new Vue({
   mounted: function() {
       if (this.$route.query.level) {
         this.currentQuest = this.$route.query.level;
-        $.getScript( "/data/quests.json.js", function( data, textStatus, jqxhr ) {
+        $.getScript( "data/quests.json.js", function( data, textStatus, jqxhr ) {
           window.app.questsDB = quests;
           for (var i = 0; i < window.app.questsDB.length; i++) {
             if (window.app.currentQuest == window.app.questsDB[i].level) {
@@ -396,7 +398,7 @@ window.app = new Vue({
               window.app.currentQuestDifficult = window.app.currentQuestData.difficult;
             }
           }
-          $.getJSON("/data/paintersDB.json", function(data) {
+          $.getJSON("data/paintersDB.json", function(data) {
               for (var z = 0; z < window.app.currentQuestData.painters.length; z++) {
                 transferPainter = {};
                 transferPainter.id = data.docs[(window.app.currentQuestData.painters[z]-1)].id;

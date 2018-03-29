@@ -69,7 +69,7 @@ $.getScript( "data/quests.json.js", function( data, textStatus, jqxhr ) {
             // }
           });
           mySwiper.on('slideChange', function () {
-           var link = '/game.html?level=' + $(mySwiper.slides[mySwiper.activeIndex]).children()[0].id.split("|")[0];
+           var link = 'game.html?level=' + $(mySwiper.slides[mySwiper.activeIndex]).children()[0].id.split("|")[0];
            $('#playBtn').prop('href', link)
          });
        }
